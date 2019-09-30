@@ -1,0 +1,117 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Columns visibility
+*
+*  Extensions allows the end user to enable or disable table column visibility
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Layout
+// ------------------------------
+
+// Base
+.ColVis {
+    float: right;
+    margin: 0 0 @content-padding-large @content-padding-large;
+
+    // Left position option
+    .colvis-left & {
+        float: left;
+    }
+}
+
+// Cather
+.ColVis_catcher {
+    position: absolute;
+    z-index: 1101;
+}
+
+// Button
+.ColVis_Button {
+    position: relative;
+    outline: 0;
+}
+
+
+// Button collection
+// ------------------------------
+
+// Background
+.ColVis_collectionBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+    z-index: 1100;
+}
+
+// Collection elements
+.ColVis_collection {
+    list-style: none;
+    min-width: 180px;
+    padding: @list-spacing 0;
+    border: 1px solid @dropdown-border;
+    background-color: @dropdown-bg;
+    overflow: hidden;
+    z-index: 2002;
+    border-radius: @border-radius-base;
+    .box-shadow(0 1px 3px fade(#000, 10%));
+
+    // List item
+    li {
+        position: relative;
+        padding: (@padding-base-vertical + 1) @content-padding-base;
+        display: block;
+        cursor: pointer;
+
+        &:hover {
+            color: @dropdown-link-hover-color;
+            background-color: @dropdown-link-hover-bg;
+        }
+
+        > label {
+            padding-left: (@content-padding-small + @checkbox-size);
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+    }
+
+    // Add divider to special buttons
+    :not(.ColVis_Special) + .ColVis_Special {
+        margin-top: (@list-spacing * 2);
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            display: inline-block;
+            width: 100%;
+            background-color: @dropdown-divider-bg;
+            margin-top: -(@list-spacing);
+        }
+    }
+
+    // Checkbox and radio
+    .checker,
+    .choice {
+        position: absolute;
+        left: 0;
+        top: 1px;
+    }
+
+    // Make dropdown full width on mobile
+    @media (max-width: @screen-xs-max) {
+        width: 100%;
+        border-radius: 0;
+        left: 0!important
+    }
+}

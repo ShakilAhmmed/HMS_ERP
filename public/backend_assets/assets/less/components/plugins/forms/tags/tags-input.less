@@ -1,0 +1,97 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Bootstrap tags input
+*
+*  Styles for tagsinput.js - tags input for Bootstrap
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Core
+// ------------------------------
+
+.bootstrap-tagsinput {
+    background-color: @input-bg;
+    border: 1px solid @input-border;
+    display: inline-block;
+    padding: 3px 3px 0 3px;
+    vertical-align: middle;
+    border-radius: @input-border-radius;
+    width: 100%;
+
+    // Input field
+    input {
+        border: 0;
+        outline: 0;
+        background-color: transparent;
+        height: @input-height-base - 8;
+        padding-left: 3px;
+        padding-right: 3px;
+        margin: 0;
+        width: auto !important;
+        min-width: 100px;
+        font-size: @font-size-small;
+        line-height: @line-height-small;
+        .box-shadow(none);
+
+        &:focus {
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+    // Twitter typeahead adaptation
+    .twitter-typeahead {
+        width: auto;
+    }
+    .tt-dropdown-menu {
+        margin-top: 5px;
+        min-width: 200px;
+    }
+
+    // Tag
+    .tag {
+        margin-right: 3px;
+        margin-bottom: 3px;
+        color: #FFF;
+        border: 0;
+        border-radius: @border-radius-small;
+        padding: (@padding-base-vertical - 3) @padding-xs-horizontal;
+        padding-right: ((@padding-xs-horizontal * 2) + (@icon-font-size / 2));
+        float: left;
+        font-size: @font-size-small;
+        line-height: @line-height-small;
+        font-weight: 400;
+        text-transform: none;
+        position: relative;
+
+        // Remove button
+        [data-role="remove"] {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: (@padding-xs-horizontal / 1.25);
+            line-height: 1;
+            margin-top: -(@icon-font-size / 2);
+            .opacity(0.7);
+
+            &:hover {
+                .opacity(1);
+            }
+
+            // Icon
+            &:after {
+                content: '\ed6b';
+                font-family: 'icomoon';
+                display: block;
+                font-size: @icon-font-size;
+                color: #fff;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+    }
+}

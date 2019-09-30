@@ -1,0 +1,61 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Login and related forms
+ *
+ *  Styles related to user login - logins, registration, password revovery, unlock etc.
+ *
+ *  Version: 1.0
+ *  Latest update: May 25, 2015
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Login container
+.login-container {
+    display: table;
+    width: 100%;
+
+    // Make content full height
+    .page-content {
+        display: table-row;
+        height: 100%;
+    }
+
+    // Add fixed width
+    .login-form {
+        width: 320px;
+    }
+
+    // Add vertical margin
+    .login-form,
+    .registration-form {
+        margin: 0 auto @line-height-computed auto;
+
+        @media (max-width: @screen-xs) {
+            width: 100%;
+        }
+    }
+
+    // Centered footer
+    .footer {
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    // Align forms vertically
+    .content-wrapper {
+        vertical-align: middle;
+        display: table-cell; // dublicate to keep content always vertically centereed
+    }
+}
+
+// Responsive login options
+@media (max-width: @screen-xs) {
+    .login-options {
+        &,
+        .text-right {
+            text-align: center;
+        }
+    }
+}

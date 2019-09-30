@@ -1,0 +1,209 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Tokenfield for Bootstrap
+*
+*  Styles for tokenfield.js - Advanced tagging/tokenizing plugin for Bootstrap
+*
+*  Version: 1.0
+*  Latest update: Mar 10, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+/* # Core
+-------------------------------------------------- */
+
+.tokenfield {
+    height: auto;
+    padding: 0 0 3px 0;
+
+    // Clear floating
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    // Token
+    .token {
+        margin: 3px 0 0 3px;
+        cursor: default;
+        float: left;
+        position: relative;
+        border-radius: @border-radius-small;
+
+        // Invalid
+        &.invalid {
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-radius: 0;
+            border-bottom: 1px dotted @brand-danger;
+
+            &.active {
+                background-color: @gray-lighter;
+                border: 1px solid @gray-lighter;
+            }
+        }
+
+        // Tag text
+        .token-label {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: (@padding-base-vertical - 3) @padding-xs-horizontal;
+            padding-right: ((@padding-xs-horizontal * 2) + (@icon-font-size / 2));
+            background-color: @color-slate-700;
+            color: #fff;
+            font-size: @font-size-small;
+            line-height: @line-height-small;
+            border-radius: @border-radius-small;
+        }
+
+        // Close button
+        .close {
+            font-size: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: (@padding-xs-horizontal / 1.25);
+            line-height: 1;
+            margin-top: -(@icon-font-size / 2);
+            .opacity(0.7);
+
+            // Icon
+            &:after {
+                content: '\ed6b';
+                font-family: 'icomoon';
+                display: block;
+                font-size: @icon-font-size;
+                color: #fff;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            &:hover {
+                .opacity(1);
+            }
+        }
+
+        // Solid color
+        &[class*=bg-] {
+            .token-label {
+                background-color: inherit;
+            }
+
+            .close {
+                color: inherit;
+            }
+        }
+    }
+
+
+    // Inputs sizing
+    // ------------------------------
+
+    // Make typeahead input auto width
+    .twitter-typeahead {
+        width: auto;
+    }
+
+    // Input field
+    .token-input {
+        background: none;
+        width: 60px!important;
+        min-width: 60px;
+        height: @input-height-base - 8;
+        padding-left: @padding-base-vertical;
+        margin-top: 3px;
+        font-size: @font-size-small;
+        line-height: @line-height-small;
+        border: 0;
+        outline: 0;
+    }
+
+
+    // States
+    // ------------------------------
+
+    // Hide close button in readonly
+    &.readonly .token {
+        .token-label {
+            padding-right: @padding-xs-horizontal;
+        }
+
+        .close {
+            display: none;
+        }
+    }
+
+    // Disabled
+    &.disabled {
+        background-color: @input-bg-disabled;
+        color: @text-muted;
+
+        .token {
+            &,
+            .close {
+                .opacity(0.5);
+            }
+        }
+
+        &,
+        .token-input,
+        .token,
+        .token .close {
+            cursor: @cursor-disabled;
+        }
+    }
+
+    // RTL
+    &.rtl {
+        direction: rtl;
+        text-align: right;
+
+        .token {
+            margin-left: 0;
+            margin-right: 3px;
+
+            .token-label {
+                padding-left: ((@padding-xs-horizontal * 2) + (@icon-font-size / 2));
+                padding-right: @padding-xs-horizontal;
+            }
+        }
+    }
+}
+
+
+
+/* # Sizing
+-------------------------------------------------- */
+
+// Large
+.tokenfield.input-lg,
+.input-group-lg .tokenfield {
+    padding: 0 0 3px 0;
+}
+.input-group-lg .token > .token-label,
+.tokenfield.input-lg .token > span {
+    padding-top: (@padding-large-vertical - 3);
+    padding-bottom: (@padding-large-vertical - 3);
+}
+.input-group-lg .token-input,
+.tokenfield.input-lg .token-input {
+    height: @input-height-large - 8;
+}
+
+// Small
+.tokenfield.input-sm,
+.input-group-sm .tokenfield {
+    padding: 0 0 3px 0;
+}
+.input-group-sm .token > .token-label,
+.tokenfield.input-sm .token > span {
+    padding-top: (@padding-small-vertical - 3);
+    padding-bottom: (@padding-small-vertical - 3);
+}
+.input-group-sm .token-input,
+.tokenfield.input-sm .token-input {
+    height: @input-height-small - 8;
+}

@@ -1,0 +1,116 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # jQuery UI Sortable
+ *
+ *  Separate styles for jQuery UI library. Sortable component
+ *
+ *  Version: 1.0
+ *  Latest update: May 25, 2015
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Placeholder
+// -------------------------
+
+.sortable-placeholder {
+	position: relative;
+
+	// Background
+	&:before {
+		content: '';
+		display: inline-block;
+		background-color: fade(#fff, 80%);
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		border: 1px dashed fade(#000, 20%);
+	}
+}
+
+
+// Sidebar placeholder
+// -------------------------
+
+// Base
+.sidebar {
+
+	// Remove horizontal borders
+	.sortable-placeholder:before {
+		border-left: 0;
+		border-right: 0;
+		background-color: fade(#000, 5%);
+	}
+}
+
+// Sidebar category as a helper
+.sidebar-category {
+	&.ui-sortable-helper {
+		background-color: fade(#000, 0%) rgba(0,0,0,0.4);
+
+		// Inside white sidebar
+		.sidebar-default & {
+			background-color: #fcfcfc;
+		}
+	}
+}
+
+
+// Panel placeholder
+// -------------------------
+
+// Panel
+.panel {
+	+ .sortable-placeholder {
+		margin-bottom: @line-height-computed;
+	}
+
+	.sortable-placeholder + & {
+		margin-top: @line-height-computed;
+	}
+}
+
+// Panel group
+.panel-group {
+	> .sortable-placeholder:before {
+		border-radius: @border-radius-base;
+	}
+
+	.panel + .sortable-placeholder {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.sortable-placeholder + .panel {
+		margin-top: 5px;
+	}
+}
+
+
+// Table placeholder
+// -------------------------
+
+.table {
+
+	// Helper
+	.ui-sortable-helper {
+		width: 100%;
+		background-color: #fff;
+		display: table;
+	}
+
+	// Placeholder
+	.sortable-placeholder {
+		margin: 0;
+
+	  // Remove placeholder border
+		&:before {
+			content: none;
+		}
+	}
+
+	// Enadle absolute positioning
+	&.ui-sortable {
+		position: relative;
+	}
+}

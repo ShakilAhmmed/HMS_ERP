@@ -1,0 +1,166 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # PNotify notifications
+ *
+ *  Styles for pnotify.min.js - a flexible JavaScript notification plugin
+ *
+ *  Version: 1.0
+ *  Latest update: May 25, 2015
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Core
+// ------------------------------
+
+.ui-pnotify {
+	top: @line-height-computed;
+	right: @grid-gutter-width;
+	position: fixed;
+	height: auto;
+	z-index: 9999;
+	border-radius: @border-radius-base;
+
+	// Rounded alerts
+	&.alert-rounded > .alert {
+		border-radius: @border-radius-large;
+	}
+
+	// Solid color alerts
+	&[class*=bg-] > .alert {
+		background-color: inherit;
+		border-color: transparent;
+		color: #fff;
+	}
+
+
+	//
+	// Stack positions
+	//
+
+	// Alternate stack initial positioning
+	&.stack-top-left,
+	&.stack-bottom-left {
+		left: @grid-gutter-width;
+		right: auto;
+	}
+	&.stack-bottom-right,
+	&.stack-bottom-left {
+		bottom: @line-height-computed;
+		top: auto;
+	}
+
+	// Custom stack positions
+	&.stack-custom-right {
+		top: auto;
+		left: auto;
+		bottom: 200px;
+		right: 200px;
+	}
+	&.stack-custom-left {
+		top: 200px;
+		left: 200px;
+		right: auto;
+		bottom: auto;
+	}
+	&.stack-custom-top {
+		right: 0;
+		left: 0;
+		top: 0;
+	}
+	&.stack-custom-bottom {
+		right: 0;
+		left: 0;
+		bottom: 0;
+		top: auto;
+	}
+}
+
+
+// Notification layout
+// ------------------------------
+
+// Notification container
+.ui-pnotify-container {
+	height: 100%;
+	margin: 0;
+	overflow: visible!important;
+}
+
+// Notification title
+h4.ui-pnotify-title {
+	display: block;
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-size: @font-size-h6;
+}
+
+// Notification icon
+.ui-pnotify-icon {
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+// Control buttons
+.ui-pnotify-closer,
+.ui-pnotify-sticker {
+	float: right;
+	margin-left: 5px;
+	font-size: 10px;
+	margin-top: 4px;
+	line-height: 1;
+
+	> span {
+		font-size: @font-size-small;
+	}
+}
+
+
+// Utility classes
+// ------------------------------
+
+// Border radius
+.ui-pnotify-sharp {
+	border-radius: 0;
+}
+
+// Shadow
+.ui-pnotify-shadow {
+	.box-shadow(0 1px 3px fade(#000, 10%));
+}
+
+
+// Notification history
+// ------------------------------
+
+.ui-pnotify-history-container {
+	position: absolute;
+	top: 0;
+	right: 18px;
+	width: 70px;
+	border-top: 0;
+	padding: 0;
+	z-index: 10000; // Ensures history container is above notices
+	.border-top-radius(0);
+
+	&.ui-pnotify-history-fixed {
+		position: fixed;
+	}
+
+	.ui-pnotify-history-header {
+		padding: 2px;
+		text-align: center;
+	}
+
+	button {
+		cursor: pointer;
+		display: block;
+		width: 100%;
+	}
+
+	.ui-pnotify-history-pulldown {
+		display: block;
+		margin: 0 auto;
+	}
+}

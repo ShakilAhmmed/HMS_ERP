@@ -1,0 +1,864 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Navs related component
+*
+*  Overrides for navs related bootstrap component
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Basic styles
+// -------------------------
+
+.nav {
+
+    // Nav items
+    > li {
+        > a {
+
+            // Remove outline on focus
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        // Disabled state sets text to gray and nukes hover/tab effects
+        &.disabled > a {
+
+            // Mute elements
+            > .badge,
+            > .label,
+            > img {
+                .opacity(0.75);
+            }
+        }
+    }
+
+    // Open dropdowns
+    .open > a {
+        &,
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            border-color: transparent;
+            color: @gray-dark;
+        }
+    }
+
+    // Optional sizing
+    &.nav-lg > li > a {
+        padding: @nav-link-padding-large;
+    }
+    &.nav-sm > li > a {
+        padding: @nav-link-padding-small;
+    }
+    &.nav-xs > li > a {
+        padding: @nav-link-padding-mini;
+    }
+
+    // Tabs nav image
+    .tab-img {
+        max-height: @line-height-computed;
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+
+
+// Tabs
+// -------------------------
+
+// Base styles
+.nav-tabs {
+    margin-bottom: @line-height-computed;
+
+    // Tabs list item
+    > li {
+        float: none;
+
+        // Actual tabs (as links)
+        > a {
+            margin-right: 0;
+            color: @color-grey-400;
+            border-radius: 0;
+
+            // Hover/focus states
+            &:hover,
+            &:focus {
+                background-color: transparent;
+                border-color: transparent;
+                color: @text-color;
+            }
+        }
+    }
+
+
+    //
+    // Tab layouts
+    //
+
+    // Justified tabs
+    // Needs to be dublicated. Sadly.
+    &.nav-justified {
+        .nav-tabs-justified();
+    }
+
+
+    // Page tabs (outside panels)
+    &.page-tabs {
+        border-bottom-color: @panel-default-border;
+
+        // Update active tab background color
+        > .active > a,
+        > .active > a:hover,
+        > .active > a:focus {
+            background-color: @body-bg;
+            border-bottom-color: transparent;
+        }
+
+        // Add panel-like look for solid tabs
+        &.nav-tabs-solid {
+            background-color: @panel-bg;
+            box-shadow: 0 1px 1px fade(#000, 5%);
+            border: 1px solid @panel-default-border;
+        }
+    }
+
+
+    // Tabs with highlighted top border
+    &.nav-tabs-highlight {
+        @media (min-width: @screen-sm-min) {
+            > li {
+
+                // Change border radius and top border width
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top-width: 2px;
+                    }
+                }
+
+                // Apply top border color. Replace it with any variable or color
+                &.active > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top-color: @brand-primary;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // Tabs with top border
+    &.nav-tabs-top {
+        @media (min-width: @screen-sm-min) {
+
+            // List items
+            > li {
+                margin-bottom: 0; // Remove bottom spacing
+
+                // Change border radius and top border width
+                > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-width: 2px 0 0 0;
+                    }
+                }
+
+                // Add top border on hover
+                &.open > a,
+                > a:hover,
+                > a:focus {
+                    border-top-color: @nav-tabs-border-color;
+                }
+
+                // Add 1px space between links
+                & + li > a {
+                    margin-left: 1px;
+                }
+
+                // Apply top border color. Replace it with any variable or color
+                &.active > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-top-color: @color-teal-400;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            // Without bottom border
+            &.top-divided {
+                border-bottom-color: transparent;
+            }
+        }
+    }
+
+
+    // Tabs with bottom border
+    &.nav-tabs-bottom {
+        @media (min-width: @screen-sm-min) {
+            > li {
+                margin-bottom: -1px; // Value equal to the border width
+
+                // Apply bottom border color and change width. Replace color with any variable or color
+                &.active > a {
+                    &,
+                    &:hover,
+                    &:focus {
+                        border-bottom-width: 1px;
+                        border-color: transparent;
+                        border-bottom-color: @brand-danger;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            // Without bottom border
+            &.bottom-divided {
+                border-bottom-color: transparent;
+                > li > a {
+                    border-bottom-width: 1px;
+                }
+            }
+        }
+    }
+
+
+    // Tabs with custom solid background
+    &[class*=bg-] {
+        border-bottom: 0;
+
+        // Add common styles for all bg color variations
+        > li {
+            margin-bottom: 0;
+
+            > a {
+                color: #fff;
+
+                &:hover,
+                &:focus {
+                    background-color: fade(#000, 5%);
+                }
+            }
+
+            &.open:not(.active) > a {
+                color: #fff;
+                background-color: fade(#000, 5%);
+            }
+        }
+
+        // Apply permanent darker color for active item
+        > .active > a {
+            &,
+            &:hover,
+            &:focus {
+                background-color: fade(#000, 10%);
+                border-color: transparent;
+                color: #fff;
+            }
+        }
+
+        // Mute disabled links
+        > .disabled > a {
+            &,
+            &:hover,
+            &:focus {
+                color: fade(#fff, 50%);
+            }
+        }
+
+        // Setup desktop view
+        @media (min-width: @screen-sm-min) {
+            .tab-content-bordered & {
+                .border-bottom-radius(0);
+            }
+        }
+    }
+
+
+    // Tabs with solid background
+    &.nav-tabs-solid {
+
+        > li > a {
+        color: @text-color;
+        }
+
+        // Apply background color to active tab. Replace it with any variable or color
+        > .active > a,
+        > .active > a:hover,
+        > .active > a:focus {
+            background-color: @component-active-bg;
+            border-color: @component-active-bg;
+            color: #fff;
+        }
+
+        // Setup desktop view
+        @media (min-width: @screen-sm-min) {
+
+            // Set permanent background color
+            background-color: @nav-tabs-solid-bg;
+            border: 0;
+
+            // Add border radius
+            > li {
+                margin-bottom: 0;
+
+                // Link styles
+                > a {
+                    border-color: transparent;
+
+                    &:hover,
+                    &:focus {
+                        background-color: @nav-tabs-solid-hover-bg;
+                    }
+                }
+            }
+
+            // Style dropdown link
+            > .open:not(.active) > a {
+                background-color: @nav-tabs-solid-hover-bg;
+                border-color: transparent;
+            }
+        }
+    }
+
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+        font-size: 0;
+
+        > li {
+            display: inline-block;
+            font-size: @font-size-base;
+        }
+    }
+
+
+    // Setup mobile view
+    @media (max-width: @screen-xs-max) {
+        border-bottom: 0;
+        position: relative;
+        background-color: #fff;
+        padding: @list-spacing 0;
+        border: 1px solid @panel-default-border;
+        border-radius: @border-radius-base;
+
+        // Tab nav item
+        > li {
+            margin-bottom: 0;
+
+            & + li {
+                margin-top: 1px;
+            }
+
+            // Add permanent link styles
+            > a {
+                border-width: 0 0 0 2px;
+                border-left-color: transparent;
+
+                &:hover,
+                &:focus {
+                    background-color: @nav-tabs-mobile-link-hover-bg;
+                }
+
+                // Stick right elements to the right side
+                .position-right {
+                    &[class*=icon-] {
+                        float: right;
+                        margin-top: 3px;
+                    }
+
+                    &.label,
+                    &.badge {
+                        float: right;
+                        margin-top: 1px;
+                    }
+                }
+            }
+
+            // Left border and bg colors for active link
+            &.active > a {
+                &,
+                &:hover,
+                &:focus {
+                    border-width: 0 0 0 2px;
+                    border-left-color: @brand-primary;
+                    background-color: @nav-tabs-mobile-link-active-bg;
+                }
+            }
+
+            // Dublicate left border for dropdown link
+            &.open:not(.active) > a {
+                &,
+                &:hover,
+                &:focus {
+                    background-color: @nav-tabs-mobile-link-hover-bg;
+                }
+            }
+
+            // Make all left aligned
+            &.pull-right {
+                float: none!important;
+            }
+        }
+
+        // Add text header to the tabs section
+        &:before {
+            content: 'Contents';
+            color: inherit;
+            font-size: @font-size-small;
+            line-height: @line-height-small;
+            margin-top: (@content-padding-base - @list-spacing);
+            margin-left: @content-padding-base;
+            margin-bottom: @content-padding-base;
+            text-transform: uppercase;
+            .opacity(0.5);
+        }
+
+        // Remove left border for solid and custom tabs
+        &[class*=bg-],
+        &.nav-tabs-solid {
+            padding: @list-spacing 0;
+
+            > li > a {
+                border-left-width: 0!important;
+            }
+        }
+
+        // Tabs with solid background
+        &[class*=bg-] {
+            > li {
+                > a:hover,
+                > a:focus {
+                    background-color: fade(#000, 5%);
+                }
+
+                &.open:not(.active) > a {
+                    background-color: fade(#000, 5%);
+                }
+            }
+        }
+    }
+}
+
+
+
+// Pills
+// -------------------------
+
+// Base
+.nav-pills {
+    margin-bottom: @line-height-computed;
+
+    // Pill item
+    > li {
+        float: none;
+
+        // Links rendered as pills
+        > a {
+            color: @gray-dark;
+        }
+
+        // Inline links
+        & + li {
+            margin-left: 0;
+
+            // Add top spacing on mobile
+            > a {
+                margin-top: 2px;
+            }
+        }
+    }
+
+    // Link if dropdown opened
+    .open > a {
+        &,
+        &:hover,
+        &:focus {
+            background-color: @nav-link-hover-bg;
+        }
+    }
+
+    // Bordered pills
+    &.nav-pills-bordered {
+        > li > a {
+            border: 1px solid @nav-tabs-border-color;
+        }
+
+        // Active state
+        > .active > a,
+        > .active.open > a {
+            border-color: @nav-pills-active-link-hover-bg;
+        }
+
+        // With opened dropdown
+        .open > a {
+            border-color: @nav-tabs-border-color;
+        }
+    }
+
+    // Toolbar pills
+    &.nav-pills-toolbar {
+        > li {
+            > a {
+                border: 1px solid @nav-tabs-border-color;
+            }
+        }
+
+        // Active state
+        > .active > a,
+        > .active.open > a {
+            border-color: @nav-pills-active-link-hover-bg;
+        }
+
+        // With opened dropdown
+        .open > a {
+            border-color: @nav-tabs-border-color;
+        }
+
+        // Setup desktop view
+        @media (min-width: @screen-sm-min) {
+            > li {
+                > a {
+                    border: 1px solid @nav-tabs-border-color;
+                    border-radius: 0;
+                }
+
+                &:first-child > a {
+                    border-radius: @border-radius-base 0 0 @border-radius-base;
+                }
+
+                &:last-child > a {
+                    border-radius: 0 @border-radius-base @border-radius-base 0;
+                }
+
+                & + li > a {
+                    margin-top: 0;
+                    margin-left: 0;
+                    border-left: 0;
+                }
+            }
+        }
+    }
+
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+        font-size: 0;
+
+        > li {
+            display: inline-block;
+            font-size: @font-size-base;
+
+            + li > a {
+                margin-top: 0;
+                margin-left: 2px;
+            }
+        }
+
+        &.nav-justified {
+            > li {
+                display: table-cell;
+            }
+        }
+    }
+
+    // Stick right elements to the right side
+    @media (max-width: @screen-xs-max) {
+        > li > a {
+            .position-right {
+                &[class*=icon-] {
+                    float: right;
+                    margin-top: 3px;
+                }
+
+                &.label,
+                &.badge {
+                    float: right;
+                    margin-top: 1px;
+                }
+            }
+        }
+    }
+}
+
+// Stacked pills
+.nav-stacked {
+    > li {
+        display: block;
+
+        > a {
+            .pull-right {
+                &[class*=icon-] {
+                    float: right;
+                    margin-top: 3px;
+                }
+
+                &.label,
+                &.badge {
+                    float: right;
+                    margin-top: 1px;
+                }
+            }
+        }
+
+        + li > a {
+            margin-left: 0;
+        }
+    }
+}
+
+
+
+// Nav variations
+// -------------------------
+
+// Justified tabs
+.nav-tabs-justified {
+
+    // Links
+    > li > a {
+        border-radius: 0;
+        margin-bottom: 0;
+
+        &:hover,
+        &:focus {
+            border-bottom-color: @nav-tabs-border-color;
+        }
+    }
+
+    // Custom background and solid
+    &[class*=bg-],
+    &.nav-tabs-solid {
+        > li > a {
+            border-color: transparent;
+        }
+    }
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+
+        // Justified tabs with top border only
+        &.nav-tabs-top {
+            border-bottom: 1px solid @nav-tabs-border-color;
+
+            // Page tabs border color
+            &.page-tabs {
+                border-color: darken(@body-bg, 20%)
+            }
+
+            // Links
+            > li > a,
+            > li > a:hover,
+            > li > a:focus {
+                border-width: 2px 0 0 0;
+            }
+        }
+        &.top-divided {
+            border-bottom-color: transparent;
+        }
+
+        // Bottom
+        &.bottom-divided {
+            > li {
+                > a {
+                    border-bottom-color: transparent;
+                    margin-bottom: -2px;
+
+                    &:hover,
+                    &:focus {
+                        border-bottom-color: @nav-tabs-border-color;
+                    }
+                }
+            }
+            > .open:not(.active) > a {
+                &,
+                &:hover,
+                &:focus {
+                    border-bottom-color: @nav-tabs-border-color;
+                }
+            }
+        }
+
+        // Justified tabs with highlighted top border
+        &.nav-tabs-highlight {
+            > li > a,
+            > li > a:hover,
+            > li > a:focus {
+                border-top-width: 2px;
+            }
+        }
+    }
+
+    // Setup mpbile view
+    @media (max-width: @screen-xs-max) {
+        border-bottom: 1px solid @panel-default-border;
+
+        // Give them the same look
+        > li {
+
+            // Active state
+            &.active > a {
+                &,
+                &:hover,
+                &:focus {
+                    border-width: 0 0 0 2px;
+                    border-left-color: @brand-primary;
+                }
+            }
+        }
+    }
+}
+
+
+// Add rounded corners to the tabs
+@media (min-width: @screen-sm-min) {
+
+    // Default tabs
+    .nav-tabs.nav-tabs-component {
+        > li > a {
+            border-radius: @border-radius-base @border-radius-base 0 0;
+        }
+
+        &.nav-tabs-solid,
+        &[class*=bg-] {
+            border-radius: @border-radius-base;
+
+            > li > a {
+                border-radius: 0;
+            }
+
+            > li:first-child > a {
+                border-radius: @border-radius-base 0 0 @border-radius-base;
+            }
+        }
+    }
+
+    // Justified tabs
+    .nav-tabs-component.nav-justified:extend(.nav-tabs-component) {
+        &.nav-tabs-solid,
+        &[class*=bg-] {
+            > li:last-child > a {
+                border-radius: 0 @border-radius-base @border-radius-base 0;
+            }
+        }
+    }
+}
+
+
+
+// Tab content area
+// -------------------------
+
+// Add padding as panes don't have it by default
+.tab-content > .has-padding {
+    padding: @panel-body-padding;
+}
+
+// Bordered tab content
+.tab-content-bordered {
+
+    // Add padding and borders to tab content area
+    .tab-content {
+        border-radius: @border-radius-base;
+        border: 1px solid transparent;
+
+        &:not([class*=bg-]) {
+            border-color: @nav-tabs-active-link-hover-border-color;
+            background-color: @nav-tabs-active-link-hover-bg;
+        }
+
+        @media (min-width: @screen-sm-min) {
+            border-top-width: 0;
+            border-radius: 0 0 @border-radius-base @border-radius-base;
+        }
+    }
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+        .nav-tabs {
+            margin-bottom: 0;
+
+            // Add specific styles for solid tabs
+            &.nav-tabs-solid {
+                border-radius: @border-radius-base @border-radius-base 0 0;
+                .box-shadow (0 0 0 1px @nav-tabs-border-color inset);
+
+                > li:first-child > a {
+                    border-radius: @border-radius-base 0 0 0;
+                }
+
+                &.nav-justified > li:last-child > a {
+                    border-radius: 0 @border-radius-base 0 0;
+                }
+            }
+        }
+
+        // Tabs with solid color
+        > .nav-tabs[class*=bg-] {
+            .border-top-radius(@border-radius-base);
+
+            & + .tab-content[class*=bg-] {
+                border-top-width: 1px;
+                border-top-color: fade(#fff, 50%);
+            }
+        }
+    }
+}
+
+
+
+// Responsive stuff
+// -------------------------
+
+// Setup desktop view
+@media (min-width: @screen-sm-min) {
+
+    // Dropdown top margin correction in some tabs layouts
+    .nav-tabs[class*=bg-],
+    .nav-tabs-top {
+        .dropdown-menu {
+            margin-top: 0;
+        }
+    }
+
+    // Top 1px gap for dropdown in bottom divided layout
+    .nav-justified.bottom-divided .dropdown-menu {
+        margin-top: 1px;
+    }
+}
+
+
+// Setup mobile view
+@media (max-width: @screen-xs-max) {
+    .nav-tabs,
+    .nav-pills {
+
+        // Make dropdown full width on mobile
+        .dropdown-menu,
+        &.nav-justified > .dropdown .dropdown-menu {
+            left: -1px;
+            right: -1px;
+            margin-top: 2px;
+        }
+
+        // Always use left text alignment on mobile
+        &.nav-justified,
+        &.text-center,
+        &.text-right {
+            > li > a {
+                text-align: left;
+            }
+        }
+    }
+}

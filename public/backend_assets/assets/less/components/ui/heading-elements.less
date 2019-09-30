@@ -1,0 +1,511 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Heading elmeents
+*
+*  Display default and custom components in page header and panel heading
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Base
+// -------------------------
+
+// Heading elements toggler
+.heading-elements-toggle,
+.breadcrumb-elements-toggle {
+    cursor: pointer;
+    display: block;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    margin-top: -(@icon-font-size / 2);
+
+    // Inherit colors
+    &,
+    &:hover,
+    &:focus {
+        color: inherit;
+    }
+
+    // Remove top edge frop icons
+    > i {
+        top: 0;
+    }
+
+    // Hide on desktop
+    @media (min-width: @screen-sm-min) {
+        display: none;
+    }
+}
+
+// Heading toggler position
+.heading-elements-toggle {
+    right: @grid-gutter-width;
+}
+
+// Breadcrumb toggler position
+.breadcrumb-elements-toggle {
+    right: @grid-gutter-width;
+
+    .breadcrumb-line-component & {
+        right: @content-padding-base;
+    }
+}
+
+// Heading elements base
+.heading-elements {
+    background-color: inherit;
+    position: absolute;
+    top: 50%;
+    right: @grid-gutter-width;
+    height: @input-height-base;
+    margin-top: -(@input-height-base / 2);
+}
+
+// Inside panel body
+.panel-body {
+    > .heading-elements {
+        top: 0;
+        margin-top: (@input-height-base - @content-padding-large - 2);
+        z-index: 10;
+    }
+
+    @media (max-width: @screen-xs-max) {
+        > .heading-elements-toggle {
+            top: @panel-body-padding;
+            margin-top: 0;
+        }
+
+        > .heading-elements.visible {
+            top: ((@panel-body-padding * 2) + @icon-font-size);
+            background-color: @panel-bg;
+        }
+    }
+}
+
+
+// Elements
+// -------------------------
+
+.heading-elements {
+
+    // Element's horizontal spacing
+    .heading-btn + .heading-btn,
+    .page-header & .icons-list > li + li,
+    .thumbnail-heading & .icons-list > li + li {
+        margin-left: 10px;
+    }
+
+    // Remove margin from paginations
+    .pagination,
+    .pager {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    // Breadcrumb inside page header
+    .breadcrumb {
+        padding-top: (@padding-base-vertical + 1);
+        padding-bottom: (@padding-base-vertical + 1);
+    }
+
+    // Align text left in panel tabs/pills
+    &.panel-tabs,
+    &.panel-pills {
+        .nav > li > a {
+            text-align: left;
+        }
+    }
+
+    // Remove extra vertical spacing from float links
+    .btn-float.btn-link {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    // Custom date range display
+    .daterange-custom {
+        margin-top: ((@input-height-base - 28px) / 2); // half of elements general height - font size
+    }
+
+    .heading-btn-group {
+        font-size: 0;
+
+        > .btn + .btn:not(.btn-link) {
+            margin-left: 10px;
+        }
+    }
+
+    // Hide elements on mobile
+    @media (max-width: @screen-xs-max) {
+        text-align: center;
+
+        // Add vertical spacing
+        .heading-text,
+        .heading-btn,
+        .heading-btn-group > .btn,
+        .ui-slider,
+        .noui-slider,
+        .nav-tabs,
+        .nav-pills,
+        .pagination,
+        .progress,
+        .icons-list,
+        .pager,
+        .breadcrumb,
+        .daterange-custom,
+        .heading-form .form-group,
+        > .btn-group {
+            margin-bottom: @line-height-computed;
+        }
+
+        // Heading text
+        .heading-text:not(.label):not(.badge) {
+            display: block;
+        }
+
+        // Make selects full width
+        .select2-container,
+        .selectboxit-container,
+        .selectboxit-options,
+        .multiselect + .btn-group,
+        .bootstrap-select {
+            width: 100%!important;
+        }
+
+        // Static position
+        .input-group,
+        .input-group-btn,
+        .btn-group,
+        .dropdown,
+        .dropup {
+            position: static;
+        }
+
+        // Make dropdown menus full width
+        .dropdown-menu {
+            left: -1px;
+            right: -1px;
+            margin-top: 0;
+            .border-top-radius(0);
+        }
+    }
+
+
+    // Make them visible starting from tablet
+    @media (min-width: @screen-sm-min) {
+
+        // Make them inline
+        .heading-text,
+        .heading-btn,
+        .ui-slider,
+        .noui-slider,
+        .nav-tabs,
+        .nav-pills,
+        .pagination,
+        .progress,
+        .icons-list,
+        .breadcrumb,
+        .pager,
+        .heading-form,
+        .daterange-custom,
+        > .btn-group {
+            float: left;
+            margin-left: @grid-gutter-width;
+        }
+
+        // Heading text
+        .heading-text {
+            display: inline-block;
+
+            & + .heading-text {
+                margin-left: @grid-gutter-width;
+            }
+        }
+
+        // Elements width
+        .selectbox-fixed + .selectboxit-container,
+        .selectbox-fixed + .selectboxit-options,
+        .progress,
+        .ui-slider,
+        .noui-slider,
+        .uploader,
+        .input-group,
+        .selectboxit-container .selectboxit-options,
+        .heading-form .form-control {
+            width: 220px;
+        }
+
+
+        // Elements sizes spacing
+        // ------------------------------
+
+        // Small elements corrections
+        .select-sm,
+        .input-sm,
+        .input-group-sm,
+        .uploader-sm,
+        .pagination-sm,
+        .pager-sm,
+        .selectbox-sm + .selectboxit-container,
+        .btn-sm,
+        .btn-group-sm > .btn {
+            margin-top: (@input-height-base - @input-height-small) / 2;
+        }
+
+        // Mini elements corrections
+        .select-xs,
+        .input-xs,
+        .input-group-xs,
+        .uploader-xs,
+        .pagination-xs,
+        .pager-xs,
+        .selectbox-xs + .selectboxit-container,
+        .btn-xs,
+        .btn-group-xs > .btn {
+            margin-top: (@input-height-base - @input-height-mini) / 2;
+        }
+
+        // Floating buttons
+        .btn-float {
+            margin-top: ((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + 2)) / 2); // Difference between base height and button height
+
+            // If has text
+            &.has-text {
+                margin-top: ((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + @line-height-computed + 5)) / 2); // Difference between base height and button height with text
+            }
+
+            // If float link
+            &.btn-link {
+                margin-top: ((@input-height-base - (@icon-font-size + @line-height-computed + 5 + 2)) / 2); // Float links don't have vertical paddings
+            }
+        }
+
+        // Sliders
+        .ui-slider,
+        .noui-slider {
+            margin-top: ((@input-height-base - @slider-base-size) / 2);
+
+            &-lg {
+                margin-top: ((@input-height-base - @slider-large-size) / 2);
+            }
+
+            &-sm {
+                margin-top: ((@input-height-base - @slider-small-size) / 2);
+            }
+
+            &-xs {
+                margin-top: ((@input-height-base - @slider-mini-size) / 2);
+            }
+        }
+
+        // Progress bars
+        .progress {
+            margin-top: ((@input-height-base - @progress-base-height) / 2);
+
+            // Large
+            &-lg {
+                margin-top: ((@input-height-base - @progress-large-height) / 2);
+            }
+
+            // Small
+            &-sm {
+                margin-top: ((@input-height-base - @progress-small-height) / 2);
+            }
+
+            // Mini
+            &-xs {
+                margin-top: ((@input-height-base - @progress-mini-height) / 2);
+            }
+
+            // Tiny
+            &-xxs {
+                margin-top: ((@input-height-base - @progress-tiny-height) / 2);
+            }
+
+            // Micro
+            &-micro {
+                margin-top: ((@input-height-base - @progress-micro-height) / 2);
+            }
+        }
+
+        // Icons list
+        .icons-list {
+            margin-top: ((@line-height-computed / 2) - 1);
+        }
+
+        // Text
+        .heading-text {
+            margin-top: ((@line-height-computed / 2) - 2);
+        }
+
+        // Tabs
+        &.panel-tabs {
+            bottom: 0;
+            top: auto;
+            height: auto;
+            margin-top: 0;
+
+            > .nav-tabs {
+                border-bottom: 0;
+                margin-bottom: 0;
+
+                > li > a {
+                    padding: @panel-heading-padding;
+                }
+            }
+
+            // Inside flat panel
+            .panel-flat & {
+                bottom: auto;
+                top: 0;
+
+                > .nav-tabs > li > a {
+                    padding-top: @content-padding-large;
+                    padding-bottom: @content-padding-large;
+                }
+            }
+        }
+
+        // Pills
+        &.panel-pills {
+            > .nav-pills {
+                margin-bottom: 0;
+                margin-top: -1px;
+            }
+
+            // Small pills
+            .nav-sm {
+                margin-top: 1px;
+            }
+
+            // Mini pills
+            .nav-xs {
+                margin-top: 3px;
+            }
+        }
+    }
+}
+
+
+// Heading form
+// -------------------------
+
+.heading-form {
+
+    // Form group
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    // Switchery
+    .checkbox-switchery {
+        &,
+        &[class*="switchery-"] {
+            margin-bottom: 0;
+        }
+    }
+
+    // Input group
+    .input-group {
+        .form-control {
+            width: 100%;
+            margin-top: 0;
+        }
+        &.input-group-sm .btn,
+        &.input-group-xs .btn {
+            margin-top: 0;
+        }
+    }
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+        .form-group {
+            display: inline-block;
+
+            & + .form-group {
+                margin-left: 15px;
+            }
+        }
+
+        // Radios and checkboxes
+        .checkbox-inline,
+        .radio-inline {
+            margin-top: ((@line-height-computed / 2) - 2);
+        }
+
+        // Checkbox switch
+        .checkbox-switch {
+
+            // Those 2 pixels that are used in Switch styles as negative top margin. In fact, switch height is equal to heading elements container height.
+            // They will be added below to calculate the difference
+            margin-top: 2px;
+
+            // Small
+            &-sm {
+                margin-top: ((@input-height-base - @input-height-small) / 2) + 2;
+            }
+
+            // Mini
+            &-xs {
+                margin-top: ((@input-height-base - @input-height-mini) / 2) + 2;
+            }
+        }
+    }
+}
+
+
+// Toggle elements visibility
+// ------------------------------
+
+@media (max-width: @screen-xs-max) {
+
+    // Heading elements
+    .heading-elements,
+    .breadcrumb-elements {
+        display: none;
+
+        // Show on click
+        &.visible {
+            display: block;
+            margin-top: 0;
+            top: 100%;
+            height: auto;
+            left: -1px;
+            right: -1px;
+            padding: @content-padding-large;
+            padding-bottom: 0;
+            border: 1px solid @panel-default-border;
+            z-index: (@zindex-navbar - 3);
+        }
+    }
+
+    // Heading elements inside colored panel
+    .panel[class*=bg-],
+    .panel-heading[class*=bg-] {
+        .heading-elements.visible {
+            border-width: 1px 0;
+            border-color: fade(#fff, 50%);
+            left: 0;
+            right: 0;
+            background-color: inherit;
+        }
+    }
+
+    // Page header elements
+    .page-header .heading-elements.visible {
+        border-width: 1px 0;
+        left: 0;
+        right: 0;
+        z-index: (@zindex-navbar - 1);
+    }
+
+    // Breadcrumb elements
+    .breadcrumb-elements.visible {
+        padding: 0;
+        z-index: 9;
+    }
+}

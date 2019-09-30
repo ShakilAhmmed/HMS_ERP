@@ -1,0 +1,55 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # jQuery UI Menu
+ *
+ *  Styles for jQuery UI Menu component
+ *
+ *  Version: 1.0
+ *  Latest update: May 25, 2015
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+/* # Core
+-------------------------------------------------- */
+
+.ui-menu {
+	list-style: none;
+	padding: @list-spacing 0;
+	margin: 0;
+	display: block;
+	outline: none;
+	background-color: @dropdown-bg;
+	border-radius: @border-radius-base;
+
+	// Nested menu
+	.ui-menu {
+		position: absolute;
+	}
+
+	// States
+	.ui-state-focus,
+	.ui-state-active {
+	    color: @dropdown-link-hover-color;
+	    background-color: @dropdown-link-hover-bg;
+	}
+
+	// Menu item
+	.ui-menu-item {
+		position: relative;
+		margin: 0;
+		padding: (@padding-base-vertical + 1) @content-padding-base;
+		cursor: pointer;
+		min-height: 0;
+		list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+	}
+
+	// Divider
+	.ui-menu-divider {
+		margin: @list-spacing 0;
+		height: 0;
+		font-size: 0;
+		line-height: 0;
+		border-width: 1px 0 0 0;
+	}
+}

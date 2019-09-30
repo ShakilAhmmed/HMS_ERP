@@ -1,0 +1,29 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Footer
+*
+*  Main footer styles, currently 1 version only
+*
+*  Version: 1.0
+*  Latest update: May 22, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Stick footer to the bottom of the page
+.footer {
+	position: absolute;
+	bottom: @line-height-computed;
+}
+
+// Fixed footer. Light by default
+.footer-fixed {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: @content-padding-small @grid-gutter-width;
+	background-color: @navbar-default-bg;
+	border-top: 1px solid @navbar-default-border;
+	z-index: @zindex-navbar;
+}

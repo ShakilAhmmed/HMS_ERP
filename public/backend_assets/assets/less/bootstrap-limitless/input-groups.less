@@ -1,0 +1,99 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Input groups component
+*
+*  Overrides for input groups bootstrap component
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Sizing options
+// -------------------------
+
+// XLarge size
+.input-group-xlg > .form-control,
+.input-group-xlg > .input-group-addon,
+.input-group-xlg > .input-group-btn > .btn {
+    .input-xlg();
+}
+
+// Small size
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+    line-height: @line-height-base;
+    font-size: @font-size-base;
+}
+
+// Mini size
+.input-group-xs > .form-control,
+.input-group-xs > .input-group-addon,
+.input-group-xs > .input-group-btn > .btn {
+    .input-xs();
+}
+
+
+// Transparent input group
+// -------------------------
+
+.input-group-transparent {
+    .input-group-addon {
+        background-color: transparent;
+        border-color: transparent;
+        padding: 0;
+    }
+
+    .form-control {
+        background-color: transparent;
+        border-color: transparent;
+        cursor: pointer;
+        width: auto;
+        padding: 0;
+
+        &:hover,
+        &:focus {
+            border-color: transparent;
+        }
+    }
+}
+
+
+// Text input groups
+// -------------------------
+.input-group-addon {
+    border-radius: @border-radius-small;
+
+    // Icon
+    > i {
+        display: block;
+        top: 0;
+    }
+
+    // Checkbox, radio
+    .checker,
+    .choice {
+        display: block;
+        margin-top: ((@line-height-computed - @checkbox-size) / 2);
+    }
+
+    // Sizing
+    &.input-xlg {
+        padding: (@padding-large-vertical + 2) @padding-large-horizontal;
+        font-size: @font-size-large;
+        border-radius: @border-radius-base;
+    }
+    &.input-xs {
+        padding: @padding-xs-vertical @padding-xs-horizontal;
+        font-size: @font-size-base;
+        border-radius: @border-radius-small;
+    }
+    &.input-sm {
+        font-size: @font-size-base;
+    }
+    &.input-lg {
+        border-radius: @border-radius-base;
+    }
+}

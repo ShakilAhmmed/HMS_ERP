@@ -1,0 +1,33 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Color system
+ *
+ *  Keep all color classes in a separate file as it's quite heavy and still optional
+ *
+ *  Version: 1.0
+ *  Latest update: Set 1st, 2015
+ *
+ * ---------------------------------------------------------------------------- */
+
+
+// Core
+// ------------------------------
+
+// Import variables and mixins
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+
+// Import overrides
+@import "core/variables/variables.less";
+@import "core/variables/core-variables.less";
+
+
+
+// Color system, always load last
+// ------------------------------
+
+// Color palettes
+@import "core/colors/palette.less";
+
+// System itself
+@import "core/colors/colors.less";

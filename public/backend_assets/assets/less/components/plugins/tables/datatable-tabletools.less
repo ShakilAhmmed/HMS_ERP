@@ -1,0 +1,73 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Fancybox lightbox
+*
+*  Add a toolbar to a table to provide options for saving files (CSV, XLS, PDF),
+*  copying to system Clipboard, or printing the table
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Core
+// ------------------------------
+
+// Container
+.DTTT_container {
+    position: relative;
+    float: right;
+    margin: 0 0 @line-height-computed @line-height-computed;
+
+    // Left position option
+    .tools-left & {
+        float: left;
+    }
+
+    // Remove outline
+    .DTTT_button embed { 
+        outline: none;
+    }
+
+    // On mobile
+    @media (max-width: @screen-xs-max) {
+        float: none !important;
+        text-align: center;
+        display: block;
+        margin-left: 0;
+
+        > .btn {
+            text-align: center;
+            float: none;
+        }
+    }
+}
+
+// Add hand cursor for row selection
+.DTTT_selectable tbody tr {
+    cursor: pointer;
+}
+
+// Print display styles
+.DTTT_print_info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    margin-top: -100px;
+    text-align: center;
+    color: #fff;
+    padding: @modal-inner-padding;
+    background-color: @color-slate-700;
+    border-radius: @border-radius-base;
+    z-index: 90;
+    .opacity(0.9);
+
+    // Print message title
+    h6 {
+        font-weight: 300;
+        font-size: @font-size-h5;
+    }
+}

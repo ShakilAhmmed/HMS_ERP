@@ -1,0 +1,63 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Main content layout
+*
+*  Styles for main structure of content area
+*
+*  Version: 1.0
+*  Latest update: May 25, 2015
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Main wrapper
+.page-container {
+    position: relative;
+
+    @media (min-width: @grid-float-breakpoint) {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+}
+
+// Min-height doesn't work in FF, bug. So we set 1px height which is overriden with min-height
+@-moz-document url-prefix() {
+    .page-container {
+        height: 1px;
+    }
+}
+
+// Main container
+.page-content {
+    @media (min-width: @grid-float-breakpoint) {
+        display: table-row;
+    }
+}
+
+// Content wrapper
+.content-wrapper {
+    padding-bottom: @line-height-computed;
+    width: 100%;
+
+    @media (min-width: @grid-float-breakpoint) {
+        display: table-cell;
+        vertical-align: top;
+    }
+}
+
+// Main content container
+.content {
+    padding: @line-height-computed @grid-gutter-width;
+
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    // If content comes after page header, remove top padding
+    .page-header + & {
+        padding-top: 0;
+    }
+}
