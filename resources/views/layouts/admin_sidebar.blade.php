@@ -9,7 +9,7 @@
         <a href="#"><i class="icon-stack2"></i> <span>Configuration</span></a>
         <ul>
           <li><router-link to="/department">Department</router-link></li>
-          <li><a href="layout_navbar_sidebar_fixed.html">Fixed navbar &amp; sidebar</a></li>
+          <li><router-link to="/designation">Designation</router-link></li>
           <li><a href="layout_sidebar_fixed_native.html">Fixed sidebar native scroll</a></li>
           <li><a href="layout_navbar_hideable.html">Hideable navbar</a></li>
           <li><a href="layout_navbar_hideable_sidebar.html">Hideable &amp; fixed sidebar</a></li>
