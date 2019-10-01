@@ -76,8 +76,8 @@ class DepartmentController extends Controller
         else:
             $departments->update(['status'=>1]);
             $response=['status'=>200];
-        endif;  
-        return response()->json($response);  
+        endif;
+        return response()->json($response);
     }
 
     /**
@@ -130,7 +130,6 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         $deleted=DepartmentModel::findOrFail($id)->delete();
-        $deleted ? $response=response()->json(['status'=>200]) : $response=response()->json(['status'=>400]) ;
-        return $response;
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
