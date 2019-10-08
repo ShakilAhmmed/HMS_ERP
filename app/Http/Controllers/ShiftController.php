@@ -133,7 +133,7 @@ class ShiftController extends Controller
     public function destroy($id)
     {
       $deleted=ShiftModel::findOrFail($id)->delete();
-      $deleted ? $response=response()->json(['status'=>200]) : $response=response()->json(['status'=>400]) ;
-      return $response;
+      return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
+
     }
 }
