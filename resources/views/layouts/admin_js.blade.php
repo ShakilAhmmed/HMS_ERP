@@ -15,5 +15,5 @@
 <script type="text/javascript" src="backend_assets/assets/js/plugins/pickers/daterangepicker.js"></script>
 
 <script type="text/javascript" src="backend_assets/assets/js/core/app.js"></script>
-<script type="text/javascript" src="backend_assets/assets/js/pages/dashboard.js"></script>
+<!-- <script type="text/javascript" src="backend_assets/assets/js/pages/dashboard.js"></script> -->
 <script src="https://use.fontawesome.com/d05ae2b062.js"></script>
