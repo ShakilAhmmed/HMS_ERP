@@ -365,7 +365,7 @@
                         if(response.data.status==201)
                         {
                             this.$toastr.success('Department Edited Successfully', 'Success');
-                            _this.DepartmentList.data.push(response.data.data);
+                            //_this.DepartmentList.data.push(response.data.data);
                             $(".close").click();
                             _this.ClearForm();
                             this.LoadingStatus();
