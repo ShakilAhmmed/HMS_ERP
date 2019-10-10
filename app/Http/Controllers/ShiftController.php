@@ -103,7 +103,7 @@ class ShiftController extends Controller
     public function update(Request $request, $id)
     {
         $shift=ShiftModel::findOrFail($id);
-        $validator=Validator::make($request->all(),$shift->validate());
+        $validator=Validator::make($request->all(),$shift->validate($id));
         if($validator->fails())
         {
             $response=[
