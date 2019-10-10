@@ -2834,6 +2834,8 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
 
 
+          _this.GetShiftList();
+
           $(".close").click();
 
           _this.ClearForm();
@@ -2852,8 +2854,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.get(this.baseUrl + 'shift?page=' + page).then(function (response) {
-        _this.ShiftList = response.data;
-        console.log(response.data);
+        _this.ShiftList = response.data; //console.log(response.data);
+
+        _this.LoadingStatus();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2930,8 +2933,8 @@ __webpack_require__.r(__webpack_exports__);
           _this5.axios["delete"](_this5.baseUrl + 'shift/' + id).then(function (response) {
             console.log(response);
 
-            if (response.data.status === 200) {
-              _this.DepartmentList.data.splice(index, 1);
+            if (response.data.status == 200) {
+              _this.ShiftList.data.splice(index, 1);
 
               swal.fire('Deleted!', 'Shift Hasbeen Deleted', 'success');
             }
@@ -58774,6 +58777,10 @@ var routes = [{
 
 __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
+
+__webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
+
 
 
 /***/ })

@@ -216,6 +216,7 @@
                   {
                       this.$toastr.success('Shift Added Successfully', 'Success');
                       //_this.ShiftList.data.push(response.data.data);
+                      _this.GetShiftList();
                       $(".close").click();
                       _this.ClearForm();
                       this.LoadingStatus();
@@ -235,7 +236,8 @@
             this.axios.get(this.baseUrl+'shift?page='+page)
             .then((response)=>{
                 _this.ShiftList=response.data;
-                console.log(response.data)
+                //console.log(response.data);
+                _this.LoadingStatus();
             })
             .catch((error)=>{
                 console.log(error)
@@ -309,9 +311,9 @@
                 this.axios.delete(this.baseUrl+'shift/'+id)
                 .then((response)=>{
                     console.log(response);
-                    if(response.data.status===200)
+                    if(response.data.status==200)
                     {
-                        _this.DepartmentList.data.splice(index,1);
+                        _this.ShiftList.data.splice(index,1);
                             swal.fire(
                               'Deleted!',
                               'Shift Hasbeen Deleted',
