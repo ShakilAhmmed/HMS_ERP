@@ -23,6 +23,7 @@
                                                     <li><a data-action="reload" @click="ClearForm"></a></li>
                                                 </ul>
                                             </div>
+
                                         </div>
 
                                         <div class="panel-body">
@@ -100,6 +101,7 @@
                                                     <li><a data-action="reload" @click="ClearForm"></a></li>
                                                 </ul>
                                             </div>
+
                                         </div>
 
                                         <div class="panel-body">
@@ -166,6 +168,11 @@
 			                		<li><a data-action="close"></a></li>
 			                	</ul>
 		                	</div>
+                            <div id="DataTables_Table_2_filter" class="dataTables_filter margin-0">
+                                <label>
+                                    <input type="search" v-model="search" @keyup="GetDepartmentList" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
+                                </label>
+                            </div>
 						</div>
 
 
@@ -248,13 +255,15 @@
                     status: ''
                 },
                 AllError:[],
+                search:''
             }
         },
         methods:{
             GetDepartmentList(page = 1)
             {
                 const _this=this;
-                this.axios.get(this.baseUrl+'department?page='+page)
+                const main_url=this.baseUrl+'department?q='+_this.search+'&page='+page;
+                this.axios.get(main_url)
                 .then((response)=>{
                     _this.DepartmentList=response.data;
                     console.log(response.data)

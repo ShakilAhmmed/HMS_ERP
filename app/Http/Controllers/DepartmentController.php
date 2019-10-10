@@ -13,9 +13,15 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departments=DepartmentModel::paginate(10);
+        $departments=DepartmentModel::where(function($departments) use ($request){
+            if($request->q)
+            {
+               $departments->where('department_name',$request->q)
+                            ->orWhere('description','LIKE','%'.$request->q.'%');
+            }
+        })->paginate(10);
         return $departments;
     }
 

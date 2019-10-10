@@ -4,3 +4,4 @@
 <link href="backend_assets/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">
 <link href="backend_assets/assets/css/minified/components.min.css" rel="stylesheet" type="text/css">
 <link href="backend_assets/assets/css/minified/colors.min.css" rel="stylesheet" type="text/css">
+<link href="backend_assets/assets/css/custom_style.css" rel="stylesheet" type="text/css">
