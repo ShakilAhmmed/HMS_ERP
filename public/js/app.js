@@ -2070,6 +2070,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Department",
   data: function data() {
@@ -2086,7 +2093,8 @@ __webpack_require__.r(__webpack_exports__);
         description: '',
         status: ''
       },
-      AllError: []
+      AllError: [],
+      search: ''
     };
   },
   methods: {
@@ -2095,7 +2103,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'department?page=' + page).then(function (response) {
+      var main_url = this.baseUrl + 'department?q=' + _this.search + '&page=' + page;
+      this.axios.get(main_url).then(function (response) {
         _this.DepartmentList = response.data;
         console.log(response.data);
       })["catch"](function (error) {
@@ -36565,7 +36574,44 @@ var render = function() {
               _vm._v(" "),
               _vm._m(1)
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.GetDepartmentList,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
