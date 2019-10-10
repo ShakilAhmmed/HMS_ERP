@@ -13,7 +13,12 @@
           <li><router-link to="/shift">Shift</router-link></li>
         </ul>
       </li>
-      <li><a href="changelog.html"><i class="icon-list-unordered"></i> <span>Users</span></a></li>
+      <li>
+        <a href="#"><i class="icon-stack2"></i> <span>RBAC</span></a>
+        <ul>
+          <li><router-link to="/users">Users</router-link></li>
+        </ul>
+      </li>
       <!-- /main -->
 
       <!-- Forms -->

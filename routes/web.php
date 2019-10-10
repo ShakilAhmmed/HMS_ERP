@@ -19,6 +19,7 @@ Route::prefix('api/v1')->group(function () {
     Route::resource('department','DepartmentController');
     Route::resource('designation','DesignationController');
     Route::resource('shift','ShiftController');
+    Route::resource('users','UserController');
 });
 
 
