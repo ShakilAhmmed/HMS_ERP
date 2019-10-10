@@ -2855,8 +2855,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get(this.baseUrl + 'shift?page=' + page).then(function (response) {
         _this.ShiftList = response.data; //console.log(response.data);
-
-        _this.LoadingStatus();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -58777,10 +58775,6 @@ var routes = [{
 
 __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
-
-__webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
-
 
 
 /***/ })

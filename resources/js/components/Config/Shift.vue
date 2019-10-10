@@ -237,7 +237,6 @@
             .then((response)=>{
                 _this.ShiftList=response.data;
                 //console.log(response.data);
-                _this.LoadingStatus();
             })
             .catch((error)=>{
                 console.log(error)
