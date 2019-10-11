@@ -2077,6 +2077,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Department",
   data: function data() {
@@ -2094,16 +2100,20 @@ __webpack_require__.r(__webpack_exports__);
         status: ''
       },
       AllError: [],
-      search: ''
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
     };
   },
   methods: {
     GetDepartmentList: function GetDepartmentList() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
       var _this = this;
 
-      var main_url = this.baseUrl + 'department?q=' + _this.search + '&page=' + page;
+      var main_url = this.baseUrl + 'department?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+      console.log(main_url);
       this.axios.get(main_url).then(function (response) {
         _this.DepartmentList = response.data;
         console.log(response.data);
@@ -36579,7 +36589,55 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "dataTables_filter margin-0",
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.custom_row,
+                      expression: "custom_row"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.custom_row = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.GetDepartmentList
+                    ]
+                  }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
               attrs: { id: "DataTables_Table_2_filter" }
             },
             [
