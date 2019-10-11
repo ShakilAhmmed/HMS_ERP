@@ -21,7 +21,7 @@ class DepartmentController extends Controller
                $departments->where('department_name',$request->q)
                             ->orWhere('description','LIKE','%'.$request->q.'%');
             }
-        })->paginate(10);
+        })->paginate($request->row);
         return $departments;
     }
 

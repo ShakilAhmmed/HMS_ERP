@@ -168,11 +168,17 @@
 			                		<li><a data-action="close"></a></li>
 			                	</ul>
 		                	</div>
-                            <div id="DataTables_Table_2_filter" class="dataTables_filter margin-0">
+                            <div id="DataTables_Table_2_filter" class="dataTables_filter  margin-0">
+                                <select class="form-control" @change="GetDepartmentList" v-model="custom_row">
+                                    <option v-for="row in select_row" v-text="row"></option>
+                                </select>
+                            </div>
+                            <div id="DataTables_Table_2_filter" class="dataTables_filter">
                                 <label>
                                     <input type="search" v-model="search" @keyup="GetDepartmentList" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
                                 </label>
                             </div>
+                      
 						</div>
 
 
@@ -255,14 +261,17 @@
                     status: ''
                 },
                 AllError:[],
-                search:''
+                search:'',
+                custom_row:10,
+                select_row:[10,20,30,40,50]
             }
         },
         methods:{
-            GetDepartmentList(page = 1)
+            GetDepartmentList(page = 1,custom_row=10)
             {
                 const _this=this;
-                const main_url=this.baseUrl+'department?q='+_this.search+'&page='+page;
+                const main_url=this.baseUrl+'department?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+                console.log(main_url);
                 this.axios.get(main_url)
                 .then((response)=>{
                     _this.DepartmentList=response.data;
