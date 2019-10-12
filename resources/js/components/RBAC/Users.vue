@@ -1,183 +1,9 @@
 <template>
 <div class="users">
       <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal">
-            Add New Users
+            <router-link to="/add_users">Add New Users</router-link>
       </button>
-<form class="form-horizontal" @submit.prevent="AddUsers">
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Add New Users</h5>
-                      <button type="button" class="close" @click="ClearForm" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    <div class="row">
-                            <div class="col-md-12">
-                              <div class="panel panel-flat">
-                                  <div class="panel-heading">
-                                      <div class="heading-elements">
-                                          <ul class="icons-list">
-                                              <li><a data-action="reload" @click="ClearForm"></a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
 
-                                  <div class="panel-body">
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Name:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.users_name" class="form-control" placeholder="Name" >
-                                              <span class="text-danger" v-if="AllError.users_name" v-text="AllError.users_name[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Guardian Name:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.guardian_name" class="form-control" placeholder="Enter Guardian Name" >
-                                              <span class="text-danger" v-if="AllError.guardian_name" v-text="AllError.guardian_name[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Address:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.address" class="form-control" placeholder="Enter Address Name" >
-                                              <span class="text-danger" v-if="AllError.address" v-text="AllError.address[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Phone:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.phone" class="form-control" placeholder="Enter Phone Number" >
-                                              <span class="text-danger" v-if="AllError.phone" v-text="AllError.phone[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Sex:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.sex" class="form-control" placeholder="Enter Sex" >
-                                              <span class="text-danger" v-if="AllError.sex" v-text="AllError.sex[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Birth Date:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.birth_date" class="form-control" placeholder="Enter Birth Date" >
-                                              <span class="text-danger" v-if="AllError.birth_date" v-text="AllError.birth_date[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Age:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.age" class="form-control" placeholder="Enter Age" >
-                                              <span class="text-danger" v-if="AllError.age" v-text="AllError.age[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Blood Group:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.blood_group" class="form-control" placeholder="Enter Blood Group" >
-                                              <span class="text-danger" v-if="AllError.blood_group" v-text="AllError.blood_group[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Department:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.department_id" class="form-control" placeholder="Enter Department Name" >
-                                              <span class="text-danger" v-if="AllError.department_id" v-text="AllError.department_id[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Designation:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.designation_id" class="form-control" placeholder="Enter Designation Name" >
-                                              <span class="text-danger" v-if="AllError.designation_id" v-text="AllError.designation_id[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Shift:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.shift_id" class="form-control" placeholder="Enter Shift Name" >
-                                              <span class="text-danger" v-if="AllError.shift_id" v-text="AllError.shift_id[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Working Hours:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.working_hours" class="form-control" placeholder="Enter Working Hours" >
-                                              <span class="text-danger" v-if="AllError.working_hours" v-text="AllError.working_hours[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Status:</label>
-                                          <div class="col-lg-9">
-                                            <select class="form-control" v-model="UsersForm.status">
-                                                <option value=''>--Select--</option>
-                                                <option value='1'>Active</option>
-                                                <option value="2">Inactive</option>
-                                            </select>
-                                            <span class="text-danger" v-if="AllError.status" v-text="AllError.status[0]"></span>
-                                        </div>
-                                    </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Image:</label>
-                                          <div class="col-lg-9">
-                                              <input type="file" class="form-control">
-                                              <span class="text-danger" v-if="AllError.image" v-text="AllError.image[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Email:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.email" class="form-control" placeholder="Enter Email" >
-                                              <span class="text-danger" v-if="AllError.email" v-text="AllError.email[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Password</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.password" class="form-control" placeholder="Enter Password" >
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Confirm Password:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="UsersForm.password_confirmation" class="form-control" placeholder="Re-Type Password" >
-                                              <span class="text-danger" v-if="AllError.password" v-text="AllError.password[0]"></span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" @click="ClearForm" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit"  class="btn btn-success">Save</button>
-                  </div>
-              </div>
-          </div>
-        </div>
-    </form>
     <!-- <form class="form-horizontal" @submit.prevent="UpdateUsers">
       <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
@@ -260,13 +86,13 @@
               <th>Email</th>
               <th>Phone</th>
               <th>Sex</th>
-              <th>Birth Date</th>
-              <th>Age</th>
+              <!-- <th>Birth Date</th>
+              <th>Age</th> -->
               <th>Blood Group</th>
               <!-- <th>Department Name</th>
               <th>Designation Name</th>
               <th>Shift Name</th> -->
-              <th>Working Hours</th>
+              <!-- <th>Working Hours</th> -->
               <th>Image</th>
               <th>Status</th>
               <th class="text-center">Actions</th>
@@ -281,17 +107,13 @@
               <td>{{users_list.email}}</td>
               <td>{{users_list.phone}}</td>
               <td>{{users_list.sex}}</td>
-              <td>{{users_list.birth_date}}</td>
-              <td>{{users_list.age}}</td>
+              <!-- <td>{{users_list.birth_date}}</td>
+              <td>{{users_list.age}}</td> -->
               <td>{{users_list.blood_group}}</td>
               <!-- <td>{{users_list.department_name}}</td>
               <td>{{users_list.designation_name}}</td>
               <td>{{users_list.shift_name}}</td> -->
-              <td>{{users_list.working_hours}}</td>
-              <td>
-                  <span  v-if="users_list.status==1" class='text-success'>Active</span>
-                  <span  v-else class='text-danger'>Inactive</span>
-              </td>
+              <!-- <td>{{users_list.working_hours}}</td> -->
               <td>{{users_list.image}}</td>
               <td>
                   <span  v-if="users_list.status==1" class='text-success'>Active</span>
@@ -313,8 +135,6 @@
                   </button>
               </td>
             </tr>
-
-
           </tbody>
         </table>
         <pagination :data="UsersList"  :limit=3 @pagination-change-page="GetUsersList">
@@ -400,7 +220,6 @@
             this.axios.get(this.baseUrl+'users?page='+page)
             .then((response)=>{
                 _this.UsersList=response.data;
-                //console.log(response.data);
             })
             .catch((error)=>{
                 console.log(error)
