@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\UserModel;
+use App\DepartmentModel;
+use App\DesignationModel;
+use App\ShiftModel;
 use Illuminate\Support\Arr;
 use Validator;
+use Image;
+use Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+      $shift=UserModel::paginate(10);
+      return $shift;
     }
 
     /**
@@ -37,7 +43,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $users=new UserModel;
+      $validator=Validator::make($request->all(),$users->validate());
+      if($validator->fails())
+      {
+          $response=[
+              'status'=>400,
+              'errors'=>$validator->errors()
+          ];
+      }
+      else
+      {
+          $requested_data=$request->all();
+
+          if ($request['image'])
+          {
+            $position=strpos($request['image'],";");
+            $sub_str=substr($request['image'], 0,$position);
+            $extenstion=explode("/", $sub_str);
+            $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+            $image_upload=Image::make($request['image'])->resize(300, 200);
+            $image_upload->save($upload_path);
+            $requested_data=Arr::add($requested_data, 'image',$upload_path);
+          }
+
+          $requested_data=Arr::add($requested_data,'users_id',time());
+          $password = Hash::make($request['password']);
+          $requested_data=Arr::set($requested_data,'password',$password);
+          $users->fill($requested_data)->save();
+          $response=[
+              'status'=>201,
+              'data'=>$users
+          ];
+      }
+      return response()->json($response);
     }
 
     /**
@@ -83,5 +122,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function GetUserAddData()
+    {
+      $data['department']=DepartmentModel::all();
+      $data['designation']=DesignationModel::all();
+      $data['shift']=ShiftModel::all();
+
+      return response()->json($data);
     }
 }
