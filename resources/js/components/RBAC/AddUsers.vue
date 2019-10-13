@@ -269,7 +269,7 @@
         methods:{
           GetData:function(){
             const _this = this;
-            this.axios.get(this.baseUrl+"get_users_add_data")
+            this.axios.get(base_path+"get_users_add_data")
               .then((response)=>{
                 _this.GetDataValue = response.data;
                   console.log(response.data);
@@ -280,7 +280,7 @@
           },
           AddUsers:function(){
               const _this = this;
-              this.axios.post(this.baseUrl+"users",_this.UsersForm)
+              this.axios.post(base_path+"users",_this.UsersForm)
                 .then((response)=>{
                     if(response.data.status==201)
                     {

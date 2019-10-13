@@ -2112,7 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      var main_url = this.baseUrl + 'department?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+      var main_url = base_path + 'department?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
       console.log(main_url);
       this.axios.get(main_url).then(function (response) {
         _this.DepartmentList = response.data;
@@ -2126,7 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.post(this.baseUrl + 'department', _this.DepartmentForm).then(function (response) {
+      this.axios.post(base_path + 'department', _this.DepartmentForm).then(function (response) {
         if (response.data.status == 201) {
           _this2.$toastr.success('Department Added Successfully', 'Success');
 
@@ -2167,7 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this3.axios["delete"](_this3.baseUrl + 'department/' + id).then(function (response) {
+          _this3.axios["delete"](base_path + 'department/' + id).then(function (response) {
             console.log(response);
 
             if (response.data.status === 200) {
@@ -2190,7 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'department/' + id).then(function (response) {
+      this.axios.get(base_path + 'department/' + id).then(function (response) {
         if (response.data.status === 200) {
           _this4.$toastr.success('Department Status Changed Into Active', 'Success');
         }
@@ -2217,7 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.put(this.baseUrl + 'department/' + _this.EditDepartmentForm.departments_id, _this.EditDepartmentForm).then(function (response) {
+      this.axios.put(base_path + 'department/' + _this.EditDepartmentForm.departments_id, _this.EditDepartmentForm).then(function (response) {
         if (response.data.status == 201) {
           _this5.$toastr.success('Department Edited Successfully', 'Success'); //_this.DepartmentList.data.push(response.data.data);
 
@@ -2493,7 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'designation?page=' + page).then(function (response) {
+      this.axios.get(base_path + 'designation?page=' + page).then(function (response) {
         _this.DesignationList = response.data;
         console.log(response.data);
       })["catch"](function (error) {
@@ -2505,7 +2505,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.post(this.baseUrl + 'designation', _this.DesignationForm).then(function (response) {
+      this.axios.post(base_path + 'designation', _this.DesignationForm).then(function (response) {
         if (response.data.status == 200) {
           _this2.$toastr.success('Designation Added Successfully', 'Success');
 
@@ -2530,7 +2530,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'designation/' + id).then(function (response) {
+      this.axios.get(base_path + 'designation/' + id).then(function (response) {
         if (response.data.status === 200) {
           _this3.$toastr.success('Designation Status Changed Into Active', 'Success');
         }
@@ -2557,7 +2557,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.put(this.baseUrl + 'designation/' + _this.EditDesignationForm.designation_id, _this.EditDesignationForm).then(function (response) {
+      this.axios.put(base_path + 'designation/' + _this.EditDesignationForm.designation_id, _this.EditDesignationForm).then(function (response) {
         if (response.data.status == 201) {
           _this4.$toastr.success('Designation Edited Successfully', 'Success');
 
@@ -2590,7 +2590,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this5.axios["delete"](_this5.baseUrl + 'designation/' + id).then(function (response) {
+          _this5.axios["delete"](base_path + 'designation/' + id).then(function (response) {
             console.log(response);
 
             if (response.data.status === 200) {
@@ -2848,7 +2848,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.post(this.baseUrl + "shift", _this.ShiftForm).then(function (response) {
+      this.axios.post(base_path + "shift", _this.ShiftForm).then(function (response) {
         if (response.data.status == 201) {
           _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
 
@@ -2872,7 +2872,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'shift?page=' + page).then(function (response) {
+      this.axios.get(base_path + 'shift?page=' + page).then(function (response) {
         _this.ShiftList = response.data; //console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
@@ -2883,7 +2883,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'shift/' + id).then(function (response) {
+      this.axios.get(base_path + 'shift/' + id).then(function (response) {
         if (response.data.status === 200) {
           _this3.$toastr.success('Shift Status Changed Into Active', 'Success');
         }
@@ -2910,7 +2910,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.put(this.baseUrl + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
+      this.axios.put(base_path + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
         if (response.data.status == 201) {
           _this4.$toastr.success('Shift Edited Successfully', 'Success');
 
@@ -2947,7 +2947,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this5.LoadingStatus();
 
-          _this5.axios["delete"](_this5.baseUrl + 'shift/' + id).then(function (response) {
+          _this5.axios["delete"](base_path + 'shift/' + id).then(function (response) {
             console.log(response);
 
             if (response.data.status == 200) {
@@ -3262,7 +3262,7 @@ __webpack_require__.r(__webpack_exports__);
     GetData: function GetData() {
       var _this = this;
 
-      this.axios.get(this.baseUrl + "get_users_add_data").then(function (response) {
+      this.axios.get(base_path + "get_users_add_data").then(function (response) {
         _this.GetDataValue = response.data;
         console.log(response.data);
       })["catch"](function (error) {
@@ -3274,7 +3274,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.post(this.baseUrl + "users", _this.UsersForm).then(function (response) {
+      this.axios.post(base_path + "users", _this.UsersForm).then(function (response) {
         if (response.data.status == 201) {
           _this2.$toastr.success('Users Added Successfully', 'Success'); //_this.UsersList.data.push(response.data.data);
 
@@ -3589,10 +3589,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {},
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
-    axios.get(this.baseUrl + 'users/' + this.$route.params.user_id + '/edit').then(function (response) {
+    this.axios.get(base_path + 'users/' + this.$route.params.id + '/edit').then(function (response) {
       console.log(response.data);
       _this.EditUsersForm = response.data;
     });
@@ -3796,7 +3796,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.post(this.baseUrl + "users", _this.UsersForm).then(function (response) {
+      this.axios.post(base_path + "users", _this.UsersForm).then(function (response) {
         if (response.data.status == 201) {
           _this2.$toastr.success('Users Added Successfully', 'Success'); //_this.UsersList.data.push(response.data.data);
 
@@ -3820,7 +3820,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'users?page=' + page).then(function (response) {
+      this.axios.get(base_path + 'users?page=' + page).then(function (response) {
         _this.UsersList = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -3831,7 +3831,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'users/' + id).then(function (response) {
+      this.axios.get(base_path + 'users/' + id).then(function (response) {
         if (response.data.status === 200) {
           _this3.$toastr.success('Users Status Changed Into Active', 'Success');
         }
@@ -3858,7 +3858,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      this.axios.put(this.baseUrl + 'users/' + _this.EditUsersForm.users_id, this.EditUsersForm).then(function (response) {
+      this.axios.put(base_path + 'users/' + _this.EditUsersForm.users_id, this.EditUsersForm).then(function (response) {
         if (response.data.status == 201) {
           _this4.$toastr.success('Users Edited Successfully', 'Success');
 
@@ -3895,7 +3895,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this5.LoadingStatus();
 
-          _this5.axios["delete"](_this5.baseUrl + 'users/' + id).then(function (response) {
+          _this5.axios["delete"](base_path + 'users/' + id).then(function (response) {
             console.log(response);
 
             if (response.data.status == 200) {
@@ -46091,8 +46091,8 @@ var render = function() {
                         {
                           attrs: {
                             to: {
-                              name: "edit_user",
-                              params: { user_id: users_list.users_id }
+                              name: "edit-user",
+                              params: { id: users_list.users_id }
                             }
                           }
                         },
@@ -61595,7 +61595,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_loading_plugin__WEBPACK_IMP
   // set custom background
   classes: ['myclass'] // array, object or string
 
-}); // All Global
+});
+window.base_path = "api/v1/"; // All Global
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
   data: function data() {
@@ -61626,7 +61627,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _router__WEBPACK_IMPORTED_MODULE_5__["routes"],
-  mode: "history"
+  mode: "hash"
 });
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -62262,9 +62263,9 @@ var routes = [{
   component: _components_RBAC_AddUsers__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: "add_users"
 }, {
-  path: '/:user_id',
+  path: '/edit-user/:id',
   component: _components_RBAC_EditUsers__WEBPACK_IMPORTED_MODULE_6__["default"],
-  name: "edit_user"
+  name: "edit-user"
 }];
 
 /***/ }),

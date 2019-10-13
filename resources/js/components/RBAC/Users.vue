@@ -117,9 +117,9 @@
                   </button>
 
                   <button class="btn btn-info">
-                        <router-link :to="{ name: 'edit_user', params: { user_id: users_list.users_id }}">
-                            <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
-                        </router-link>
+                    <router-link :to="{ name: 'edit-user', params:{id: users_list.users_id }}">
+                        <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
+                    </router-link>
                   </button>
               </td>
             </tr>
@@ -182,7 +182,7 @@
       methods:{
         AddUsers:function(){
             const _this = this;
-            this.axios.post(this.baseUrl+"users",_this.UsersForm)
+            this.axios.post(base_path+"users",_this.UsersForm)
               .then((response)=>{
                   if(response.data.status==201)
                   {
@@ -205,7 +205,7 @@
         GetUsersList(page = 1)
         {
             const _this=this;
-            this.axios.get(this.baseUrl+'users?page='+page)
+            this.axios.get(base_path+'users?page='+page)
             .then((response)=>{
                 _this.UsersList=response.data;
             })
@@ -216,7 +216,7 @@
         StatusChange:function(id)
         {
             const _this=this;
-            this.axios.get(this.baseUrl+'users/'+id)
+            this.axios.get(base_path+'users/'+id)
             .then((response)=>{
               if(response.data.status===200)
               {
@@ -243,7 +243,7 @@
         UpdateUsers:function()
         {
           const _this=this;
-          this.axios.put(this.baseUrl+'users/'+_this.EditUsersForm.users_id,this.EditUsersForm)
+          this.axios.put(base_path+'users/'+_this.EditUsersForm.users_id,this.EditUsersForm)
           .then((response)=>{
               if(response.data.status==201)
               {
@@ -278,7 +278,7 @@
               if (result.value) {
                 _this.GetUsersList();
                 this.LoadingStatus();
-                this.axios.delete(this.baseUrl+'users/'+id)
+                this.axios.delete(base_path+'users/'+id)
                 .then((response)=>{
                     console.log(response);
                     if(response.data.status==200)

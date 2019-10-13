@@ -270,9 +270,9 @@
         methods:{
          
         },
-        created(){
+        mounted(){
           const _this=this;
-           axios.get(this.baseUrl+'users/'+this.$route.params.user_id+'/edit')
+           this.axios.get(base_path+'users/'+this.$route.params.id+'/edit')
             .then((response)=>{
               console.log(response.data);
               _this.EditUsersForm=response.data

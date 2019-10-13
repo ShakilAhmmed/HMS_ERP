@@ -35,6 +35,7 @@ Vue.use(VueLoading, {
   classes: ['myclass'] // array, object or string
 });
 
+window.base_path ="api/v1/";
 
 
 
@@ -70,7 +71,7 @@ Vue.mixin({
 
 const router = new VueRouter({
 	routes,
-	mode:"history"
+	mode:"hash"
 });
 /**
  * Next, we will create a fresh Vue application instance and attach it to
