@@ -87,7 +87,18 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = UserModel::findOrFail($id);
+        if ($user->status == 1)
+        {
+          $user->update(['status'=>2]);
+          $response=['status'=>202];
+        }
+        else
+        {
+          $user->update(['status'=>1]);
+          $response=['status'=>200];
+        }
+        return response()->json($response);
     }
 
     /**
@@ -121,7 +132,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $deleted=UserModel::findOrFail($id)->delete();
+      return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 
     public function GetUserAddData()

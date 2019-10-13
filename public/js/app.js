@@ -3311,10 +3311,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/Users.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RBAC/Users.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3332,6 +3332,278 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Users",
+  props: ['users_id'],
+  data: function data() {
+    return {
+      EditUsersForm: {
+        users_id: '',
+        users_name: '',
+        guardian_name: '',
+        address: '',
+        phone: '',
+        sex: '',
+        birth_date: '',
+        age: '',
+        blood_group: '',
+        department_id: '',
+        designation_id: '',
+        shift_id: '',
+        working_hours: '',
+        status: '',
+        image: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      },
+      AllError: [],
+      GetDataValue: []
+    };
+  },
+  methods: {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/Users.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RBAC/Users.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -3623,7 +3895,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == 200) {
               _this.UsersList.data.splice(index, 1);
 
-              swal.fire('Deleted!', 'Users Hasbeen Deleted', 'success');
+              swal.fire('Deleted!', 'User Hasbeen Deleted', 'success');
             }
 
             if (response.data.status === 400) {
@@ -44732,6 +45004,930 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "add_users" }, [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.AddUsers($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "form-horizontal",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.AddUsers($event)
+                    }
+                  }
+                },
+                [
+                  _c("legend", { staticClass: "text-bold" }, [
+                    _vm._v("Add New User")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Name:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.users_name,
+                                expression: "EditUsersForm.users_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Name" },
+                            domProps: { value: _vm.EditUsersForm.users_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "users_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Guardian Name: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.guardian_name,
+                                expression: "EditUsersForm.guardian_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Enter Guardian Name"
+                            },
+                            domProps: {
+                              value: _vm.EditUsersForm.guardian_name
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "guardian_name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-1 control-label text-left" },
+                          [_vm._v("Address: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-11" }, [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.address,
+                                expression: "EditUsersForm.address"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { placeholder: "Enter Address" },
+                            domProps: { value: _vm.EditUsersForm.address },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "address",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Phone:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.phone,
+                                expression: "EditUsersForm.phone"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Enter Phone Number"
+                            },
+                            domProps: { value: _vm.EditUsersForm.phone },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "phone",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Sex: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.sex,
+                                  expression: "EditUsersForm.sex"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "sex",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Male")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Female")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "3" } }, [
+                                _vm._v("Common")
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Birth Date:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.birth_date,
+                                expression: "EditUsersForm.birth_date"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              placeholder: "Enter Birth Date"
+                            },
+                            domProps: { value: _vm.EditUsersForm.birth_date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "birth_date",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Age: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.age,
+                                expression: "EditUsersForm.age"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Enter Age" },
+                            domProps: { value: _vm.EditUsersForm.age },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "age",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Blood Group:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.blood_group,
+                                  expression: "EditUsersForm.blood_group"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "blood_group",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("O−")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("O+")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("A−")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("A+")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("B−")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("B+")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("AB−")]),
+                              _vm._v(" "),
+                              _c("option", [_vm._v("AB+")])
+                            ]
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Department: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.department_id,
+                                  expression: "EditUsersForm.department_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "department_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.GetDataValue.department, function(
+                                data_value
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    domProps: {
+                                      value: data_value.departments_id,
+                                      textContent: _vm._s(
+                                        data_value.department_name
+                                      )
+                                    }
+                                  },
+                                  [_vm._v("Select")]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Designation:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.designation_id,
+                                  expression: "EditUsersForm.designation_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "designation_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.GetDataValue.designation, function(
+                                data_value
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    domProps: {
+                                      value: data_value.designation_id,
+                                      textContent: _vm._s(
+                                        data_value.designation_name
+                                      )
+                                    }
+                                  },
+                                  [_vm._v("Select")]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Shift: ")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.shift_id,
+                                  expression: "EditUsersForm.shift_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "shift_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.GetDataValue.shift, function(
+                                data_value
+                              ) {
+                                return _c(
+                                  "option",
+                                  {
+                                    domProps: {
+                                      value: data_value.shift_id,
+                                      textContent: _vm._s(data_value.shift_name)
+                                    }
+                                  },
+                                  [_vm._v("Select")]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Working Hours")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.working_hours,
+                                expression: "EditUsersForm.working_hours"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              placeholder: "Enter Working Hours"
+                            },
+                            domProps: {
+                              value: _vm.EditUsersForm.working_hours
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "working_hours",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Status:")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.EditUsersForm.status,
+                                  expression: "EditUsersForm.status"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.EditUsersForm,
+                                    "status",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Select")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "1" } }, [
+                                _vm._v("Active")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "2" } }, [
+                                _vm._v("Inactive")
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Email:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.email,
+                                expression: "EditUsersForm.email"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", placeholder: "Enter Email" },
+                            domProps: { value: _vm.EditUsersForm.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "email",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Password:")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.password,
+                                expression: "EditUsersForm.password"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "password",
+                              placeholder: "Enter Password"
+                            },
+                            domProps: { value: _vm.EditUsersForm.password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "password",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-2 control-label text-left" },
+                          [_vm._v("Confirm Password:")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditUsersForm.password_confirmation,
+                                expression:
+                                  "EditUsersForm.password_confirmation"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "password",
+                              placeholder: "Re-Type Password"
+                            },
+                            domProps: {
+                              value: _vm.EditUsersForm.password_confirmation
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.EditUsersForm,
+                                  "password_confirmation",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("div", { staticClass: "heading-elements" }, [
+        _c("ul", { staticClass: "icons-list" }, [
+          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("label", { staticClass: "col-lg-2 control-label" }, [
+          _vm._v("Image:")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-10" }, [
+          _c("input", { staticClass: "form-control", attrs: { type: "file" } })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [
+          _vm._v("Submit "),
+          _c("i", { staticClass: "icon-arrow-right14 position-right" })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/Users.vue?vue&type=template&id=1f4dd214&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RBAC/Users.vue?vue&type=template&id=1f4dd214& ***!
@@ -44751,7 +45947,7 @@ var render = function() {
     _c(
       "button",
       {
-        staticClass: "btn btn-primary pull-right",
+        staticClass: "btn btn-primary pull-right router_link_color",
         attrs: {
           type: "button",
           "data-toggle": "modal",
@@ -44805,8 +46001,6 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.guardian_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(users_list.address))]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.email))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.phone))]),
@@ -44827,7 +46021,7 @@ var render = function() {
                       ])
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "text-center" }, [
+                _c("td", { staticClass: "text-center table_action_display" }, [
                   _c(
                     "button",
                     {
@@ -44884,24 +46078,25 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#editModal"
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.EditUsers(users_list.users_id, users_list)
-                        }
-                      }
-                    },
+                    { staticClass: "btn btn-info" },
                     [
-                      _c("i", {
-                        staticClass: "fa fa-pencil-square-o",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: { name: "edit_users", params: { userId: 123 } }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fa fa-pencil-square-o router_link_color",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ],
+                    1
                   )
                 ])
               ])
@@ -44955,8 +46150,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Guardian Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
@@ -60854,6 +62047,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/RBAC/EditUsers.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/RBAC/EditUsers.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditUsers.vue?vue&type=template&id=5814d90c& */ "./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c&");
+/* harmony import */ var _EditUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditUsers.vue?vue&type=script&lang=js& */ "./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RBAC/EditUsers.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditUsers.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/EditUsers.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUsers_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditUsers.vue?vue&type=template&id=5814d90c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RBAC/EditUsers.vue?vue&type=template&id=5814d90c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditUsers_vue_vue_type_template_id_5814d90c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/RBAC/Users.vue":
 /*!************************************************!*\
   !*** ./resources/js/components/RBAC/Users.vue ***!
@@ -60957,6 +62219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Config_Shift__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Config/Shift */ "./resources/js/components/Config/Shift.vue");
 /* harmony import */ var _components_RBAC_Users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/RBAC/Users */ "./resources/js/components/RBAC/Users.vue");
 /* harmony import */ var _components_RBAC_AddUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/RBAC/AddUsers */ "./resources/js/components/RBAC/AddUsers.vue");
+/* harmony import */ var _components_RBAC_EditUsers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/RBAC/EditUsers */ "./resources/js/components/RBAC/EditUsers.vue");
+
 
 
 
@@ -60988,6 +62252,11 @@ var routes = [{
   path: '/add_users',
   component: _components_RBAC_AddUsers__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: "/add_users"
+}, {
+  path: '/edit_users/:id',
+  component: _components_RBAC_EditUsers__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: "/edit_users",
+  props: true
 }];
 
 /***/ }),
