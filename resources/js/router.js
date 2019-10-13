@@ -40,9 +40,9 @@ export const routes = [
   	},
 
     {	
-	  	path: '/:user_id',
+	  	path: '/edit-user/:id',
 	  	component: EditUsersComponent,
-	  	name:"edit_user",
-  	},
+	  	name:"edit-user",
+  	}
 
 ]

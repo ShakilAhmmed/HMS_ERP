@@ -238,7 +238,7 @@
             GetDesignationList(page = 1)
             {
                 const _this=this;
-                this.axios.get(this.baseUrl+'designation?page='+page)
+                this.axios.get(base_path+'designation?page='+page)
                 .then((response)=>{
                     _this.DesignationList=response.data;
                     console.log(response.data)
@@ -250,7 +250,7 @@
             AddDesignation:function(){
 
                 const _this=this;
-                this.axios.post(this.baseUrl+'designation',_this.DesignationForm)
+                this.axios.post(base_path+'designation',_this.DesignationForm)
                 .then((response)=>{
                     if(response.data.status==200)
                     {
@@ -273,7 +273,7 @@
             },
             StatusChange:function(id){
                 const _this=this;
-                this.axios.get(this.baseUrl+'designation/'+id)
+                this.axios.get(base_path+'designation/'+id)
                 .then((response)=>{
                     if(response.data.status===200)
                     {
@@ -299,7 +299,7 @@
             },
             UpdateDesignation:function(event){
                 const _this=this;
-                this.axios.put(this.baseUrl+'designation/'+_this.EditDesignationForm.designation_id,_this.EditDesignationForm)
+                this.axios.put(base_path+'designation/'+_this.EditDesignationForm.designation_id,_this.EditDesignationForm)
                 .then((response)=>{
 
                         if(response.data.status==201)
@@ -333,7 +333,7 @@
                       confirmButtonText: 'Yes, delete it!' 
                     }).then((result) => {
                       if (result.value) {
-                        this.axios.delete(this.baseUrl+'designation/'+id)
+                        this.axios.delete(base_path+'designation/'+id)
                         .then((response)=>{
                             console.log(response);
                             if(response.data.status===200)

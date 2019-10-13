@@ -270,7 +270,7 @@
             GetDepartmentList(page = 1,custom_row=10)
             {
                 const _this=this;
-                const main_url=this.baseUrl+'department?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+                const main_url=base_path+'department?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
                 console.log(main_url);
                 this.axios.get(main_url)
                 .then((response)=>{
@@ -284,7 +284,7 @@
             AddDepartment:function(){
 
                 const _this=this;
-                this.axios.post(this.baseUrl+'department',_this.DepartmentForm)
+                this.axios.post(base_path+'department',_this.DepartmentForm)
                 .then((response)=>{
                     if(response.data.status==201)
                     {
@@ -326,7 +326,7 @@
                       confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                       if (result.value) {
-                        this.axios.delete(this.baseUrl+'department/'+id)
+                        this.axios.delete(base_path+'department/'+id)
                         .then((response)=>{
                             console.log(response);
                             if(response.data.status===200)
@@ -351,7 +351,7 @@
             },
             StatusChange:function(id){
                 const _this=this;
-                this.axios.get(this.baseUrl+'department/'+id)
+                this.axios.get(base_path+'department/'+id)
                 .then((response)=>{
                     if(response.data.status===200)
                     {
@@ -377,7 +377,7 @@
             },
             UpdateDepartment:function(event){
                 const _this=this;
-                this.axios.put(this.baseUrl+'department/'+_this.EditDepartmentForm.departments_id,_this.EditDepartmentForm)
+                this.axios.put(base_path+'department/'+_this.EditDepartmentForm.departments_id,_this.EditDepartmentForm)
                 .then((response)=>{
 
                         if(response.data.status==201)

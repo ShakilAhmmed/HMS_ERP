@@ -210,7 +210,7 @@
       methods:{
         AddShift:function(){
             const _this = this;
-            this.axios.post(this.baseUrl+"shift",_this.ShiftForm)
+            this.axios.post(base_path+"shift",_this.ShiftForm)
               .then((response)=>{
                   if(response.data.status==201)
                   {
@@ -233,7 +233,7 @@
         GetShiftList(page = 1)
         {
             const _this=this;
-            this.axios.get(this.baseUrl+'shift?page='+page)
+            this.axios.get(base_path+'shift?page='+page)
             .then((response)=>{
                 _this.ShiftList=response.data;
                 //console.log(response.data);
@@ -245,7 +245,7 @@
         StatusChange:function(id)
         {
             const _this=this;
-            this.axios.get(this.baseUrl+'shift/'+id)
+            this.axios.get(base_path+'shift/'+id)
             .then((response)=>{
               if(response.data.status===200)
               {
@@ -272,7 +272,7 @@
         UpdateShift:function()
         {
           const _this=this;
-          this.axios.put(this.baseUrl+'shift/'+_this.EditShiftForm.shift_id,this.EditShiftForm)
+          this.axios.put(base_path+'shift/'+_this.EditShiftForm.shift_id,this.EditShiftForm)
           .then((response)=>{
               if(response.data.status==201)
               {
@@ -307,7 +307,7 @@
               if (result.value) {
                 _this.GetShiftList();
                 this.LoadingStatus();
-                this.axios.delete(this.baseUrl+'shift/'+id)
+                this.axios.delete(base_path+'shift/'+id)
                 .then((response)=>{
                     console.log(response);
                     if(response.data.status==200)
