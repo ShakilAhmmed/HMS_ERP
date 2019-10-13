@@ -16,34 +16,33 @@ export const routes = [
     {
 	  	path: '/department',
 	  	component: DepartmentComponent,
-	  	name:"/department"
+	  	name:"department"
   	},
   	{
 	  	path: '/designation',
 	  	component: DesignationComponent,
-	  	name:"/designation"
+	  	name:"designation"
   	},
     {
 	  	path: '/shift',
 	  	component: ShiftComponent,
-	  	name:"/shift"
+	  	name:"shift"
   	},
     {
 	  	path: '/users',
 	  	component: UsersComponent,
-	  	name:"/users"
+	  	name:"users"
   	},
     {
 	  	path: '/add_users',
 	  	component: AddUsersComponent,
-	  	name:"/add_users"
+	  	name:"add_users"
   	},
 
-    {
-	  	path: '/edit_users/:id',
+    {	
+	  	path: '/api/v1/users/:user_id',
 	  	component: EditUsersComponent,
-	  	name:"/edit_users",
-	  	props: true
+	  	name:"edit_user",
   	},
 
 ]

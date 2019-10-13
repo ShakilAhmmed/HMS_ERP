@@ -56,7 +56,7 @@ class UserController extends Controller
       {
           $requested_data=$request->all();
 
-          if ($request['image'])
+          if($request['image'])
           {
             $position=strpos($request['image'],";");
             $sub_str=substr($request['image'], 0,$position);
@@ -64,9 +64,8 @@ class UserController extends Controller
             $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
             $image_upload=Image::make($request['image'])->resize(300, 200);
             $image_upload->save($upload_path);
-            $requested_data=Arr::add($requested_data, 'image',$upload_path);
+            $requested_data=Arr::set($requested_data, 'image',$upload_path);
           }
-
           $requested_data=Arr::add($requested_data,'users_id',time());
           $password = Hash::make($request['password']);
           $requested_data=Arr::set($requested_data,'password',$password);
@@ -101,6 +100,7 @@ class UserController extends Controller
         return response()->json($response);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,7 +109,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      return UserModel::findOrFail($id);
+      
     }
 
     /**

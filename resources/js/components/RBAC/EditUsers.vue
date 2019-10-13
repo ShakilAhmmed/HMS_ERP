@@ -17,7 +17,7 @@
         <form @submit.prevent="AddUsers">
           <fieldset class="content-group">
             <form class="form-horizontal" @submit.prevent="AddUsers">
-            <legend class="text-bold">Add New User</legend>
+            <legend class="text-bold">Edit New User</legend>
             <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
@@ -241,7 +241,6 @@
 <script>
     export default{
       name:"Users",
-      props: ['users_id'],
       data(){
           return{
             EditUsersForm:{
@@ -269,10 +268,14 @@
           }
         },
         methods:{
-          
          
         },
-        mounted(){
-        },
+        created(){
+          const _this=this;
+           axios.get(this.$route.params.user_id+'/edit')
+            .then((response)=>{
+              _this.EditUsersForm=response.data
+            })
+        }
       }
   </script>
