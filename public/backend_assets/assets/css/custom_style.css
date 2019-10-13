@@ -1,3 +1,9 @@
 .margin-0{
 	margin-left: 0px !important;
 }
+.table_action_display{
+	display: inline-flex;
+}
+.router_link_color{
+	color: white;
+}

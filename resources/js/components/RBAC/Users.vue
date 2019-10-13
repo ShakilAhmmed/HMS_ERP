@@ -1,6 +1,6 @@
 <template>
 <div class="users">
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-primary pull-right router_link_color" data-toggle="modal" data-target="#exampleModal">
             <router-link to="/add_users">Add New Users</router-link>
       </button>
 
@@ -82,17 +82,10 @@
               <th>Sl No</th>
               <th>Name</th>
               <th>Guardian Name</th>
-              <th>Address</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Sex</th>
-              <!-- <th>Birth Date</th>
-              <th>Age</th> -->
               <th>Blood Group</th>
-              <!-- <th>Department Name</th>
-              <th>Designation Name</th>
-              <th>Shift Name</th> -->
-              <!-- <th>Working Hours</th> -->
               <th>Image</th>
               <th>Status</th>
               <th class="text-center">Actions</th>
@@ -103,23 +96,16 @@
               <td v-text="index+1"></td>
               <td>{{users_list.users_name}}</td>
               <td>{{users_list.guardian_name}}</td>
-              <td>{{users_list.address}}</td>
               <td>{{users_list.email}}</td>
               <td>{{users_list.phone}}</td>
               <td>{{users_list.sex}}</td>
-              <!-- <td>{{users_list.birth_date}}</td>
-              <td>{{users_list.age}}</td> -->
               <td>{{users_list.blood_group}}</td>
-              <!-- <td>{{users_list.department_name}}</td>
-              <td>{{users_list.designation_name}}</td>
-              <td>{{users_list.shift_name}}</td> -->
-              <!-- <td>{{users_list.working_hours}}</td> -->
               <td>{{users_list.image}}</td>
               <td>
                   <span  v-if="users_list.status==1" class='text-success'>Active</span>
                   <span  v-else class='text-danger'>Inactive</span>
               </td>
-              <td class="text-center">
+              <td class="text-center table_action_display">
                   <button class="btn btn-danger" @click="DeleteUsers(users_list.users_id,index)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
                   <button v-if="users_list.status==1" class="btn btn-success" @click="StatusChange(users_list.users_id)">
@@ -130,8 +116,10 @@
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditUsers(users_list.users_id,users_list)">
-                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <button class="btn btn-info">
+                        <router-link :to="{ name: 'edit_users', params: { userId: 123 }}">
+                            <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
+                        </router-link>
                   </button>
               </td>
             </tr>
@@ -298,7 +286,7 @@
                         _this.UsersList.data.splice(index,1);
                             swal.fire(
                               'Deleted!',
-                              'Users Hasbeen Deleted',
+                              'User Hasbeen Deleted',
                               'success'
                             )
                     }
