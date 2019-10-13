@@ -117,7 +117,7 @@
                   </button>
 
                   <button class="btn btn-info">
-                        <router-link :to="{ name: 'edit_users', params: { userId: 123 }}">
+                        <router-link :to="{ name: 'edit_user', params: { user_id: users_list.users_id }}">
                             <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
                         </router-link>
                   </button>

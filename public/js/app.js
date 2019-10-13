@@ -3562,7 +3562,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
-  props: ['users_id'],
   data: function data() {
     return {
       EditUsersForm: {
@@ -3590,7 +3589,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {},
-  mounted: function mounted() {}
+  created: function created() {
+    var _this = this;
+
+    axios.get(this.baseUrl + 'users/' + this.$route.params.user_id + '/edit').then(function (response) {
+      console.log(response.data);
+      _this.EditUsersForm = response.data;
+    });
+  }
 });
 
 /***/ }),
@@ -45049,7 +45055,7 @@ var render = function() {
                 },
                 [
                   _c("legend", { staticClass: "text-bold" }, [
-                    _vm._v("Add New User")
+                    _vm._v("Edit New User")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -46084,7 +46090,10 @@ var render = function() {
                         "router-link",
                         {
                           attrs: {
-                            to: { name: "edit_users", params: { userId: 123 } }
+                            to: {
+                              name: "edit_user",
+                              params: { user_id: users_list.users_id }
+                            }
                           }
                         },
                         [
@@ -62235,28 +62244,27 @@ var routes = [{
 }, {
   path: '/department',
   component: _components_Config_Department__WEBPACK_IMPORTED_MODULE_1__["default"],
-  name: "/department"
+  name: "department"
 }, {
   path: '/designation',
   component: _components_Config_Designation__WEBPACK_IMPORTED_MODULE_2__["default"],
-  name: "/designation"
+  name: "designation"
 }, {
   path: '/shift',
   component: _components_Config_Shift__WEBPACK_IMPORTED_MODULE_3__["default"],
-  name: "/shift"
+  name: "shift"
 }, {
   path: '/users',
   component: _components_RBAC_Users__WEBPACK_IMPORTED_MODULE_4__["default"],
-  name: "/users"
+  name: "users"
 }, {
   path: '/add_users',
   component: _components_RBAC_AddUsers__WEBPACK_IMPORTED_MODULE_5__["default"],
-  name: "/add_users"
+  name: "add_users"
 }, {
-  path: '/edit_users/:id',
+  path: '/:user_id',
   component: _components_RBAC_EditUsers__WEBPACK_IMPORTED_MODULE_6__["default"],
-  name: "/edit_users",
-  props: true
+  name: "edit_user"
 }];
 
 /***/ }),
@@ -62279,8 +62287,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
