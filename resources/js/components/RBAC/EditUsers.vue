@@ -272,8 +272,9 @@
         },
         created(){
           const _this=this;
-           axios.get(this.$route.params.user_id+'/edit')
+           axios.get(this.baseUrl+'users/'+this.$route.params.user_id+'/edit')
             .then((response)=>{
+              console.log(response.data);
               _this.EditUsersForm=response.data
             })
         }

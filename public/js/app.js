@@ -3592,7 +3592,8 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get(this.$route.params.user_id + '/edit').then(function (response) {
+    axios.get(this.baseUrl + 'users/' + this.$route.params.user_id + '/edit').then(function (response) {
+      console.log(response.data);
       _this.EditUsersForm = response.data;
     });
   }
@@ -62261,7 +62262,7 @@ var routes = [{
   component: _components_RBAC_AddUsers__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: "add_users"
 }, {
-  path: '/api/v1/users/:user_id',
+  path: '/:user_id',
   component: _components_RBAC_EditUsers__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: "edit_user"
 }];
