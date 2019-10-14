@@ -103,7 +103,7 @@
                                         <div class="panel-body">
 
                                             <div class="form-group">
-                                                <label class="col-lg-3 control-label">Department Name:</label>
+                                                <label class="col-lg-3 control-label">Designation Name:</label>
                                                 <div class="col-lg-9">
                                                     <input type="text" v-model="EditDesignationForm.designation_name" class="form-control" placeholder="Enter Designation Name" >
                                                     <span class="text-danger" v-if="AllError.designation_name" v-text="AllError.designation_name[0]"></span>
@@ -189,16 +189,13 @@
 						<td class="text-center">
                             <button class="btn btn-danger" @click="DeleteDesignation(designationlist.designation_id,index)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
-                            <button v-if="designationlist.status==1" class="btn btn-success" @click="StatusChange(designationlist.designation_id)">
-                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                            <button v-if="designationlist.status==1" class="btn btn-success" @click="StatusChange(designationlist.designation_id)"><i class="fa fa-refresh" aria-hidden="true"></i>
                             </button>
 
-                             <button v-else class="btn btn-primary" @click="StatusChange(designationlist.designation_id)">
-                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                             <button v-else class="btn btn-primary" @click="StatusChange(designationlist.designation_id)"><i class="fa fa-refresh" aria-hidden="true"></i>
                             </button>
 
-                            <button class="btn btn-info" data-toggle="modal" data-target="#editModal" @click="EditDesignation(designationlist.designation_id,designationlist)">
-                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <button class="btn btn-info" data-toggle="modal" data-target="#editModal" @click="EditDesignation(designationlist.designation_id,designationlist)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </button>
 						</td>
 					</tr>
@@ -297,32 +294,8 @@
                 _this.EditDesignationForm.designation_id=id;
                 _this.EditDesignationForm=data;
             },
-            UpdateDesignation:function(event){
-                const _this=this;
-                this.axios.put(this.baseUrl+'designation/'+_this.EditDesignationForm.designation_id,_this.EditDesignationForm)
-                .then((response)=>{
-
-                        if(response.data.status==201)
-                        {
-                            this.$toastr.success('Designation Edited Successfully', 'Success');
-                            _this.DesignationList.data.push(response.data.data);
-                            $(".close").click();
-                            _this.ClearForm();
-                            this.LoadingStatus();
-                        }
-                        else
-                        {
-                            _this.AllError=response.data.errors;
-                        }
-                })
-                .catch((error)=>{
-                    console.log(error)
-                })
-            },
             DeleteDesignation:function(id,index){
-
                     const _this=this;
-
                     swal.fire({
                       title: 'Are you sure?',
                       text: "You won't be able to revert this!",
@@ -341,7 +314,7 @@
                                 _this.DesignationList.data.splice(index,1);
                                     swal.fire(
                                       'Deleted!',
-                                      'Department Hasbeen Deleted',
+                                      'Designation Hasbeen Deleted',
                                       'success'
                                     )
                             }
@@ -363,8 +336,28 @@
     			_this.DesignationForm.designation_name='';
     			_this.DesignationForm.description='';
     			_this.DesignationForm.status='';
-    		},  
-       
+    		},
+            UpdateDesignation:function(event){
+                const _this=this;
+                this.axios.put(this.baseUrl+'designation/'+_this.EditDesignationForm.designation_id,_this.EditDesignationForm)
+                .then((response)=>{
+
+                        if(response.data.status==201)
+                        {
+                            this.$toastr.success('Designation Edited Successfully', 'Success');
+                            $(".close").click();
+                            _this.ClearForm();
+                            this.LoadingStatus();
+                        }
+                        else
+                        {
+                            _this.AllError=response.data.errors;
+                        }
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+            },  
     },
 
 	mounted(){

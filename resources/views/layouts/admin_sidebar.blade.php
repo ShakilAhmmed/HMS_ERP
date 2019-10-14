@@ -13,6 +13,7 @@
           <li><router-link to="/shift">Shift</router-link></li>
         </ul>
       </li>
+      <li><router-link to="/notice"><i class="icon-list-unordered"></i> <span>Notice</span></router-link></li>
       <li><a href="changelog.html"><i class="icon-list-unordered"></i> <span>Users</span></a></li>
       <!-- /main -->
 

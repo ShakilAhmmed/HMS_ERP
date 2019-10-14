@@ -2,6 +2,7 @@ import DashBoardComponent from './components/DashBoardComponent'
 import DepartmentComponent from './components/Config/Department'
 import DesignationComponent from './components/Config/Designation'
 import ShiftComponent from './components/Config/Shift'
+import NoticeComponent from './components/Notice/Notice'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -24,6 +25,11 @@ export const routes = [
 	  	path: '/shift',
 	  	component: ShiftComponent,
 	  	name:"/shift"
+  	},
+  	{
+	  	path: '/notice',
+	  	component: NoticeComponent,
+	  	name:"/notice"
   	},
 
 ]
