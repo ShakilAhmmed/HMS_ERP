@@ -21,6 +21,7 @@ Route::prefix('api/v1')->group(function () {
     Route::resource('shift','ShiftController');
     Route::resource('users','UserController');
     Route::get('get_users_add_data','UserController@GetUserAddData');
+    Route::resource('holidaynotice','NoticeController');
 });
 
 

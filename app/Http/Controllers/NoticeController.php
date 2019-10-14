@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DesignationModel;
+use App\NoticeModel;
 use Illuminate\Support\Arr;
 use Validator;
 
-class DesignationController extends Controller
+class NoticeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        $designation=DesignationModel::paginate(10);
-        return $designation;
+        $notice=NoticeModel::paginate(10);
+        return $notice;
     }
 
     /**
@@ -38,23 +38,22 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        $designation=new DesignationModel;
-        $validata=Validator::make($request->all(),$designation->validate());
-        if($validata->fails())
-        {
+        $notice=new NoticeModel;
+        $validate=Validator::make($request->all(),$notice->validate());
+        if ($validate->fails()) {
             $response=[
                 'status'=>400,
-                'errors'=>$validata->errors()
+                'errors'=>$validate->errors()
             ];
         }
         else
         {
             $requestdata=$request->all();
-            $requestdata=Arr::add($requestdata,'designation_id',time());
-            $designation->fill($requestdata)->save();
+            $requestdata=Arr::add($requestdata,'notice_id',time());
+            $notice->fill($requestdata)->save();
             $response=[
                 'status'=>200,
-                'data'=>$designation
+                'data'=>$notice
             ];
         }
         return response()->json($response);
@@ -68,12 +67,12 @@ class DesignationController extends Controller
      */
     public function show($id)
     {
-        $designation=DesignationModel::findOrFail($id);
-        if($designation->status==1):
-            $designation->update(['status'=>2]);
+        $notice=NoticeModel::findOrFail($id);
+        if($notice->status==1):
+            $notice->update(['status'=>2]);
             $response=['status'=>202];
         else:
-            $designation->update(['status'=>1]);
+            $notice->update(['status'=>1]);
             $response=['status'=>200];
         endif;
         return response()->json($response);
@@ -99,23 +98,22 @@ class DesignationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $designation=DesignationModel::findOrFail($id);
-        $validata=Validator::make($request->all(),$designation->validate($id));
-        if($validata->fails())
-        {
+        $notice=NoticeModel::findOrFail($id);
+        $validate=Validator::make($request->all(),$notice->validate($id));
+        if ($validate->fails()) {
             $response=[
                 'status'=>400,
-                'errors'=>$validata->errors()
+                'errors'=>$validate->errors()
             ];
         }
         else
         {
             $requestdata=$request->all();
-            $requestdata=Arr::add($requestdata,'designation_id',time());
-            $designation->fill($requestdata)->save();
+            $requestdata=Arr::add($requestdata,'notice_id',time());
+            $notice->fill($requestdata)->save();
             $response=[
                 'status'=>201,
-                'data'=>$designation
+                'data'=>$notice
             ];
         }
         return response()->json($response);
@@ -129,7 +127,7 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        $deleted=DesignationModel::findOrFail($id)->delete();
-        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
+        $delete=NoticeModel::findOrFail($id)->delete();
+        return $delete ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }

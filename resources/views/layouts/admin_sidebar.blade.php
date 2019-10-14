@@ -19,6 +19,7 @@
           <li><router-link to="/users">Users</router-link></li>
         </ul>
       </li>
+      <li><router-link to="/notice"><i class="icon-list-unordered"></i> <span>Notice</span></router-link></li>
       <!-- /main -->
 
       <!-- Forms -->
