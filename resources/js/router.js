@@ -5,6 +5,7 @@ import ShiftComponent from './components/Config/Shift'
 import UsersComponent from './components/RBAC/Users'
 import AddUsersComponent from './components/RBAC/AddUsers'
 import EditUsersComponent from './components/RBAC/EditUsers'
+import NoticeComponent from './components/Notice/Notice'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -38,11 +39,15 @@ export const routes = [
 	  	component: AddUsersComponent,
 	  	name:"add_users"
   	},
-
     {	
 	  	path: '/edit-user/:id',
 	  	component: EditUsersComponent,
 	  	name:"edit-user",
-  	}
+  	},
+  	{
+	  	path: '/notice',
+	  	component: NoticeComponent,
+	  	name:"/notice"
+  	},
 
 ]

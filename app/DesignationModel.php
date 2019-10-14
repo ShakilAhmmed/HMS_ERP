@@ -13,7 +13,7 @@ class DesignationModel extends Model
     public function validate($id=0)
     {
         return [
-            'designation_name'=>'required|max:50|regex:/^[a-zA-Z]+$/u|unique:designation,designation_id,'.$id.',designation_id',
+            'designation_name'=>'required|max:50|regex:/^[a-zA-Z]+$/u|unique:designation,designation_name,'.$id.',designation_id',
             'status'=>'required'
         ];
     }
