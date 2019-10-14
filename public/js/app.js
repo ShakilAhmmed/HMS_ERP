@@ -4020,13 +4020,31 @@ __webpack_require__.r(__webpack_exports__);
       GetDataValue: []
     };
   },
-  methods: {},
+  methods: {
+    UpdateShift: function UpdateShift() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.put(base_path + 'users/' + _this.EditUsersForm.users_id, this.EditUsersForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this2.$toastr.success('User Edited Successfully', 'Success');
+
+          _this2.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
     this.axios.get(base_path + 'users/' + this.$route.params.id + '/edit').then(function (response) {
       console.log(response.data);
-      _this.EditUsersForm = response.data;
+      _this.EditUsersForm = response.data, _this.EditUsersForm.password = '';
     });
   }
 });
@@ -46464,7 +46482,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.AddUsers($event)
+                return _vm.UpdateShift($event)
               }
             }
           },
@@ -46477,7 +46495,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.AddUsers($event)
+                      return _vm.UpdateShift($event)
                     }
                   }
                 },
@@ -46518,7 +46536,18 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.users_name
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.users_name[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -46561,7 +46590,18 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.guardian_name
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.guardian_name[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -46601,7 +46641,16 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.address
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.address[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -46642,7 +46691,16 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.phone
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.phone[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -46706,7 +46764,16 @@ var render = function() {
                                 _vm._v("Common")
                               ])
                             ]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.sex
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.sex[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -46747,7 +46814,18 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.birth_date
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.birth_date[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -46785,7 +46863,16 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.age
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.age[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -46853,7 +46940,18 @@ var render = function() {
                               _vm._v(" "),
                               _c("option", [_vm._v("AB+")])
                             ]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.blood_group
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.blood_group[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -46923,7 +47021,18 @@ var render = function() {
                               })
                             ],
                             2
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.department_id
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.department_id[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -46993,7 +47102,18 @@ var render = function() {
                               })
                             ],
                             2
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.designation_id
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.designation_id[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -47061,7 +47181,16 @@ var render = function() {
                               })
                             ],
                             2
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.shift_id
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.shift_id[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -47104,7 +47233,18 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.working_hours
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.working_hours[0]
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -47164,7 +47304,16 @@ var render = function() {
                                 _vm._v("Inactive")
                               ])
                             ]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm.AllError.status
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.status[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -47202,7 +47351,16 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.email
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.email[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ]),
@@ -47291,7 +47449,16 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.password
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(_vm.AllError.password[0])
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -63791,8 +63958,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Contribute/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/CodeCyn/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
