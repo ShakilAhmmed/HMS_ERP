@@ -4037,6 +4037,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.error();
       });
+    },
+    ImageGet: function ImageGet(event) {
+      var _this3 = this;
+
+      var file = event.target.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function (event) {
+        _this3.EditUsersForm.image = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
     }
   },
   mounted: function mounted() {
@@ -4060,6 +4072,114 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4297,7 +4417,7 @@ __webpack_require__.r(__webpack_exports__);
         console.error();
       });
     },
-    EditUsers: function EditUsers(id, data) {
+    ViewDetails: function ViewDetails(id, data) {
       var _this = this;
 
       _this.EditUsersForm.id = id;
@@ -47365,7 +47485,21 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("label", { staticClass: "col-lg-2 control-label" }, [
+                          _vm._v("Image:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-10" }, [
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "file" },
+                            on: { change: _vm.ImageGet }
+                          })
+                        ])
+                      ])
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -47467,7 +47601,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       ])
@@ -47487,22 +47621,6 @@ var staticRenderFns = [
           _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
           _vm._v(" "),
           _c("li", [_c("a", { attrs: { "data-action": "close" } })])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("label", { staticClass: "col-lg-2 control-label" }, [
-          _vm._v("Image:")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-10" }, [
-          _c("input", { staticClass: "form-control", attrs: { type: "file" } })
         ])
       ])
     ])
@@ -47563,6 +47681,62 @@ var render = function() {
       1
     ),
     _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content view_modal_width" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Add New Shift")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: { click: _vm.ClearForm }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
     _c("br"),
     _c("br"),
     _vm._v(" "),
@@ -47575,7 +47749,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "heading-elements" }, [
             _c("ul", { staticClass: "icons-list" }, [
-              _vm._m(0),
+              _vm._m(2),
               _vm._v(" "),
               _c("li", [
                 _c("a", {
@@ -47584,13 +47758,13 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(3)
             ])
           ])
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
-          _vm._m(2),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "tbody",
@@ -47610,7 +47784,12 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.blood_group))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(users_list.image))]),
+                _c("td", [
+                  _c("img", {
+                    staticClass: "table_image",
+                    attrs: { src: users_list.image }
+                  })
+                ]),
                 _vm._v(" "),
                 _c("td", [
                   users_list.status == 1
@@ -47701,6 +47880,32 @@ var render = function() {
                       )
                     ],
                     1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-custom router_link_color",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#exampleModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.ViewDetails(
+                            users_list.users_id,
+                            users_list
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-eye router_link_color",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
                   )
                 ])
               ])
@@ -47731,6 +47936,192 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "panel panel-flat" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _c("div", { staticClass: "heading-elements" }, [
+                _c("ul", { staticClass: "icons-list" }, [
+                  _c("li", [_c("a", { attrs: { "data-action": "reload" } })])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel-body" }, [
+              _c("div", { staticClass: "col-lg-12 text-center" }, [
+                _c("img", {
+                  attrs: {
+                    src: "backend_assets/assets/images/users/avater.png"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Name")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Guardian Name:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Address")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Phone:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Sex:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Birth Date:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Age:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Blood Group:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Department:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Designation:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Shift:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Shift:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Working Hours:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Status:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-6" }, [
+                _c("div", { staticClass: "col-lg-6" }, [
+                  _c("span", [_vm._v("Email:")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Validator;
 use Image;
 use Hash;
+use File;
 
 class UserController extends Controller
 {
@@ -136,6 +137,22 @@ class UserController extends Controller
       else
       {
         $requested_data=$request->all();
+
+        if($request['image'])
+        {
+          if(File::exists($user->image))
+          {
+            File::delete( $user->image );
+          }
+          $position=strpos($request['image'],";");
+          $sub_str=substr($request['image'], 0,$position);
+          $extenstion=explode("/", $sub_str);
+          $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+          $image_upload=Image::make($request['image'])->resize(300, 200);
+          $image_upload->save($upload_path);
+          $requested_data=Arr::set($requested_data, 'image',$upload_path);
+        }
+
         $password = Hash::make($request['password']);
         $requested_data=Arr::set($requested_data,'password',$password);
           $user->fill($requested_data)->save();
@@ -154,7 +171,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $deleted=UserModel::findOrFail($id)->delete();
+      $data=UserModel::findOrFail($id);
+      if(File::exists($data->image))
+      {
+        File::delete( $data->image );
+      }
+      $deleted = $data->delete();
       return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 
