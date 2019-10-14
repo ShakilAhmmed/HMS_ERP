@@ -21,8 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-      $shift=UserModel::paginate(10);
-      return $shift;
+      $user=UserModel::paginate(10);
+      return $user;
     }
 
     /**
@@ -69,6 +69,8 @@ class UserController extends Controller
           $requested_data=Arr::add($requested_data,'users_id',time());
           $password = Hash::make($request['password']);
           $requested_data=Arr::set($requested_data,'password',$password);
+          // print_r($requested_data);
+          // exit();
           $users->fill($requested_data)->save();
           $response=[
               'status'=>201,
@@ -110,7 +112,7 @@ class UserController extends Controller
     public function edit($id)
     {
       return UserModel::findOrFail($id);
-      
+
     }
 
     /**
@@ -122,7 +124,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $user=UserModel::findOrFail($id);
+      $validator=Validator::make($request->all(),$user->validate($id));
+      if($validator->fails())
+      {
+          $response=[
+              'status'=>400,
+              'errors'=>$validator->errors()
+          ];
+      }
+      else
+      {
+        $requested_data=$request->all();
+        $password = Hash::make($request['password']);
+        $requested_data=Arr::set($requested_data,'password',$password);
+          $user->fill($requested_data)->save();
+          $response=[
+              'status'=>201
+          ];
+      }
+      return response()->json($response);
     }
 
     /**
