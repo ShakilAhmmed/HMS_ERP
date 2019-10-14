@@ -3,67 +3,169 @@
       <button type="button" class="btn btn-primary pull-right router_link_color" data-toggle="modal" data-target="#exampleModal">
             <router-link to="/add_users">Add New Users</router-link>
       </button>
-
-    <!-- <form class="form-horizontal" @submit.prevent="UpdateUsers">
-      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content view_modal_width">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Edit {{  UsersForm.users_name }} Users</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Add New Shift</h5>
                       <button type="button" class="close" @click="ClearForm" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
+                    <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-flat">
-                                    <div class="panel-heading">
-                                        <div class="heading-elements">
-                                            <ul class="icons-list">
-                                                <li><a data-action="reload" @click="ClearForm"></a></li>
-                                            </ul>
+                              <div class="panel panel-flat">
+                                  <div class="panel-heading">
+                                      <div class="heading-elements">
+                                          <ul class="icons-list">
+                                              <li><a data-action="reload" ></a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+
+                                  <div class="panel-body">
+                                      <div class="col-lg-12 text-center">
+                                        <img src="backend_assets/assets/images/users/avater.png">
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Name</span>
                                         </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="form-group">
-                                            <label class="col-lg-3 control-label">Users Name:</label>
-                                            <div class="col-lg-9">
-                                                <input type="text" v-model="EditUsersForm.users_name" class="form-control" placeholder="Enter Users Name" >
-                                                <span class="text-danger" v-if="AllError.users_name" v-text="AllError.users_name[0]"></span>
-                                            </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-3 control-label">Description:</label>
-                                            <div class="col-lg-9">
-                                                <textarea v-model="EditUsersForm.description" class="form-control"></textarea>
-                                                <span class="text-danger" v-if="AllError.description" v-text="AllError.description[0]"></span>
-                                            </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Guardian Name:</span>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-3 control-label">Status:</label>
-                                            <div class="col-lg-9">
-                                                <select class="form-control" v-model="EditUsersForm.status">
-                                                    <option value=''>--Select--</option>
-                                                    <option value='1'>Active</option>
-                                                    <option value="2">Inactive</option>
-                                                </select>
-                                                <span class="text-danger" v-if="AllError.status" v-text="AllError.status[0]"></span>
-                                            </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
                                         </div>
-                                    </div>
-                                </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Address</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Phone:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Sex:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Birth Date:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Age:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Blood Group:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Department:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Designation:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Shift:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Shift:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Working Hours:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Status:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                      <br><br>
+                                      <div class="col-lg-6">
+                                        <div class="col-lg-6">
+                                          <span>Email:</span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                          <span></span>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" @click="ClearForm" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit"  class="btn btn-success">Save</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
               </div>
           </div>
         </div>
-    </form> -->
     <br><br>
     <div class="panel panel-flat">
         <div class="panel-heading">
@@ -100,27 +202,33 @@
               <td>{{users_list.phone}}</td>
               <td>{{users_list.sex}}</td>
               <td>{{users_list.blood_group}}</td>
-              <td>{{users_list.image}}</td>
+              <td>
+                <img class="table_image" :src="users_list.image">
+              </td>
               <td>
                   <span  v-if="users_list.status==1" class='text-success'>Active</span>
                   <span  v-else class='text-danger'>Inactive</span>
               </td>
               <td class="text-center table_action_display">
-                  <button class="btn btn-danger" @click="DeleteUsers(users_list.users_id,index)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-
+                  <button class="btn btn-danger" @click="DeleteUsers(users_list.users_id,index)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
                   <button v-if="users_list.status==1" class="btn btn-success" @click="StatusChange(users_list.users_id)">
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
-
                    <button v-else class="btn btn-primary" @click="StatusChange(users_list.users_id)">
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
-
                   <button class="btn btn-info">
                     <router-link :to="{ name: 'edit-user', params:{id: users_list.users_id }}">
                         <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
                     </router-link>
                   </button>
+                  <button type="button" class="btn btn-custom router_link_color" data-toggle="modal" data-target="#exampleModal" @click="ViewDetails(users_list.users_id, users_list)">
+                        <i class="fa fa-eye router_link_color" aria-hidden="true"></i>
+                  </button>
+
+
               </td>
             </tr>
           </tbody>
@@ -234,7 +342,7 @@
               console.error();
             })
         },
-        EditUsers:function(id,data)
+        ViewDetails:function(id,data)
         {
           const _this=this;
           _this.EditUsersForm.id=id;

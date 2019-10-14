@@ -201,7 +201,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Image:</label>
                   <div class="col-md-10">
-                    <input type="file" class="form-control">
+                    <input type="file" class="form-control" @change="ImageGet">
                   </div>
                 </div>
               </div>
@@ -288,6 +288,15 @@
             })
 
           },
+          ImageGet:function(event)
+      		{
+      			let file=event.target.files[0];
+    			  let reader=new FileReader();
+              reader.onload=event =>{
+              	this.EditUsersForm.image = event.target.result;
+              }
+              reader.readAsDataURL(file)
+      		},
         },
         mounted(){
           const _this=this;
