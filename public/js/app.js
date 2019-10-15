@@ -4673,9 +4673,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4784,6 +4781,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.EditUsersForm.id = id;
       _this.EditUsersForm = data;
+      console.log(_this.EditUsersForm);
     },
     UpdateUsers: function UpdateUsers() {
       var _this4 = this;
@@ -48872,9 +48870,241 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(0),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "panel panel-flat" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "panel-body" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-12 text-center view_modal_image_width"
+                          },
+                          [
+                            _vm.EditUsersForm.image
+                              ? _c("img", {
+                                  attrs: { src: _vm.EditUsersForm.image }
+                                })
+                              : _c("img", {
+                                  attrs: {
+                                    src:
+                                      "backend_assets/assets/images/users/avater.png"
+                                  }
+                                })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.users_name
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.guardian_name
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.EditUsersForm.address)
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.EditUsersForm.phone)
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(5),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _vm.EditUsersForm.sex == 1
+                              ? _c("span", [_vm._v("Male")])
+                              : _vm.EditUsersForm.sex == 2
+                              ? _c("span", [_vm._v("Female")])
+                              : _vm.EditUsersForm.sex == 3
+                              ? _c("span", [_vm._v("Common")])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(6),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.birth_date
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(7),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.EditUsersForm.age)
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(8),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.blood_group
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(9),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.department_id
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(10),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.designation_id
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(11),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.EditUsersForm.shift_id)
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(12),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.EditUsersForm.email)
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(13),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.working_hours
+                                )
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-lg-6" }, [
+                          _vm._m(14),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _vm.EditUsersForm.status == 1
+                              ? _c("span", [_vm._v("Active")])
+                              : _vm.EditUsersForm.status == 2
+                              ? _c("span", [_vm._v("Inactive")])
+                              : _vm._e()
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(15)
             ])
           ]
         )
@@ -48893,7 +49123,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "heading-elements" }, [
             _c("ul", { staticClass: "icons-list" }, [
-              _vm._m(2),
+              _vm._m(16),
               _vm._v(" "),
               _c("li", [
                 _c("a", {
@@ -48902,13 +49132,13 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(17)
             ])
           ])
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
-          _vm._m(4),
+          _vm._m(18),
           _vm._v(" "),
           _c(
             "tbody",
@@ -48918,13 +49148,20 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.users_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(users_list.guardian_name))]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.email))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.phone))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(users_list.sex))]),
+                _c("td", [
+                  _vm._v(_vm._s(users_list.sex) + "\n                "),
+                  users_list.sex == 1
+                    ? _c("span", [_vm._v("Male")])
+                    : users_list.sex == 2
+                    ? _c("span", [_vm._v("Female")])
+                    : users_list.sex == 3
+                    ? _c("span", [_vm._v("Common")])
+                    : _vm._e()
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(users_list.blood_group))]),
                 _vm._v(" "),
@@ -48938,10 +49175,10 @@ var render = function() {
                 _c("td", [
                   users_list.status == 1
                     ? _c("span", { staticClass: "text-success" }, [
-                        _vm._v("Active")
+                        _c("i", { staticClass: "fa fa-check text-success" })
                       ])
                     : _c("span", { staticClass: "text-danger" }, [
-                        _vm._v("Inactive")
+                        _c("i", { staticClass: "fa fa-close text-danger" })
                       ])
                 ]),
                 _vm._v(" "),
@@ -49084,171 +49321,124 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "panel panel-flat" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _c("div", { staticClass: "heading-elements" }, [
-                _c("ul", { staticClass: "icons-list" }, [
-                  _c("li", [_c("a", { attrs: { "data-action": "reload" } })])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c("div", { staticClass: "col-lg-12 text-center" }, [
-                _c("img", {
-                  attrs: {
-                    src: "backend_assets/assets/images/users/avater.png"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Name")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Guardian Name:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Address")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Phone:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Sex:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Birth Date:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Age:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Blood Group:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Department:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Designation:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Shift:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Shift:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Working Hours:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Status:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ]),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "col-lg-6" }, [
-                  _c("span", [_vm._v("Email:")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-6" }, [_c("span")])
-              ])
-            ])
-          ])
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("div", { staticClass: "heading-elements" }, [
+        _c("ul", { staticClass: "icons-list" }, [
+          _c("li", [_c("a", { attrs: { "data-action": "reload" } })])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Name:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Guardian Name:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Address")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Phone:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Sex:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Birth Date:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Age:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Blood Group:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Department:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Designation:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Shift:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Email:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Working Hours:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-6" }, [
+      _c("span", [_vm._v("Status:")])
     ])
   },
   function() {
@@ -49287,8 +49477,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Sl No")]),
         _vm._v(" "),
         _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Guardian Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),

@@ -25,15 +25,16 @@
                                   </div>
 
                                   <div class="panel-body">
-                                      <div class="col-lg-12 text-center">
-                                        <img src="backend_assets/assets/images/users/avater.png">
+                                      <div class="col-lg-12 text-center view_modal_image_width">
+                                        <img v-if="EditUsersForm.image" :src="EditUsersForm.image">
+                                        <img v-else src="backend_assets/assets/images/users/avater.png">
                                       </div>
                                       <div class="col-lg-6">
                                         <div class="col-lg-6">
-                                          <span>Name</span>
+                                          <span>Name:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.users_name"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -41,7 +42,7 @@
                                           <span>Guardian Name:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.guardian_name"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -50,7 +51,7 @@
                                           <span>Address</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.address"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -58,7 +59,7 @@
                                           <span>Phone:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.phone"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -67,7 +68,9 @@
                                           <span>Sex:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-if="EditUsersForm.sex == 1">Male</span>
+                                          <span v-else-if="EditUsersForm.sex == 2">Female</span>
+                                          <span v-else-if="EditUsersForm.sex == 3">Common</span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -75,7 +78,7 @@
                                           <span>Birth Date:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.birth_date"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -84,7 +87,7 @@
                                           <span>Age:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.age"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -92,7 +95,7 @@
                                           <span>Blood Group:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.blood_group"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -101,7 +104,7 @@
                                           <span>Department:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.department_id"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -109,7 +112,7 @@
                                           <span>Designation:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.designation_id"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -118,15 +121,15 @@
                                           <span>Shift:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.shift_id"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
                                         <div class="col-lg-6">
-                                          <span>Shift:</span>
+                                          <span>Email:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.email"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -135,7 +138,7 @@
                                           <span>Working Hours:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-text="EditUsersForm.working_hours"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -143,16 +146,8 @@
                                           <span>Status:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span></span>
-                                        </div>
-                                      </div>
-                                      <br><br>
-                                      <div class="col-lg-6">
-                                        <div class="col-lg-6">
-                                          <span>Email:</span>
-                                        </div>
-                                        <div class="col-lg-6">
-                                          <span></span>
+                                          <span v-if="EditUsersForm.status == 1">Active</span>
+                                          <span v-else-if="EditUsersForm.status == 2">Inactive</span>
                                         </div>
                                       </div>
                                   </div>
@@ -183,7 +178,6 @@
             <tr>
               <th>Sl No</th>
               <th>Name</th>
-              <th>Guardian Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Sex</th>
@@ -197,17 +191,20 @@
             <tr v-for="(users_list,index) in UsersList.data">
               <td v-text="index+1"></td>
               <td>{{users_list.users_name}}</td>
-              <td>{{users_list.guardian_name}}</td>
               <td>{{users_list.email}}</td>
               <td>{{users_list.phone}}</td>
-              <td>{{users_list.sex}}</td>
+              <td>{{users_list.sex}}
+                <span v-if="users_list.sex == 1">Male</span>
+                <span v-else-if="users_list.sex == 2">Female</span>
+                <span v-else-if="users_list.sex == 3">Common</span>
+              </td>
               <td>{{users_list.blood_group}}</td>
               <td>
                 <img class="table_image" :src="users_list.image">
               </td>
               <td>
-                  <span  v-if="users_list.status==1" class='text-success'>Active</span>
-                  <span  v-else class='text-danger'>Inactive</span>
+                  <span  v-if="users_list.status==1" class='text-success'><i class="fa fa-check text-success"></i></span>
+                  <span  v-else class='text-danger'><i class="fa fa-close text-danger"></i></span>
               </td>
               <td class="text-center table_action_display">
                   <button class="btn btn-danger" @click="DeleteUsers(users_list.users_id,index)">
@@ -347,6 +344,7 @@
           const _this=this;
           _this.EditUsersForm.id=id;
           _this.EditUsersForm=data;
+          console.log(_this.EditUsersForm);
         },
         UpdateUsers:function()
         {
