@@ -57065,8 +57065,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/Contribute/hospital_management_erp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/Contribute/hospital_management_erp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/niloy/Laravel_project/HMS_ERP/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/niloy/Laravel_project/HMS_ERP/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
