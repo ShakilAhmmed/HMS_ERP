@@ -20,6 +20,13 @@
         </ul>
       </li>
       <li><router-link to="/notice"><i class="icon-list-unordered"></i> <span>Notice</span></router-link></li>
+       <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Monitor Hospital</span></a>
+        <ul>
+          <li><router-link to="/bed">Bed</router-link></li>
+        </ul>
+      </li>
+
       <!-- /main -->
 
       <!-- Forms -->

@@ -6,6 +6,7 @@ import UsersComponent from './components/RBAC/Users'
 import AddUsersComponent from './components/RBAC/AddUsers'
 import EditUsersComponent from './components/RBAC/EditUsers'
 import NoticeComponent from './components/Notice/Notice'
+import BedComponent from './components/Monitor_hospital/Bed/bed'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -48,6 +49,11 @@ export const routes = [
 	  	path: '/notice',
 	  	component: NoticeComponent,
 	  	name:"/notice"
+  	},
+  	{
+	  	path: '/bed',
+	  	component: BedComponent,
+	  	name:"/bed"
   	},
 
 ]
