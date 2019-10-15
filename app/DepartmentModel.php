@@ -13,7 +13,7 @@ class DepartmentModel extends Model
     public function validate($id=0)
     {
         return [
-            'department_name'=>'required|max:50|regex:/^[a-zA-Z]+$/u|unique:departments,departments_id,'.$id.',departments_id',
+            'department_name'=>'required|max:50|regex:/^[a-zA-Z]+$/u|unique:departments,department_name,'.$id.',departments_id',
             'status'=>'required'
         ];
     }
