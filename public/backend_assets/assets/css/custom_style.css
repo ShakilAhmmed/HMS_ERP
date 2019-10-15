@@ -7,3 +7,24 @@
 .router_link_color{
 	color: white;
 }
+.table_image{
+	width: 32%;
+	border-radius: 20px;
+}
+.btn-custom{
+	color: #333;
+  background-color: #317a8b;
+  border-color: #ddd;
+}
+.view_modal_width{
+	width: 130%;
+  margin-left: -14%;
+
+}
+.view_modal_image_width > img{
+	width: 225px;
+
+}
+.panel-body .text-center > img{
+	margin-bottom: 40px;
+}
