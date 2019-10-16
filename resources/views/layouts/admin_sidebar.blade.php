@@ -25,6 +25,9 @@
         <ul>
           <li><router-link to="/bed">Bed</router-link></li>
         </ul>
+        <ul>
+          <li><router-link to="/bedallotment">Bed Allotment</router-link></li>
+        </ul>
       </li>
 
       <!-- /main -->
