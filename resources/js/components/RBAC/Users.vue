@@ -193,7 +193,7 @@
               <td>{{users_list.users_name}}</td>
               <td>{{users_list.email}}</td>
               <td>{{users_list.phone}}</td>
-              <td>{{users_list.sex}}
+              <td>
                 <span v-if="users_list.sex == 1">Male</span>
                 <span v-else-if="users_list.sex == 2">Female</span>
                 <span v-else-if="users_list.sex == 3">Common</span>
