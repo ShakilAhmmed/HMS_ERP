@@ -125,7 +125,6 @@
                   <label class="col-md-2 control-label text-left">Department: </label>
                   <div class="col-md-10">
                     <select v-model="EditUsersForm.department_id" class="form-control">
-                      <option value="">Select</option>
                       <option v-for="data_value in GetDataValue.department" v-text="data_value.department_name" :value="data_value.departments_id">Select</option>
                     </select>
                     <span class="text-danger" v-if="AllError.department_id" v-text="AllError.department_id[0]"></span>
@@ -140,7 +139,6 @@
                   <label class="col-lg-2 control-label">Designation:</label>
                   <div class="col-md-10">
                     <select v-model="EditUsersForm.designation_id" class="form-control">
-                      <option value="">Select</option>
                       <option v-for="data_value in GetDataValue.designation" v-text="data_value.designation_name" :value="data_value.designation_id">Select</option>
                     </select>
                     <span class="text-danger" v-if="AllError.designation_id" v-text="AllError.designation_id[0]"></span>
@@ -152,7 +150,6 @@
                   <label class="col-md-2 control-label text-left">Shift: </label>
                   <div class="col-md-10">
                     <select v-model="EditUsersForm.shift_id" class="form-control">
-                      <option value="">Select</option>
                       <option v-for="data_value in GetDataValue.shift" v-text="data_value.shift_name" :value="data_value.shift_id">Select</option>
                     </select>
                     <span class="text-danger" v-if="AllError.shift_id" v-text="AllError.shift_id[0]"></span>
@@ -297,9 +294,21 @@
               }
               reader.readAsDataURL(file)
       		},
+          GetData:function(){
+            const _this = this;
+            this.axios.get(base_path+"get_users_add_data")
+              .then((response)=>{
+                _this.GetDataValue = response.data;
+                  console.log(response.data);
+              })
+              .catch((error)=>{
+                console.error();
+              });
+          },
         },
         mounted(){
           const _this=this;
+          this.GetData();
            this.axios.get(base_path+'users/'+this.$route.params.id+'/edit')
             .then((response)=>{
               console.log(response.data);

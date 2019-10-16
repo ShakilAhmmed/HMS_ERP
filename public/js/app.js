@@ -4351,9 +4351,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4411,11 +4408,22 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       reader.readAsDataURL(file);
+    },
+    GetData: function GetData() {
+      var _this = this;
+
+      this.axios.get(base_path + "get_users_add_data").then(function (response) {
+        _this.GetDataValue = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error();
+      });
     }
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.GetData();
     this.axios.get(base_path + 'users/' + this.$route.params.id + '/edit').then(function (response) {
       console.log(response.data);
       _this.EditUsersForm = response.data, _this.EditUsersForm.password = '';
@@ -48260,29 +48268,23 @@ var render = function() {
                                 }
                               }
                             },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.GetDataValue.department, function(
-                                data_value
-                              ) {
-                                return _c(
-                                  "option",
-                                  {
-                                    domProps: {
-                                      value: data_value.departments_id,
-                                      textContent: _vm._s(
-                                        data_value.department_name
-                                      )
-                                    }
-                                  },
-                                  [_vm._v("Select")]
-                                )
-                              })
-                            ],
-                            2
+                            _vm._l(_vm.GetDataValue.department, function(
+                              data_value
+                            ) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.departments_id,
+                                    textContent: _vm._s(
+                                      data_value.department_name
+                                    )
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            }),
+                            0
                           ),
                           _vm._v(" "),
                           _vm.AllError.department_id
@@ -48341,29 +48343,23 @@ var render = function() {
                                 }
                               }
                             },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.GetDataValue.designation, function(
-                                data_value
-                              ) {
-                                return _c(
-                                  "option",
-                                  {
-                                    domProps: {
-                                      value: data_value.designation_id,
-                                      textContent: _vm._s(
-                                        data_value.designation_name
-                                      )
-                                    }
-                                  },
-                                  [_vm._v("Select")]
-                                )
-                              })
-                            ],
-                            2
+                            _vm._l(_vm.GetDataValue.designation, function(
+                              data_value
+                            ) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.designation_id,
+                                    textContent: _vm._s(
+                                      data_value.designation_name
+                                    )
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            }),
+                            0
                           ),
                           _vm._v(" "),
                           _vm.AllError.designation_id
@@ -48422,27 +48418,21 @@ var render = function() {
                                 }
                               }
                             },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.GetDataValue.shift, function(
-                                data_value
-                              ) {
-                                return _c(
-                                  "option",
-                                  {
-                                    domProps: {
-                                      value: data_value.shift_id,
-                                      textContent: _vm._s(data_value.shift_name)
-                                    }
-                                  },
-                                  [_vm._v("Select")]
-                                )
-                              })
-                            ],
-                            2
+                            _vm._l(_vm.GetDataValue.shift, function(
+                              data_value
+                            ) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.shift_id,
+                                    textContent: _vm._s(data_value.shift_name)
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            }),
+                            0
                           ),
                           _vm._v(" "),
                           _vm.AllError.shift_id
@@ -49022,7 +49012,7 @@ var render = function() {
                             _c("span", {
                               domProps: {
                                 textContent: _vm._s(
-                                  _vm.EditUsersForm.department_id
+                                  _vm.EditUsersForm.department_name
                                 )
                               }
                             })
@@ -49036,7 +49026,7 @@ var render = function() {
                             _c("span", {
                               domProps: {
                                 textContent: _vm._s(
-                                  _vm.EditUsersForm.designation_id
+                                  _vm.EditUsersForm.designation_name
                                 )
                               }
                             })
@@ -49052,7 +49042,9 @@ var render = function() {
                           _c("div", { staticClass: "col-lg-6" }, [
                             _c("span", {
                               domProps: {
-                                textContent: _vm._s(_vm.EditUsersForm.shift_id)
+                                textContent: _vm._s(
+                                  _vm.EditUsersForm.shift_name
+                                )
                               }
                             })
                           ])

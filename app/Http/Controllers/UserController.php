@@ -22,7 +22,10 @@ class UserController extends Controller
      */
     public function index()
     {
-      $user=UserModel::paginate(10);
+      $user=UserModel::join('departments','departments.departments_id','=','users.department_id')
+                      ->join('designation','designation.designation_id','=','users.designation_id')
+                      ->join('shift','shift.shift_id','=','users.shift_id')
+                      ->paginate(10);
       return $user;
     }
 
