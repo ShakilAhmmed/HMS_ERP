@@ -25,6 +25,7 @@ class UserController extends Controller
       $user=UserModel::join('departments','departments.departments_id','=','users.department_id')
                       ->join('designation','designation.designation_id','=','users.designation_id')
                       ->join('shift','shift.shift_id','=','users.shift_id')
+                      ->select('users.status as U_status','users.*','departments.*','designation.*','shift.*')
                       ->paginate(10);
       return $user;
     }

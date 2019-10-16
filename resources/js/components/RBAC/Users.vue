@@ -203,8 +203,8 @@
                 <img class="table_image" :src="users_list.image">
               </td>
               <td>
-                  <span  v-if="users_list.status==1" class='text-success'><i class="fa fa-check text-success"></i></span>
-                  <span  v-else class='text-danger'><i class="fa fa-close text-danger"></i></span>
+                  <span  v-if="users_list.U_status==1" class='text-success'><i class="fa fa-check text-success"></i></span>
+                  <span  v-else-if="users_list.U_status==2" class='text-danger'><i class="fa fa-close text-danger"></i></span>
               </td>
               <td class="text-center table_action_display">
                   <button class="btn btn-danger" @click="DeleteUsers(users_list.users_id,index)">

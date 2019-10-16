@@ -49164,13 +49164,15 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", [
-                  users_list.status == 1
+                  users_list.U_status == 1
                     ? _c("span", { staticClass: "text-success" }, [
                         _c("i", { staticClass: "fa fa-check text-success" })
                       ])
-                    : _c("span", { staticClass: "text-danger" }, [
+                    : users_list.U_status == 2
+                    ? _c("span", { staticClass: "text-danger" }, [
                         _c("i", { staticClass: "fa fa-close text-danger" })
                       ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center table_action_display" }, [
