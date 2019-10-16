@@ -15,7 +15,7 @@ class UserModel extends Model
     ];
 
 
-    public function validate()
+    public function validate($id=0)
     {
       return [
         'users_name'=>'required|max:50',
@@ -26,7 +26,7 @@ class UserModel extends Model
         'designation_id'=>'required',
         'shift_id'=>'required',
         'status'=>'required',
-        'email'=>'required|unique:users,email',
+        'email'=>'required||unique:users,email,'.$id.',users_id',
         'password'=>'required|confirmed',
       ];
     }

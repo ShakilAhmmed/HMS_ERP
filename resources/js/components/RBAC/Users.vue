@@ -104,7 +104,7 @@
                                           <span>Department:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span v-text="EditUsersForm.department_id"></span>
+                                          <span v-text="EditUsersForm.department_name"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
@@ -112,7 +112,7 @@
                                           <span>Designation:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span v-text="EditUsersForm.designation_id"></span>
+                                          <span v-text="EditUsersForm.designation_name"></span>
                                         </div>
                                       </div>
                                       <br><br>
@@ -121,7 +121,7 @@
                                           <span>Shift:</span>
                                         </div>
                                         <div class="col-lg-6">
-                                          <span v-text="EditUsersForm.shift_id"></span>
+                                          <span v-text="EditUsersForm.shift_name"></span>
                                         </div>
                                       </div>
                                       <div class="col-lg-6">
