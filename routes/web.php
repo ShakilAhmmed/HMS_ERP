@@ -23,6 +23,8 @@ Route::prefix('api/v1')->group(function () {
     Route::get('get_users_add_data','UserController@GetUserAddData');
     Route::resource('holidaynotice','NoticeController');
     Route::resource('bed','BedController');
+    Route::get('get_data','BedAllotmentController@get_data');
+    Route::resource('bedallotment','BedAllotmentController');
 });
 
 
