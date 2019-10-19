@@ -4094,6 +4094,7 @@ __webpack_require__.r(__webpack_exports__);
         age: '',
         blood_group: '',
         status: '',
+        password: '',
         image: '',
         email: '',
         type: '9'
@@ -4130,12 +4131,33 @@ __webpack_require__.r(__webpack_exports__);
           _this3.$toastr.success('Users Added Successfully', 'Success');
 
           _this3.LoadingStatus();
+
+          _this.ClearForm();
         } else {
           _this.Errors = response.data.errors;
         }
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    ClearForm: function ClearForm() {
+      var _this = this;
+
+      _this.Errors = [];
+      _this.AddPatient.users_name = '';
+      _this.AddPatient.guardian_name = '';
+      _this.AddPatient.address = '';
+      _this.AddPatient.phone = '';
+      _this.AddPatient.sex = '';
+      _this.AddPatient.birth_date = '';
+      _this.AddPatient.age = '';
+      _this.AddPatient.blood_group = '';
+      _this.AddPatient.status = '';
+      _this.AddPatient.status = '';
+      _this.AddPatient.image = '';
+      _this.image_source = 'https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png';
+      _this.confirm_password = '';
+      _this.AddPatient.email = '';
     }
   },
   mounted: function mounted() {

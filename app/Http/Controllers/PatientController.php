@@ -57,7 +57,7 @@ class PatientController extends Controller
                 $sub_str=substr($request->image, 0,$position);
                 $extenstion=explode("/", $sub_str);
                 $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
-                $image_upload=Image::make($request->image)->resize(300, 200);
+                $image_upload=Image::make($request->image)->resize(300, 300);
                 $image_upload->save($upload_path);
                 $requested_data=Arr::set($requested_data, 'image',$upload_path);
             }
