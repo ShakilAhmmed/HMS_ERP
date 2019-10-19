@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'users_name', 'guardian_name','address', 'phone', 'sex','birth_date', 'age', 'blood_group',
         'department_id', 'designation_id', 'shift_id','working_hours', 'status', 'image',
-        'email', 'password',
+        'email', 'password','type'
     ];
 
     /**
@@ -45,7 +45,7 @@ class User extends Authenticatable
     {
       return [
         'users_name'=>'required|max:50',
-        'address'=>'required|255',
+        'address'=>'required|max:255',
         'phone'=>'required|digits_between:11,14',
         'sex'=>'required|max:20',
         'department_id'=>'required',
@@ -54,6 +54,20 @@ class User extends Authenticatable
         'status'=>'required',
         'email'=>'required|unique:users,email',
         'password'=>'required|confirmed',
-      ]
+      ];
+    }
+
+    public function patient_validate()
+    {
+        return [
+        'users_name'=>'required|max:50',
+        'address'=>'required|max:255',
+        'phone'=>'required|digits_between:11,14',
+        'sex'=>'required|max:20',
+        'status'=>'required',
+        'blood_group'=>'required',
+        'email'=>'required|unique:users,email',
+        'password'=>'required',
+      ];
     }
 }

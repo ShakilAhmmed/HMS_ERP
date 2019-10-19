@@ -4078,6 +4078,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Patient",
   data: function data() {
@@ -4097,23 +4099,43 @@ __webpack_require__.r(__webpack_exports__);
         type: '9'
       },
       confirm_password: '',
-      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png"
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
+      Errors: []
     };
   },
   methods: {
     ImageGet: function ImageGet(event) {
-      var _this = this;
+      var _this2 = this;
 
       var file = event.target.files[0];
       var reader = new FileReader();
       this.LoadingStatus();
 
       reader.onload = function (event) {
-        _this.AddPatient.image = event.target.result;
-        _this.image_source = event.target.result;
+        _this2.AddPatient.image = event.target.result;
+        _this2.image_source = event.target.result;
       };
 
       reader.readAsDataURL(file);
+    },
+    AddNewPatient: function AddNewPatient() {
+      var _this3 = this;
+
+      var _this = this;
+
+      axios.post(this.baseUrl + 'patient', _this.AddPatient).then(function (response) {
+        console.log(response.data);
+
+        if (response.data.status === 201) {
+          _this3.$toastr.success('Users Added Successfully', 'Success');
+
+          _this3.LoadingStatus();
+        } else {
+          _this.Errors = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
@@ -68138,672 +68160,772 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
-        _c("form", [
-          _c("fieldset", { staticClass: "content-group" }, [
-            _c("form", { staticClass: "form-horizontal" }, [
-              _c("legend", { staticClass: "text-bold" }, [
-                _vm._v("Add New Patient")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Name:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.name,
-                            expression: "AddPatient.name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Name" },
-                        domProps: { value: _vm.AddPatient.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "name",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.AddNewPatient($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("form", { staticClass: "form-horizontal" }, [
+                _c("legend", { staticClass: "text-bold" }, [
+                  _vm._v("Add New Patient")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Guardian Name: ")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.guardian_name,
-                            expression: "AddPatient.guardian_name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter Guardian Name"
-                        },
-                        domProps: { value: _vm.AddPatient.guardian_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "guardian_name",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Name:")
+                      ]),
                       _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-1 control-label text-left" },
-                      [_vm._v("Address: ")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-11" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.address,
-                            expression: "AddPatient.address"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { placeholder: "Enter Address" },
-                        domProps: { value: _vm.AddPatient.address },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "address",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Phone:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.phone,
-                            expression: "AddPatient.phone"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter Phone Number"
-                        },
-                        domProps: { value: _vm.AddPatient.phone },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "phone",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Sex: ")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c(
-                        "select",
-                        {
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.sex,
-                              expression: "AddPatient.sex"
+                              value: _vm.AddPatient.users_name,
+                              expression: "AddPatient.users_name"
                             }
                           ],
                           staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Name" },
+                          domProps: { value: _vm.AddPatient.users_name },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
                               _vm.$set(
                                 _vm.AddPatient,
-                                "sex",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                                "users_name",
+                                $event.target.value
                               )
                             }
                           }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Select")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "1" } }, [
-                            _vm._v("Male")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "2" } }, [
-                            _vm._v("Female")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "3" } }, [
-                            _vm._v("Common")
-                          ])
-                        ]
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.users_name
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.users_name[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Guardian Name: ")]
                       ),
                       _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Birth Date:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.birth_date,
-                            expression: "AddPatient.birth_date"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "date",
-                          placeholder: "Enter Birth Date"
-                        },
-                        domProps: { value: _vm.AddPatient.birth_date },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "birth_date",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Age: ")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.age,
-                            expression: "AddPatient.age"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Enter Age" },
-                        domProps: { value: _vm.AddPatient.age },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.AddPatient, "age", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Blood Group:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c(
-                        "select",
-                        {
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.blood_group,
-                              expression: "AddPatient.blood_group"
+                              value: _vm.AddPatient.guardian_name,
+                              expression: "AddPatient.guardian_name"
                             }
                           ],
                           staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Guardian Name"
+                          },
+                          domProps: { value: _vm.AddPatient.guardian_name },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
                               _vm.$set(
                                 _vm.AddPatient,
-                                "blood_group",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                                "guardian_name",
+                                $event.target.value
                               )
                             }
                           }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Select")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("O−")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("O+")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("A−")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("A+")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("B−")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("B+")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("AB−")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("AB+")])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.guardian_name
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.guardian_name[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Image:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "file" },
-                        on: { change: _vm.ImageGet }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Status:")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
                       _c(
-                        "select",
-                        {
+                        "label",
+                        { staticClass: "col-md-1 control-label text-left" },
+                        [_vm._v("Address: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("textarea", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.status,
-                              expression: "AddPatient.status"
+                              value: _vm.AddPatient.address,
+                              expression: "AddPatient.address"
                             }
                           ],
                           staticClass: "form-control",
+                          attrs: { placeholder: "Enter Address" },
+                          domProps: { value: _vm.AddPatient.address },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
                               _vm.$set(
                                 _vm.AddPatient,
-                                "status",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                                "address",
+                                $event.target.value
                               )
                             }
                           }
-                        },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Select")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "1" } }, [
-                            _vm._v("Active")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "2" } }, [
-                            _vm._v("Inactive")
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.address
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.address[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
                     ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }, [
-                      _vm._v("Email:")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.email,
-                            expression: "AddPatient.email"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Enter Email" },
-                        domProps: { value: _vm.AddPatient.email },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "email",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "text-danger" })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Password:")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.AddPatient.password,
-                            expression: "AddPatient.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          placeholder: "Enter Password"
-                        },
-                        domProps: { value: _vm.AddPatient.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.AddPatient,
-                              "password",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(
-                        "\n                  " +
-                          _vm._s() +
-                          "\n\n                  "
-                      ),
-                      (_vm.AddPatient.password && _vm.AddPatient.password.length
-                        ? _vm.AddPatient.password.length
-                        : 0) == 0
-                        ? _c("span", { staticClass: "text-warning" }, [
-                            _c("i", {
-                              staticClass: "fa fa-exclamation-triangle",
-                              attrs: { "aria-hidden": "true" }
-                            }),
-                            _vm._v(" Password Is Empty")
-                          ])
-                        : (_vm.AddPatient.password &&
-                          _vm.AddPatient.password.length
-                            ? _vm.AddPatient.password.length
-                            : 0) < 8
-                        ? _c("span", { staticClass: "text-danger" }, [
-                            _c("i", {
-                              staticClass: "fa fa-exclamation-triangle",
-                              attrs: { "aria-hidden": "true" }
-                            }),
-                            _vm._v(" Password Is Weak")
-                          ])
-                        : _c("span", { staticClass: "text-success" }, [
-                            _c("i", {
-                              staticClass: "fa fa-check-circle",
-                              attrs: { "aria-hidden": "true" }
-                            }),
-                            _vm._v(" Password Is Strong")
-                          ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-md-2 control-label text-left" },
-                      [_vm._v("Confirm Password:")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.confirm_password,
-                            expression: "confirm_password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "password",
-                          placeholder: "Enter Password"
-                        },
-                        domProps: { value: _vm.confirm_password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.confirm_password = $event.target.value
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.confirm_password.length != 0 &&
-                      _vm.AddPatient.password &&
-                      _vm.AddPatient.password.length != 0 &&
-                      _vm.AddPatient.password != _vm.confirm_password
-                        ? _c("span", { staticClass: "text-danger" }, [
-                            _c("i", {
-                              staticClass: "fa fa-exclamation-triangle",
-                              attrs: { "aria-hidden": "true" }
-                            }),
-                            _vm._v(" Password Not Mactched")
-                          ])
-                        : _vm.AddPatient.password &&
-                          _vm.AddPatient.password.length != 0 &&
-                          _vm.AddPatient.password == _vm.confirm_password
-                        ? _c("span", { staticClass: "text-success" }, [
-                            _c("i", {
-                              staticClass: "fa fa-check-circle",
-                              attrs: { "aria-hidden": "true" }
-                            }),
-                            _vm._v(" Password Matched")
-                          ])
-                        : _vm._e()
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c("div", { staticClass: "col-md-6" }),
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("label", { staticClass: "col-lg-2 control-label" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-10" }, [
-                      _c("img", {
-                        staticClass: "custom-image",
-                        attrs: { src: _vm.image_source }
-                      })
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Phone:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPatient.phone,
+                              expression: "AddPatient.phone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Phone Number"
+                          },
+                          domProps: { value: _vm.AddPatient.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPatient,
+                                "phone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.phone
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.phone[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Sex: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPatient.sex,
+                                expression: "AddPatient.sex"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPatient,
+                                  "sex",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Male")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Female")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("Common")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.sex
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.sex[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Birth Date:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPatient.birth_date,
+                              expression: "AddPatient.birth_date"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            placeholder: "Enter Birth Date"
+                          },
+                          domProps: { value: _vm.AddPatient.birth_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPatient,
+                                "birth_date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.birth_date
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.birth_date[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Age: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPatient.age,
+                              expression: "AddPatient.age"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Age" },
+                          domProps: { value: _vm.AddPatient.age },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPatient,
+                                "age",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.age
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.age[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Blood Group:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPatient.blood_group,
+                                expression: "AddPatient.blood_group"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPatient,
+                                  "blood_group",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB+")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.blood_group
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.blood_group[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Image:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file" },
+                          on: { change: _vm.ImageGet }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.image
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.image[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Status:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPatient.status,
+                                expression: "AddPatient.status"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPatient,
+                                  "status",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Active")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Inactive")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.status
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.status[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Email:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPatient.email,
+                              expression: "AddPatient.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Email" },
+                          domProps: { value: _vm.AddPatient.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPatient,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.email
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.email[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPatient.password,
+                              expression: "AddPatient.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.AddPatient.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPatient,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        (_vm.AddPatient.password &&
+                        _vm.AddPatient.password.length
+                          ? _vm.AddPatient.password.length
+                          : 0) == 0
+                          ? _c("span", { staticClass: "text-warning" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Empty")
+                            ])
+                          : (_vm.AddPatient.password &&
+                            _vm.AddPatient.password.length
+                              ? _vm.AddPatient.password.length
+                              : 0) < 8
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Weak")
+                            ])
+                          : _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Strong")
+                            ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Confirm Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.confirm_password,
+                              expression: "confirm_password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.confirm_password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.confirm_password = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.confirm_password.length != 0 &&
+                        _vm.AddPatient.password &&
+                        _vm.AddPatient.password.length != 0 &&
+                        _vm.AddPatient.password != _vm.confirm_password
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Not Mactched")
+                            ])
+                          : _vm.AddPatient.password &&
+                            _vm.AddPatient.password.length != 0 &&
+                            _vm.AddPatient.password == _vm.confirm_password
+                          ? _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Matched")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.Errors.password
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.password[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("img", {
+                          staticClass: "custom-image",
+                          attrs: { src: _vm.image_source }
+                        })
+                      ])
                     ])
                   ])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        )
       ])
     ])
   ])

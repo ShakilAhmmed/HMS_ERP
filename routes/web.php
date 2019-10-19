@@ -25,6 +25,7 @@ Route::prefix('api/v1')->group(function () {
     Route::resource('bed','BedController');
     Route::get('get_data','BedAllotmentController@get_data');
     Route::resource('bedallotment','BedAllotmentController');
+    Route::resource('patient','PatientController');
 });
 
 
