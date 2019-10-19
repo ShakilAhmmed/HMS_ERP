@@ -29,7 +29,9 @@
           <li><router-link to="/bedallotment">Bed Allotment</router-link></li>
         </ul>
       </li>
+      <li><router-link to="/prescription"><i class="icon-list-unordered"></i> <span>Prescription</span></router-link></li>
 
+       <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->
 
       <!-- Forms -->
