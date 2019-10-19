@@ -8,7 +8,8 @@ import EditUsersComponent from './components/RBAC/EditUsers'
 import NoticeComponent from './components/Notice/Notice'
 import BedComponent from './components/Monitor_hospital/Bed/bed'
 import BedAllotmentComponent from './components/Monitor_hospital/Bed_Allotment/bed_allotment'
-import PatientAppointmentComponent from './components/Monitor_hospital/PatientAppointment/PatientAppointmentComponent'
+import PatientComponent from './components/Monitor_hospital/Patient/PatientComponent'
+import PatientAppointmentComponent from './components/Monitor_hospital/Patient/PatientAppointmentComponent'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -62,6 +63,12 @@ export const routes = [
 	  	component: BedAllotmentComponent,
 	  	name:"/bedallotment"
   	},
+  	{
+  		path:'/patient',
+  		component:PatientComponent,
+  		name:'/patient'
+  	},
+
   	{
   		path:'/patient_appointment',
   		component:PatientAppointmentComponent,
