@@ -27,6 +27,7 @@
         </ul>
         <ul>
           <li><router-link to="/bedallotment">Bed Allotment</router-link></li>
+          <li><router-link to="/patient_appointment">Patient Appointement</router-link></li>
         </ul>
       </li>
 
