@@ -68,7 +68,18 @@ class TestCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $test_category = TestCategoryModel::findOrFail($id);
+        if ($test_category->status == 1)
+        {
+          $test_category->update(['status'=>2]);
+          $response=['status'=>202];
+        }
+        else
+        {
+          $test_category->update(['status'=>1]);
+          $response=['status'=>200];
+        }
+        return response()->json($response);
     }
 
     /**
