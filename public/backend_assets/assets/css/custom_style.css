@@ -23,3 +23,13 @@
 .panel-body .text-center > img{
 	margin-bottom: 40px;
 }
+
+.custom-image{
+	height: 230px;
+    margin-top: -80%;
+    width: 60%;
+    margin-left: 15%;
+}
+.text-warning {
+    color: #ef6c00 !important;
+}
