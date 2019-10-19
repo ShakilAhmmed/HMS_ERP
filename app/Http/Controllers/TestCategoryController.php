@@ -132,6 +132,7 @@ class TestCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted=TestCategoryModel::findOrFail($id)->delete();
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
