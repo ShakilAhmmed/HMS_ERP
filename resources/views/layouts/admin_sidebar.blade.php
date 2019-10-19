@@ -36,6 +36,12 @@
             <li><router-link to="/patient_appointment">Patient Appointement</router-link></li>
           </ul>
       </li>
+     <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Test</span></a>
+          <ul>
+            <li><router-link to="/test_category">Test Category</router-link></li>
+          </ul>
+      </li>
 
       <!-- /main -->
 
@@ -97,7 +103,7 @@
         </ul>
       </li>
       <!-- /forms -->
-      
+
     </ul>
   </div>
 </div>

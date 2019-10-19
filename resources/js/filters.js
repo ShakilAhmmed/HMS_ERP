@@ -4,7 +4,7 @@ import moment from 'moment'
 
 
 Vue.filter('timeformat',(value)=> {
-	return moment(value).format("MMM Do YYYY, h:mm:ss a"); 
+	return moment(value).format("MMM Do YYYY, h:mm:ss a");
 });
 
 Vue.filter('readMore', function (text, length, suffix) {
