@@ -102,7 +102,26 @@ class TestCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $test_category=TestCategoryModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test_category->validate($id));
+        if($validator->fails())
+        {
+            $response=[
+                'status'=>400,
+                'errors'=>$validator->errors()
+            ];
+        }
+        else
+        {
+            $requested_data=$request->all();
+            $requested_data=Arr::add($requested_data,'test_category_id',time());
+            $test_category->fill($requested_data)->save();
+            $response=[
+                'status'=>201,
+                'data'=>$test_category
+            ];
+        }
+        return response()->json($response);
     }
 
     /**
