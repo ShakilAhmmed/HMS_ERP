@@ -65605,7 +65605,22 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "add_users" }, [
     _c("div", { staticClass: "panel panel-flat" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", {
+                attrs: { "data-action": "reload" },
+                on: { click: _vm.ClearForm }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
         _c(
@@ -66371,7 +66386,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(2)
           ]
         )
       ])
@@ -66383,17 +66398,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-heading" }, [
-      _c("div", { staticClass: "heading-elements" }, [
-        _c("ul", { staticClass: "icons-list" }, [
-          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
-        ])
-      ])
-    ])
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
   },
   function() {
     var _vm = this
@@ -66402,7 +66413,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-right" }, [
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
         [
           _vm._v("Submit "),
           _c("i", { staticClass: "icon-arrow-right14 position-right" })
