@@ -6,7 +6,7 @@
         <div class="heading-elements">
           <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="reload" @click="ClearForm"></a></li>
                     <li><a data-action="close"></a></li>
                   </ul>
                 </div>
@@ -132,7 +132,7 @@
                 </div>
               </div>
 
-            </div>  
+            </div>
 
 
             <div class="form-group">
@@ -192,7 +192,7 @@
                 </div>
               </div>
             </div>
-          
+
           <div class="form-group">
               <div class="col-md-6">
               </div>
@@ -211,7 +211,7 @@
           </fieldset>
 
           <div class="text-right">
-            <button  type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+            <button  type="submit" class="btn btn-success">Submit <i class="icon-arrow-right14 position-right"></i></button>
           </div>
         </form>
       </div>
