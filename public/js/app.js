@@ -69127,11 +69127,11 @@ var render = function() {
                           on: { change: _vm.ImageGet }
                         }),
                         _vm._v(" "),
-                        _vm.Errors.image
+                        _vm.Errors.project_logo_ext
                           ? _c("span", {
                               staticClass: "text-danger",
                               domProps: {
-                                textContent: _vm._s(_vm.Errors.image[0])
+                                textContent: _vm._s(_vm.Errors.project_logo_ext)
                               }
                             })
                           : _vm._e()

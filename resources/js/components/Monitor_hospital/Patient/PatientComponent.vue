@@ -127,7 +127,7 @@
                   <label class="col-lg-2 control-label">Image:</label>
                   <div class="col-md-10">
                     <input type="file" class="form-control" @change="ImageGet">
-                    <span class="text-danger" v-if="Errors.image" v-text="Errors.image[0]"></span>
+                    <span class="text-danger" v-if="Errors.project_logo_ext" v-text="Errors.project_logo_ext"></span>
                   </div>
                 </div>
               </div>

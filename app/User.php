@@ -67,7 +67,7 @@ class User extends Authenticatable
         'status'=>'required',
         'blood_group'=>'required',
         'email'=>'required|unique:users,email',
-        'password'=>'required|confirmed',
+        'password'=>'required',
       ];
     }
 }
