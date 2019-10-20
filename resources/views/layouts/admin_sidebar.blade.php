@@ -33,6 +33,7 @@
         <a href="#"><i class="icon-stack2"></i> <span>Patient</span></a>
           <ul>
             <li><router-link to="/patient">Add Patient</router-link></li>
+            <li><router-link to="/patient-list">Patient List</router-link></li>
             <li><router-link to="/patient_appointment">Patient Appointement</router-link></li>
           </ul>
       </li>

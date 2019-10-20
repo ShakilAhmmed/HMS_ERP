@@ -9,6 +9,7 @@ import NoticeComponent from './components/Notice/Notice'
 import BedComponent from './components/Monitor_hospital/Bed/bed'
 import BedAllotmentComponent from './components/Monitor_hospital/Bed_Allotment/bed_allotment'
 import PatientComponent from './components/Monitor_hospital/Patient/PatientComponent'
+import PatientListComponent from './components/Monitor_hospital/Patient/PatientListComponent'
 import PatientAppointmentComponent from './components/Monitor_hospital/Patient/PatientAppointmentComponent'
 import TestCategoryComponent from './components/Test/TestCategory'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
@@ -69,6 +70,11 @@ export const routes = [
   		component:PatientComponent,
   		name:'/patient'
   	},
+    {
+            path:"/patient-list",
+            component:PatientListComponent,
+            name:'/patient-list'
+    },
   	{
   		path:'/patient_appointment',
   		component:PatientAppointmentComponent,
