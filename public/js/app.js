@@ -4161,6 +4161,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    this.LoadingStatus();
     console.log("Patient");
   }
 });
