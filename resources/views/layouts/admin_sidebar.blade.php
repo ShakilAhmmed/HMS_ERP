@@ -46,8 +46,8 @@
       <!-- /main -->
 
       <!-- Forms -->
-      <li class="navigation-header"><span>Forms</span> <i class="icon-menu" title="Forms"></i></li>
-      <li>
+      <!-- <li class="navigation-header"><span>Forms</span> <i class="icon-menu" title="Forms"></i></li> -->
+      <!-- <li>
         <a href="#"><i class="icon-pencil3"></i> <span>Form components</span></a>
         <ul>
           <li><a href="form_inputs_basic.html">Basic inputs</a></li>
@@ -69,16 +69,16 @@
           <li><a href="form_validation.html">Validation</a></li>
           <li><a href="form_inputs_grid.html">Inputs grid</a></li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a href="#"><i class="icon-footprint"></i> <span>Wizards</span></a>
         <ul>
           <li><a href="wizard_steps.html">Steps wizard</a></li>
           <li><a href="wizard_form.html">Form wizard</a></li>
           <li><a href="wizard_stepy.html">Stepy wizard</a></li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a href="#"><i class="icon-spell-check"></i> <span>Editors</span></a>
         <ul>
           <li><a href="editor_summernote.html">Summernote editor</a></li>
@@ -86,22 +86,22 @@
           <li><a href="editor_wysihtml5.html">WYSIHTML5 editor</a></li>
           <li><a href="editor_code.html">Code editor</a></li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a href="#"><i class="icon-select2"></i> <span>Pickers</span></a>
         <ul>
           <li><a href="picker_date.html">Date &amp; time pickers</a></li>
           <li><a href="picker_color.html">Color pickers</a></li>
           <li><a href="picker_location.html">Location pickers</a></li>
         </ul>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a href="#"><i class="icon-insert-template"></i> <span>Form layouts</span></a>
         <ul>
           <li><a href="form_layout_vertical.html">Vertical form</a></li>
           <li><a href="form_layout_horizontal.html">Horizontal form</a></li>
         </ul>
-      </li>
+      </li> -->
       <!-- /forms -->
 
     </ul>

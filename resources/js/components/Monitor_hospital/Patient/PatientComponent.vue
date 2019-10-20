@@ -297,6 +297,7 @@
 
         },
         mounted(){
+          this.LoadingStatus();
           console.log("Patient");
         }
       }
