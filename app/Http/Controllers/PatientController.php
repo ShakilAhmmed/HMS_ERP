@@ -8,6 +8,7 @@ use Validator;
 use Image;
 use Hash;
 use Arr;
+use Helper;
 class PatientController extends Controller
 {
     /**
@@ -56,19 +57,38 @@ class PatientController extends Controller
                 $position=strpos($request->image,";");
                 $sub_str=substr($request->image, 0,$position);
                 $extenstion=explode("/", $sub_str);
-                $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
-                $image_upload=Image::make($request->image)->resize(300, 300);
-                $image_upload->save($upload_path);
-                $requested_data=Arr::set($requested_data, 'image',$upload_path);
+                $allowed=Helper::ImageExtension($extenstion[1]);
+                if($allowed=="Allowed")
+                {
+                    $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+                    $image_upload=Image::make($request->image)->resize(300, 300);
+                    $image_upload->save($upload_path);
+                    $requested_data=Arr::set($requested_data, 'image',$upload_path);
+                    $requested_data=Arr::add($requested_data,'users_id',time());
+                    $password = Hash::make($request->password);
+                    $requested_data=Arr::set($requested_data,'password',$password);
+                    $patient_model->fill($requested_data)->save();
+                    $response=[
+                          'status'=>201,
+                          'data'=>$patient_model
+                      ];
+                }
+                else
+                {
+                    $response=[
+                       'errors'=>['project_logo_ext'=>$allowed],
+                       'status'=>400
+                   ];
+                }
+
             }
-            $requested_data=Arr::add($requested_data,'users_id',time());
-            $password = Hash::make($request->password);
-            $requested_data=Arr::set($requested_data,'password',$password);
-            $patient_model->fill($requested_data)->save();
-            $response=[
-                  'status'=>201,
-                  'data'=>$patient_model
-              ];
+            else {
+                $response=[
+                   'errors'=>['project_logo_ext'=>"Please Provide An Image"],
+                   'status'=>400
+               ];
+            }
+
        }
 
         return response()->json($response);
