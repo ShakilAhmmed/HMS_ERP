@@ -17,7 +17,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        return User::whereType('9')->paginate(20);
     }
 
     /**
