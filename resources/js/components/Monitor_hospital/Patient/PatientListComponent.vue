@@ -85,7 +85,7 @@
       },
       mounted()
       {
-        this.LoadingStatus();  
+        this.LoadingStatus();
         this.GetPatientList();
         console.log("Ok");
       }
