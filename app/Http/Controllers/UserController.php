@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\UserModel;
+use App\User;
 use App\DepartmentModel;
 use App\DesignationModel;
 use App\ShiftModel;
@@ -12,7 +12,7 @@ use Validator;
 use Image;
 use Hash;
 use File;
-
+use Helper;
 class UserController extends Controller
 {
     /**
@@ -22,10 +22,11 @@ class UserController extends Controller
      */
     public function index()
     {
-      $user=UserModel::join('departments','departments.departments_id','=','users.department_id')
+      $user=User::join('departments','departments.departments_id','=','users.department_id')
                       ->join('designation','designation.designation_id','=','users.designation_id')
                       ->join('shift','shift.shift_id','=','users.shift_id')
                       ->select('users.status as U_status','users.*','departments.*','designation.*','shift.*')
+                      ->where('users.type','1')
                       ->paginate(10);
       return $user;
     }
@@ -48,7 +49,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $users=new UserModel;
+
+      $users=new User;
       $validator=Validator::make($request->all(),$users->validate());
       if($validator->fails())
       {
@@ -59,28 +61,48 @@ class UserController extends Controller
       }
       else
       {
+
           $requested_data=$request->all();
 
-          if($request['image'])
+          if($request->image)
           {
-            $position=strpos($request['image'],";");
-            $sub_str=substr($request['image'], 0,$position);
-            $extenstion=explode("/", $sub_str);
-            $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
-            $image_upload=Image::make($request['image'])->resize(300, 200);
-            $image_upload->save($upload_path);
-            $requested_data=Arr::set($requested_data, 'image',$upload_path);
+              $position=strpos($request->image,";");
+              $sub_str=substr($request->image, 0,$position);
+              $extenstion=explode("/", $sub_str);
+              $allowed=Helper::ImageExtension($extenstion[1]);
+              if($allowed=="Allowed")
+              {
+                  $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+                  $image_upload=Image::make($request->image)->resize(300, 300);
+                  $image_upload->save($upload_path);
+                  $requested_data=Arr::set($requested_data, 'image',$upload_path);
+                  $requested_data=Arr::add($requested_data,'users_id',time());
+                  $password = Hash::make($request->password);
+                  $requested_data=Arr::set($requested_data,'password',$password);
+                  //$requested_data=Arr::set($requested_data,'type',$request->type);
+
+                  $users->fill($requested_data)->save();
+                  $response=[
+                        'status'=>201,
+                        'data'=>$users
+                    ];
+              }
+              else
+              {
+                  $response=[
+                     'errors'=>['project_logo_ext'=>$allowed],
+                     'status'=>400
+                 ];
+              }
+
           }
-          $requested_data=Arr::add($requested_data,'users_id',time());
-          $password = Hash::make($request['password']);
-          $requested_data=Arr::set($requested_data,'password',$password);
-          // print_r($requested_data);
-          // exit();
-          $users->fill($requested_data)->save();
-          $response=[
-              'status'=>201,
-              'data'=>$users
-          ];
+          else {
+              $response=[
+                 'errors'=>['project_logo_ext'=>"Please Provide An Image"],
+                 'status'=>400
+             ];
+          }
+
       }
       return response()->json($response);
     }
@@ -93,7 +115,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = UserModel::findOrFail($id);
+        $user = User::findOrFail($id);
         if ($user->status == 1)
         {
           $user->update(['status'=>2]);
@@ -116,7 +138,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      return UserModel::findOrFail($id);
+      return User::findOrFail($id);
 
     }
 
@@ -129,7 +151,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user=UserModel::findOrFail($id);
+      $user=User::findOrFail($id);
       $validator=Validator::make($request->all(),$user->validate($id));
       if($validator->fails())
       {
@@ -175,7 +197,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $data=UserModel::findOrFail($id);
+      $data=User::findOrFail($id);
       if(File::exists($data->image))
       {
         File::delete( $data->image );
