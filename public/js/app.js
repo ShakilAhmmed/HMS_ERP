@@ -6392,14 +6392,14 @@ __webpack_require__.r(__webpack_exports__);
       TestSubCategoryList: {},
       TestSubCategoryForm: {
         test_sub_category_name: '',
-        test_category_name: '',
+        test_category_id: '',
         description: '',
         status: ''
       },
       EditTestSubCategoryForm: {
         test_sub_category_id: '',
         test_sub_category_name: '',
-        test_category_name: '',
+        test_category_id: '',
         description: '',
         status: ''
       },
@@ -72075,9 +72075,9 @@ var render = function() {
                                         rawName: "v-model",
                                         value:
                                           _vm.TestSubCategoryForm
-                                            .test_category_name,
+                                            .test_category_id,
                                         expression:
-                                          "TestSubCategoryForm.test_category_name"
+                                          "TestSubCategoryForm.test_category_id"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -72096,7 +72096,7 @@ var render = function() {
                                           })
                                         _vm.$set(
                                           _vm.TestSubCategoryForm,
-                                          "test_category_name",
+                                          "test_category_id",
                                           $event.target.multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
@@ -72125,12 +72125,12 @@ var render = function() {
                                   2
                                 ),
                                 _vm._v(" "),
-                                _vm.AllError.test_category_name
+                                _vm.AllError.test_category_id
                                   ? _c("span", {
                                       staticClass: "text-danger",
                                       domProps: {
                                         textContent: _vm._s(
-                                          _vm.AllError.test_category_name[0]
+                                          _vm.AllError.test_category_id[0]
                                         )
                                       }
                                     })
@@ -72495,12 +72495,12 @@ var render = function() {
                                   0
                                 ),
                                 _vm._v(" "),
-                                _vm.AllError.test_category_name
+                                _vm.AllError.test_category_id
                                   ? _c("span", {
                                       staticClass: "text-danger",
                                       domProps: {
                                         textContent: _vm._s(
-                                          _vm.AllError.test_category_name[0]
+                                          _vm.AllError.test_category_id[0]
                                         )
                                       }
                                     })
