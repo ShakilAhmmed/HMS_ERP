@@ -6350,6 +6350,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TestSubCategory",
   data: function data() {
@@ -72303,9 +72304,9 @@ var render = function() {
                                         rawName: "v-model",
                                         value:
                                           _vm.EditTestSubCategoryForm
-                                            .test_category_name,
+                                            .test_category_id,
                                         expression:
-                                          "EditTestSubCategoryForm.test_category_name"
+                                          "EditTestSubCategoryForm.test_category_id"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -72324,7 +72325,7 @@ var render = function() {
                                           })
                                         _vm.$set(
                                           _vm.EditTestSubCategoryForm,
-                                          "test_category_name",
+                                          "test_category_id",
                                           $event.target.multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
@@ -72332,11 +72333,19 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [
-                                    _c("option", { attrs: { value: "1" } }, [
-                                      _vm._v("ok")
-                                    ])
-                                  ]
+                                  _vm._l(_vm.TestCategory, function(
+                                    data_value
+                                  ) {
+                                    return _c("option", {
+                                      domProps: {
+                                        value: data_value.test_category_id,
+                                        textContent: _vm._s(
+                                          data_value.test_category_name
+                                        )
+                                      }
+                                    })
+                                  }),
+                                  0
                                 ),
                                 _vm._v(" "),
                                 _vm.AllError.test_category_name
@@ -72449,10 +72458,6 @@ var render = function() {
                                     }
                                   },
                                   [
-                                    _c("option", { attrs: { value: "" } }, [
-                                      _vm._v("--Select--")
-                                    ]),
-                                    _vm._v(" "),
                                     _c("option", { attrs: { value: "1" } }, [
                                       _vm._v("Active")
                                     ]),
@@ -72568,7 +72573,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", [
-                  test_sub_category_list.status == 1
+                  test_sub_category_list.sub_category_status == 1
                     ? _c("span", { staticClass: "text-success" }, [
                         _vm._v("Active")
                       ])
@@ -72599,7 +72604,7 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  test_sub_category_list.status == 1
+                  test_sub_category_list.sub_category_status == 1
                     ? _c(
                         "button",
                         {

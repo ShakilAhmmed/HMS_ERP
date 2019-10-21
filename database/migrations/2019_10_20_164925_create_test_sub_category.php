@@ -16,7 +16,7 @@ class CreateTestSubCategory extends Migration
         Schema::create('test_sub_category', function (Blueprint $table) {
             $table->bigIncrements('test_sub_category_id');
             $table->string('test_sub_category_name',50);
-            $table->string('test_category_name',50);
+            $table->integer('test_category_id');
             $table->text('description')->nullable();
             $table->integer('status')->index()->comment('1=Active,2=Inactive');
             $table->timestamps();

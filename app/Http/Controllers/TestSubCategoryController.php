@@ -17,11 +17,11 @@ class TestSubCategoryController extends Controller
      */
     public function index()
     {
-        $data['test_sub_category']=TestSubCategoryModel::join('test_category','test_sub_category.test_category_name','=','test_category.test_category_id')
-                                                        ->select('test_category.test_category_name AS test_category_name',
-                                                        'test_sub_category.status AS status',
-                                                        'test_sub_category.*','test_category.*')
-                                                        ->paginate(10);
+        $data['test_sub_category']=TestSubCategoryModel::join('test_category','test_sub_category.test_category_id','=','test_category.test_category_id')
+                                      ->select('test_category.test_category_name AS test_category_name',
+                                      'test_sub_category.status AS sub_category_status',
+                                      'test_sub_category.*','test_category.*')
+                                      ->paginate(10);
         $data['test_category']=TestCategoryModel::where('status',1)->get();
         return $data;
     }
@@ -74,7 +74,18 @@ class TestSubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+      $test_sub_category = TestSubCategoryModel::findOrFail($id);
+      if ($test_sub_category->status == 1)
+      {
+        $test_sub_category->update(['status'=>2]);
+        $response=['status'=>202];
+      }
+      else
+      {
+        $test_sub_category->update(['status'=>1]);
+        $response=['status'=>200];
+      }
+      return response()->json($response);
     }
 
     /**

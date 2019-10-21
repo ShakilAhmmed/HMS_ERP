@@ -109,15 +109,17 @@
                                                 <span class="text-danger" v-if="AllError.test_sub_category_name" v-text="AllError.test_sub_category_name[0]"></span>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Test Category Name:</label>
                                             <div class="col-lg-9">
-                                                <select v-model="EditTestSubCategoryForm.test_category_name" class="form-control">
-                                                  <option value="1">ok</option>
+                                                <select v-model="EditTestSubCategoryForm.test_category_id" class="form-control">
+                                                  <option v-for="data_value in TestCategory" :value="data_value.test_category_id" v-text="data_value.test_category_name"></option>
                                                 </select>
                                                 <span class="text-danger" v-if="AllError.test_category_name" v-text="AllError.test_category_name[0]"></span>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Description:</label>
                                             <div class="col-lg-9">
@@ -129,7 +131,6 @@
                                             <label class="col-lg-3 control-label">Status:</label>
                                             <div class="col-lg-9">
                                                 <select class="form-control" v-model="EditTestSubCategoryForm.status">
-                                                    <option value=''>--Select--</option>
                                                     <option value='1'>Active</option>
                                                     <option value="2">Inactive</option>
                                                 </select>
@@ -179,13 +180,13 @@
               <td>{{test_sub_category_list.test_category_name}}</td>
               <td>{{test_sub_category_list.description | readMore(10,'...')}}</td>
               <td>
-                  <span  v-if="test_sub_category_list.status==1" class='text-success'>Active</span>
+                  <span  v-if="test_sub_category_list.sub_category_status==1" class='text-success'>Active</span>
                   <span  v-else class='text-danger'>Inactive</span>
               </td>
               <td class="text-center">
                   <button class="btn btn-danger" @click="DeleteTestSubCategory(test_sub_category_list.test_sub_category_id,index)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
-                  <button v-if="test_sub_category_list.status==1" class="btn btn-success" @click="StatusChange(test_sub_category_list.test_sub_category_id)">
+                  <button v-if="test_sub_category_list.sub_category_status==1" class="btn btn-success" @click="StatusChange(test_sub_category_list.test_sub_category_id)">
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
