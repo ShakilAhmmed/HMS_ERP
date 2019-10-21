@@ -41,6 +41,7 @@
         <a href="#"><i class="icon-stack2"></i> <span>Test</span></a>
           <ul>
             <li><router-link to="/test_category">Test Category</router-link></li>
+            <li><router-link to="/test_sub_category">Test Sub Category</router-link></li>
           </ul>
       </li>
 

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TestSubCategoryModel;
 use App\TestCategoryModel;
-use Illuminate\Support\Arr;
 use Validator;
+use Arr;
 
-class TestCategoryController extends Controller
+class TestSubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,13 @@ class TestCategoryController extends Controller
      */
     public function index()
     {
-      $test_category=TestCategoryModel::paginate(10);
-      return $test_category;
+        $data['test_sub_category']=TestSubCategoryModel::join('test_category','test_sub_category.test_category_id','=','test_category.test_category_id')
+                                      ->select('test_category.test_category_name AS test_category_name',
+                                      'test_sub_category.status AS sub_category_status',
+                                      'test_sub_category.*','test_category.*')
+                                      ->paginate(10);
+        $data['test_category']=TestCategoryModel::where('status',1)->get();
+        return $data;
     }
 
     /**
@@ -38,8 +44,8 @@ class TestCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $test_category=new TestCategoryModel;
-        $validator=Validator::make($request->all(),$test_category->validate());
+        $test_sub_category=new TestSubCategoryModel;
+        $validator=Validator::make($request->all(),$test_sub_category->validate());
         if($validator->fails())
         {
             $response=[
@@ -51,10 +57,10 @@ class TestCategoryController extends Controller
         {
             $requested_data=$request->all();
             $requested_data=Arr::add($requested_data,'test_category_id',time());
-            $test_category->fill($requested_data)->save();
+            $test_sub_category->fill($requested_data)->save();
             $response=[
                 'status'=>201,
-                'data'=>$test_category
+                'data'=>$test_sub_category
             ];
         }
         return response()->json($response);
@@ -68,18 +74,18 @@ class TestCategoryController extends Controller
      */
     public function show($id)
     {
-        $test_category = TestCategoryModel::findOrFail($id);
-        if ($test_category->status == 1)
-        {
-          $test_category->update(['status'=>2]);
-          $response=['status'=>202];
-        }
-        else
-        {
-          $test_category->update(['status'=>1]);
-          $response=['status'=>200];
-        }
-        return response()->json($response);
+      $test_sub_category = TestSubCategoryModel::findOrFail($id);
+      if ($test_sub_category->status == 1)
+      {
+        $test_sub_category->update(['status'=>2]);
+        $response=['status'=>202];
+      }
+      else
+      {
+        $test_sub_category->update(['status'=>1]);
+        $response=['status'=>200];
+      }
+      return response()->json($response);
     }
 
     /**
@@ -102,8 +108,8 @@ class TestCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $test_category=TestCategoryModel::findOrFail($id);
-        $validator=Validator::make($request->all(),$test_category->validate($id));
+        $test_sub_category=TestSubCategoryModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test_sub_category->validate($id));
         if($validator->fails())
         {
             $response=[
@@ -114,10 +120,10 @@ class TestCategoryController extends Controller
         else
         {
             $requested_data=$request->all();
-            $test_category->fill($requested_data)->save();
+            $test_sub_category->fill($requested_data)->save();
             $response=[
                 'status'=>201,
-                'data'=>$test_category
+                'data'=>$test_sub_category
             ];
         }
         return response()->json($response);
@@ -131,7 +137,7 @@ class TestCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $deleted=TestCategoryModel::findOrFail($id)->delete();
-        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
+      $deleted=TestSubCategoryModel::findOrFail($id)->delete();
+      return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
