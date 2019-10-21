@@ -214,6 +214,9 @@
                   <label class="col-md-2 control-label text-left">Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="UsersForm.password" class="form-control" placeholder="Enter Password" >
+                    <span class="text-warning" v-if="(UsersForm.password && UsersForm.password.length ? UsersForm.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
+                     <span class="text-danger" v-else-if="(UsersForm.password && UsersForm.password.length ? UsersForm.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
+                    <span class="text-success" v-else><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Is Strong</span>
                   </div>
                 </div>
               </div>
@@ -222,6 +225,9 @@
                   <label class="col-md-2 control-label text-left">Confirm Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="UsersForm.password_confirmation" class="form-control" placeholder="Re-Type Password" >
+                    <span class="text-danger" v-if="UsersForm.password_confirmation.length !=0 &&  UsersForm.password && UsersForm.password.length !=0 && UsersForm.password != UsersForm.password_confirmation"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
+                     <span class="text-success" v-else-if="UsersForm.password && UsersForm.password.length !=0 && UsersForm.password == UsersForm.password_confirmation"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
+
                     <span class="text-danger" v-if="AllError.password" v-text="AllError.password[0]"></span>
                   </div>
                 </div>
