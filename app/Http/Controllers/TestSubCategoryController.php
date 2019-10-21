@@ -108,7 +108,25 @@ class TestSubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $test_sub_category=TestSubCategoryModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test_sub_category->validate($id));
+        if($validator->fails())
+        {
+            $response=[
+                'status'=>400,
+                'errors'=>$validator->errors()
+            ];
+        }
+        else
+        {
+            $requested_data=$request->all();
+            $test_sub_category->fill($requested_data)->save();
+            $response=[
+                'status'=>201,
+                'data'=>$test_sub_category
+            ];
+        }
+        return response()->json($response);
     }
 
     /**

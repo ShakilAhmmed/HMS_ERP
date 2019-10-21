@@ -114,7 +114,6 @@ class TestCategoryController extends Controller
         else
         {
             $requested_data=$request->all();
-            $requested_data=Arr::add($requested_data,'test_category_id',time());
             $test_category->fill($requested_data)->save();
             $response=[
                 'status'=>201,
