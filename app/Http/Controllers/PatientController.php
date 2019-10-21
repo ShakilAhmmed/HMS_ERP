@@ -136,6 +136,7 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted=User::where('users_id',$id)->delete();
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }

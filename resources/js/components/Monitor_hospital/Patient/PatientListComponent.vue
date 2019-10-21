@@ -44,15 +44,21 @@
                   <span  v-if="patient_data.status==1" class='text-success'><i class="fa fa-check text-success"></i></span>
                   <span  v-else-if="patient_data.status==2" class='text-danger'><i class="fa fa-close text-danger"></i></span>
               </td>
-              <td class="text-center table_action_display">
-                  <button class="btn btn-danger">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+              <td class="text-center">
+                  <button class="btn btn-danger" @click="DeletePatient(patient_data.users_id,index)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
-                  <button  class="btn btn-warning">
+
+                  <button v-if="patient_data.status==1" class="btn btn-success" @click="StatusChange(patient_data.users_id)">
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
-                  <button class="btn btn-info">
-                        <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
+
+                   <button v-else class="btn btn-primary" @click="StatusChange(patient_data.users_id)">
+                          <i class="fa fa-refresh" aria-hidden="true"></i>
+                  </button>
+
+                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal">
+                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
               </td>
             </tr>
@@ -80,6 +86,43 @@
               })
               .catch((error)=>{
                   console.log(error)
+              })
+          },
+          DeletePatient:function(id,index)
+          {
+              const _this=this;
+
+              swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                  this.axios.delete(base_path+'patient/'+id)
+                  .then((response)=>{
+                      console.log(response);
+                      if(response.data.status===200)
+                      {
+                          _this.PatientList.data.splice(index,1);
+                              swal.fire(
+                                'Deleted!',
+                                'Patient Deleted Successfully',
+                                'success'
+                              )
+                      }
+                      if(response.data.status===400)
+                      {
+                          swal.fire("Opps","Something Went Wrong","warning");
+                      }
+                  })
+                  .catch((error)=>{
+                      console.log(error)
+                  })
+                }
               })
           },
       },
