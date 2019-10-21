@@ -178,7 +178,7 @@
                                     <input type="search" v-model="search" @keyup="GetDepartmentList" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
                                 </label>
                             </div>
-                      
+
 						</div>
 
 
@@ -216,19 +216,6 @@
                                         <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditDepartment(department_list.departments_id,department_list)">
                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
-										<!-- <ul class="icons-list">
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-													<i class="icon-menu9"></i>
-												</a>
-
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-													<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-													<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-												</ul>
-											</li>
-										</ul> -->
 									</td>
 								</tr>
 

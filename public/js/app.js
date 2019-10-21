@@ -2070,19 +2070,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Department",
   data: function data() {
@@ -4240,6 +4227,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4258,6 +4249,39 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    DeletePatient: function DeletePatient(id, index) {
+      var _this2 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.axios["delete"](base_path + 'patient/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status === 200) {
+              _this.PatientList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Patient Deleted Successfully', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
       });
     }
   },
@@ -69561,7 +69585,63 @@ var render = function() {
                   : _vm._e()
               ]),
               _vm._v(" "),
-              _vm._m(3, true)
+              _c("td", { staticClass: "text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.DeletePatient(patient_data.users_id, index)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-trash",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                patient_data.status == 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.StatusChange(patient_data.users_id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-refresh",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.StatusChange(patient_data.users_id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-refresh",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    ),
+                _vm._v(" "),
+                _vm._m(3, true)
+              ])
             ])
           }),
           0
@@ -69611,28 +69691,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center table_action_display" }, [
-      _c("button", { staticClass: "btn btn-danger" }, [
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-info",
+        attrs: { "data-toggle": "modal", "data-target": "#editModal" }
+      },
+      [
         _c("i", {
-          staticClass: "fa fa-trash",
+          staticClass: "fa fa-pencil-square-o",
           attrs: { "aria-hidden": "true" }
         })
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-warning" }, [
-        _c("i", {
-          staticClass: "fa fa-refresh",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-info" }, [
-        _c("i", {
-          staticClass: "fa fa-pencil-square-o router_link_color",
-          attrs: { "aria-hidden": "true" }
-        })
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
