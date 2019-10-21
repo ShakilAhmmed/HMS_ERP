@@ -12,6 +12,7 @@ import PatientComponent from './components/Monitor_hospital/Patient/PatientCompo
 import PatientListComponent from './components/Monitor_hospital/Patient/PatientListComponent'
 import PatientAppointmentComponent from './components/Monitor_hospital/Patient/PatientAppointmentComponent'
 import TestCategoryComponent from './components/Test/TestCategory'
+import TestSubCategoryComponent from './components/Test/TestSubCategory'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -84,6 +85,11 @@ export const routes = [
       path:'/test_category',
       component:TestCategoryComponent,
       name:'/test_category'
+    },
+    {
+      path:'/test_sub_category',
+      component:TestSubCategoryComponent,
+      name:'/test_sub_category'
     }
 
 ]
