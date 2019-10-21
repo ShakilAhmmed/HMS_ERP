@@ -202,6 +202,7 @@
                   <label class="col-lg-2 control-label">Image:</label>
                   <div class="col-md-10">
                     <input type="file" class="form-control" @change="ImageGet">
+                    <span class="text-danger" v-if="AllError.project_logo_ext" v-text="AllError.project_logo_ext"></span>
                   </div>
                 </div>
               </div>
@@ -260,7 +261,9 @@
                 image:'',
                 email:'',
                 password:'',
+                type:'1',
                 password_confirmation:'',
+
               },
               AllError:[],
               GetDataValue:[],

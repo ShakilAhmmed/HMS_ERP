@@ -4231,6 +4231,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4956,6 +4958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4977,7 +4980,8 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         email: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        type: '1'
       },
       AllError: [],
       GetDataValue: []
@@ -71624,7 +71628,18 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: { type: "file" },
                             on: { change: _vm.ImageGet }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.AllError.project_logo_ext
+                            ? _c("span", {
+                                staticClass: "text-danger",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.AllError.project_logo_ext
+                                  )
+                                }
+                              })
+                            : _vm._e()
                         ])
                       ])
                     ])
