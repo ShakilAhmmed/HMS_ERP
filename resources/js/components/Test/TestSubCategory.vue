@@ -39,11 +39,11 @@
                                       <div class="form-group">
                                           <label class="col-lg-3 control-label">Test Category Name:</label>
                                           <div class="col-lg-9">
-                                              <select v-model="TestSubCategoryForm.test_category_name" class="form-control">
+                                              <select v-model="TestSubCategoryForm.test_category_id" class="form-control">
                                                 <option value="">--select--</option>
                                                 <option v-for="data_value in TestCategory" :value="data_value.test_category_id" v-text="data_value.test_category_name"></option>
                                               </select>
-                                              <span class="text-danger" v-if="AllError.test_category_name" v-text="AllError.test_category_name[0]"></span>
+                                              <span class="text-danger" v-if="AllError.test_category_id" v-text="AllError.test_category_id[0]"></span>
                                           </div>
                                       </div>
 
@@ -116,7 +116,7 @@
                                                 <select v-model="EditTestSubCategoryForm.test_category_id" class="form-control">
                                                   <option v-for="data_value in TestCategory" :value="data_value.test_category_id" v-text="data_value.test_category_name"></option>
                                                 </select>
-                                                <span class="text-danger" v-if="AllError.test_category_name" v-text="AllError.test_category_name[0]"></span>
+                                                <span class="text-danger" v-if="AllError.test_category_id" v-text="AllError.test_category_id[0]"></span>
                                             </div>
                                         </div>
 
@@ -218,14 +218,14 @@
             TestSubCategoryList:{},
             TestSubCategoryForm:{
                 test_sub_category_name:'',
-                test_category_name:'',
+                test_category_id:'',
                 description:'',
                 status:'',
             },
             EditTestSubCategoryForm:{
                 test_sub_category_id:'',
                 test_sub_category_name:'',
-                test_category_name:'',
+                test_category_id:'',
                 description:'',
                 status:'',
             },
