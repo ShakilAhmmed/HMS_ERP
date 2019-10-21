@@ -4959,6 +4959,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
@@ -4980,8 +4986,8 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         email: '',
         password: '',
-        password_confirmation: '',
-        type: '1'
+        type: '1',
+        password_confirmation: ''
       },
       AllError: [],
       GetDataValue: []
@@ -71682,7 +71688,37 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          (_vm.UsersForm.password &&
+                          _vm.UsersForm.password.length
+                            ? _vm.UsersForm.password.length
+                            : 0) == 0
+                            ? _c("span", { staticClass: "text-warning" }, [
+                                _c("i", {
+                                  staticClass: "fa fa-exclamation-triangle",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(" Password Is Empty")
+                              ])
+                            : (_vm.UsersForm.password &&
+                              _vm.UsersForm.password.length
+                                ? _vm.UsersForm.password.length
+                                : 0) < 8
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _c("i", {
+                                  staticClass: "fa fa-exclamation-triangle",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(" Password Is Weak")
+                              ])
+                            : _c("span", { staticClass: "text-success" }, [
+                                _c("i", {
+                                  staticClass: "fa fa-check-circle",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(" Password Is Strong")
+                              ])
                         ])
                       ])
                     ]),
@@ -71726,6 +71762,31 @@ var render = function() {
                               }
                             }
                           }),
+                          _vm._v(" "),
+                          _vm.UsersForm.password_confirmation.length != 0 &&
+                          _vm.UsersForm.password &&
+                          _vm.UsersForm.password.length != 0 &&
+                          _vm.UsersForm.password !=
+                            _vm.UsersForm.password_confirmation
+                            ? _c("span", { staticClass: "text-danger" }, [
+                                _c("i", {
+                                  staticClass: "fa fa-exclamation-triangle",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(" Password Not Mactched")
+                              ])
+                            : _vm.UsersForm.password &&
+                              _vm.UsersForm.password.length != 0 &&
+                              _vm.UsersForm.password ==
+                                _vm.UsersForm.password_confirmation
+                            ? _c("span", { staticClass: "text-success" }, [
+                                _c("i", {
+                                  staticClass: "fa fa-check-circle",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(" Password Matched")
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _vm.AllError.password
                             ? _c("span", {
