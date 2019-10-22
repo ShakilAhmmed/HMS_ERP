@@ -6569,6 +6569,390 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Test/TestType.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Test/TestType.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TestType",
+  data: function data() {
+    return {
+      TestTypeList: {},
+      TestTypeForm: {
+        test_type_name: '',
+        test_sub_category_id: '',
+        description: '',
+        status: ''
+      },
+      EditTestTypeForm: {
+        test_type_id: '',
+        test_type_name: '',
+        test_sub_category_id: '',
+        description: '',
+        status: ''
+      },
+      TestSubCategory: [],
+      AllError: []
+    };
+  },
+  methods: {
+    AddTestType: function AddTestType() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(base_path + "test_type", _this.TestTypeForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this2.$toastr.success('TestType Added Successfully', 'Success'); //_this.TestTypeList.data.push(response.data.data);
+
+
+          _this.GetTestTypeList();
+
+          $(".close").click();
+
+          _this.ClearForm();
+
+          _this2.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    GetTestTypeList: function GetTestTypeList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'test_type?page=' + page).then(function (response) {
+        _this.TestTypeList = response.data.test_type;
+        _this.TestSubCategory = response.data.test_sub_category;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'test_type/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('TestType Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('TestType Status Changed Into Inactive', 'Success');
+        }
+
+        _this.LoadingStatus();
+
+        _this.GetTestTypeList();
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    EditTestType: function EditTestType(id, data) {
+      var _this = this;
+
+      _this.EditTestTypeForm.id = id;
+      _this.EditTestTypeForm = data;
+    },
+    UpdateTestType: function UpdateTestType() {
+      var _this4 = this;
+
+      var _this = this;
+
+      this.axios.put(base_path + 'test_type/' + _this.EditTestTypeForm.test_type_id, this.EditTestTypeForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this4.$toastr.success('TestType Edited Successfully', 'Success');
+
+          _this.GetTestTypeList();
+
+          $(".close").click();
+
+          _this.ClearForm();
+
+          _this4.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    DeleteTestType: function DeleteTestType(id, index) {
+      var _this5 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this.GetTestTypeList();
+
+          _this5.LoadingStatus();
+
+          _this5.axios["delete"](base_path + 'test_type/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status == 200) {
+              _this.TestTypeList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'TestType Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    ClearForm: function ClearForm() {
+      var _this = this;
+
+      _this.AllError = [];
+      _this.TestTypeForm.test_type_name = '';
+      _this.TestTypeForm.description = '';
+      _this.TestTypeForm.status = '';
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetTestTypeList();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-toastr-2/dist/vue-toastr-2.min.css":
 /*!*********************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-toastr-2/dist/vue-toastr-2.min.css ***!
@@ -72904,6 +73288,968 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "test_type" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary pull-right",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#exampleModal"
+        }
+      },
+      [_vm._v("\n            Add New TestType\n      ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form-horizontal",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.AddTestType($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "exampleModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "exampleModalLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [_vm._v("Add New TestType")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close"
+                        },
+                        on: { click: _vm.ClearForm }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "panel panel-flat" }, [
+                          _c("div", { staticClass: "panel-heading" }, [
+                            _c("div", { staticClass: "heading-elements" }, [
+                              _c("ul", { staticClass: "icons-list" }, [
+                                _c("li", [
+                                  _c("a", {
+                                    attrs: { "data-action": "reload" },
+                                    on: { click: _vm.ClearForm }
+                                  })
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Test Type Name:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.TestTypeForm.test_type_name,
+                                      expression: "TestTypeForm.test_type_name"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter TestType Name"
+                                  },
+                                  domProps: {
+                                    value: _vm.TestTypeForm.test_type_name
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.TestTypeForm,
+                                        "test_type_name",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.AllError.test_type_name
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.test_type_name[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Test SubCategory Name:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.TestTypeForm.test_sub_category_id,
+                                        expression:
+                                          "TestTypeForm.test_sub_category_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.TestTypeForm,
+                                          "test_sub_category_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.TestSubCategory, function(
+                                      data_value
+                                    ) {
+                                      return _c("option", {
+                                        domProps: {
+                                          value:
+                                            data_value.test_sub_category_id,
+                                          textContent: _vm._s(
+                                            data_value.test_sub_category_name
+                                          )
+                                        }
+                                      })
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.AllError.test_sub_category_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.test_sub_category_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Description:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.TestTypeForm.description,
+                                      expression: "TestTypeForm.description"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  domProps: {
+                                    value: _vm.TestTypeForm.description
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.TestTypeForm,
+                                        "description",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.AllError.description
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.description[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Status:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.TestTypeForm.status,
+                                        expression: "TestTypeForm.status"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.TestTypeForm,
+                                          "status",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--Select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "1" } }, [
+                                      _vm._v("Active")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "2" } }, [
+                                      _vm._v("Inactive")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.AllError.status
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.status[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: { click: _vm.ClearForm }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Save")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form-horizontal",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.UpdateTestType($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "editModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "exampleModalLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [
+                        _vm._v(
+                          "Edit " +
+                            _vm._s(_vm.TestTypeForm.test_type_name) +
+                            " TestType"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close"
+                        },
+                        on: { click: _vm.ClearForm }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "panel panel-flat" }, [
+                          _c("div", { staticClass: "panel-heading" }, [
+                            _c("div", { staticClass: "heading-elements" }, [
+                              _c("ul", { staticClass: "icons-list" }, [
+                                _c("li", [
+                                  _c("a", {
+                                    attrs: { "data-action": "reload" },
+                                    on: { click: _vm.ClearForm }
+                                  })
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("TestType Name:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.EditTestTypeForm.test_type_name,
+                                      expression:
+                                        "EditTestTypeForm.test_type_name"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Enter TestType Name"
+                                  },
+                                  domProps: {
+                                    value: _vm.EditTestTypeForm.test_type_name
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.EditTestTypeForm,
+                                        "test_type_name",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.AllError.test_type_name
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.test_type_name[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Test SubCategory Name:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.EditTestTypeForm
+                                            .test_sub_category_id,
+                                        expression:
+                                          "EditTestTypeForm.test_sub_category_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.EditTestTypeForm,
+                                          "test_sub_category_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  _vm._l(_vm.TestSubCategory, function(
+                                    data_value
+                                  ) {
+                                    return _c("option", {
+                                      domProps: {
+                                        value: data_value.test_sub_category_id,
+                                        textContent: _vm._s(
+                                          data_value.test_sub_category_name
+                                        )
+                                      }
+                                    })
+                                  }),
+                                  0
+                                ),
+                                _vm._v(" "),
+                                _vm.AllError.test_sub_category_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.test_sub_category_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Description:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.EditTestTypeForm.description,
+                                      expression: "EditTestTypeForm.description"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  domProps: {
+                                    value: _vm.EditTestTypeForm.description
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.EditTestTypeForm,
+                                        "description",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.AllError.description
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.description[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Status:")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.EditTestTypeForm.status,
+                                        expression: "EditTestTypeForm.status"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.EditTestTypeForm,
+                                          "status",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "1" } }, [
+                                      _vm._v("Active")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "2" } }, [
+                                      _vm._v("Inactive")
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.AllError.status
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.AllError.status[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: { click: _vm.ClearForm }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Save")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "panel panel-flat" },
+      [
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("h5", { staticClass: "panel-title" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", {
+                  attrs: { "data-action": "reload" },
+                  on: { click: _vm.GetTestTypeList }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table datatable-pagination" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.TestTypeList.data, function(test_type_list, index) {
+              return _c("tr", [
+                _c("td", { domProps: { textContent: _vm._s(index + 1) } }),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(test_type_list.test_type_name))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(test_type_list.test_sub_category_name))
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("readMore")(test_type_list.description, 10, "...")
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  test_type_list.test_type_status == 1
+                    ? _c("span", { staticClass: "text-success" }, [
+                        _vm._v("Active")
+                      ])
+                    : _c("span", { staticClass: "text-danger" }, [
+                        _vm._v("Inactive")
+                      ])
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.DeleteTestType(
+                            test_type_list.test_type_id,
+                            index
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  test_type_list.test_type_status == 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(
+                                test_type_list.test_type_id
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(
+                                test_type_list.test_type_id
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#editModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.EditTestType(
+                            test_type_list.test_type_id,
+                            test_type_list
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-pencil-square-o",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "pagination",
+          {
+            attrs: { data: _vm.TestTypeList, limit: 3 },
+            on: { "pagination-change-page": _vm.GetTestTypeList }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Sl No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("SubCategory Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Category Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -89468,6 +90814,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Test/TestType.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Test/TestType.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TestType.vue?vue&type=template&id=085d330e& */ "./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e&");
+/* harmony import */ var _TestType_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TestType.vue?vue&type=script&lang=js& */ "./resources/js/components/Test/TestType.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TestType_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Test/TestType.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Test/TestType.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Test/TestType.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TestType_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TestType.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Test/TestType.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TestType_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TestType.vue?vue&type=template&id=085d330e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Test/TestType.vue?vue&type=template&id=085d330e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestType_vue_vue_type_template_id_085d330e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/filters.js":
 /*!*********************************!*\
   !*** ./resources/js/filters.js ***!
@@ -89517,6 +90932,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientAppointmentComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientAppointmentComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue");
 /* harmony import */ var _components_Test_TestCategory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Test/TestCategory */ "./resources/js/components/Test/TestCategory.vue");
 /* harmony import */ var _components_Test_TestSubCategory__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Test/TestSubCategory */ "./resources/js/components/Test/TestSubCategory.vue");
+/* harmony import */ var _components_Test_TestType__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Test/TestType */ "./resources/js/components/Test/TestType.vue");
+
 
 
 
@@ -89593,6 +91010,10 @@ var routes = [{
   path: '/test_sub_category',
   component: _components_Test_TestSubCategory__WEBPACK_IMPORTED_MODULE_14__["default"],
   name: '/test_sub_category'
+}, {
+  path: '/test_type',
+  component: _components_Test_TestType__WEBPACK_IMPORTED_MODULE_15__["default"],
+  name: '/test_type'
 }];
 
 /***/ }),

@@ -42,6 +42,7 @@
           <ul>
             <li><router-link to="/test_category">Test Category</router-link></li>
             <li><router-link to="/test_sub_category">Test Sub Category</router-link></li>
+            <li><router-link to="/test_type">Test Type</router-link></li>
           </ul>
       </li>
 
