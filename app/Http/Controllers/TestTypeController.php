@@ -107,7 +107,25 @@ class TestTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $test_type=TestTypeModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test_type->validate($id));
+        if($validator->fails())
+        {
+            $response=[
+                'status'=>400,
+                'errors'=>$validator->errors()
+            ];
+        }
+        else
+        {
+            $requested_data=$request->all();
+            $test_type->fill($requested_data)->save();
+            $response=[
+                'status'=>201,
+                'data'=>$test_type
+            ];
+        }
+        return response()->json($response);
     }
 
     /**
