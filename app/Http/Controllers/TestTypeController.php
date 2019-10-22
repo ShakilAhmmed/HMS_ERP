@@ -136,6 +136,7 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $deleted=TestTypeModel::findOrFail($id)->delete();
+      return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
