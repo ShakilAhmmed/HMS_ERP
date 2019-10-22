@@ -4285,6 +4285,27 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'patient/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Patient Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('Patient Status Changed Into Inactive', 'Success');
+        }
+
+        _this3.LoadingStatus();
+
+        _this.GetPatientList();
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {

@@ -125,6 +125,27 @@
                 }
               })
           },
+          StatusChange:function(id){
+              const _this=this;
+              this.axios.get(base_path+'patient/'+id)
+              .then((response)=>{
+                  if(response.data.status===200)
+                  {
+                       this.$toastr.success('Patient Status Changed Into Active', 'Success');
+                  }
+
+                   if(response.data.status===202)
+                  {
+                      this.$toastr.warning('Patient Status Changed Into Inactive', 'Success');
+                  }
+                  this.LoadingStatus();
+                  _this.GetPatientList();
+              })
+              .catch((error)=>{
+                  console.log(error)
+              })
+
+          },
       },
       mounted()
       {
