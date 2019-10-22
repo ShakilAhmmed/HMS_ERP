@@ -102,7 +102,15 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        //
+        $patient_data=User::findOrFail($id);
+        if($patient_data->status==1):
+            $patient_data->update(['status'=>2]);
+            $response=['status'=>202];
+        else:
+            $patient_data->update(['status'=>1]);
+            $response=['status'=>200];
+        endif;
+        return response()->json($response);
     }
 
     /**
