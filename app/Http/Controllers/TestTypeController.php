@@ -73,7 +73,18 @@ class TestTypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $test_type = TestTypeModel::findOrFail($id);
+        if ($test_type->status == 1)
+        {
+          $test_type->update(['status'=>2]);
+          $response=['status'=>202];
+        }
+        else
+        {
+          $test_type->update(['status'=>1]);
+          $response=['status'=>200];
+        }
+        return response()->json($response);
     }
 
     /**
