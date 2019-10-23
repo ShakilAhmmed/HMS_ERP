@@ -258,7 +258,7 @@
             {
                 const _this=this;
                 const main_url=base_path+'department?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
-                console.log(main_url);
+                this.LoadingStatus();
                 this.axios.get(main_url)
                 .then((response)=>{
                     _this.DepartmentList=response.data;
