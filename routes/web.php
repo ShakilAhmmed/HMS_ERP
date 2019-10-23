@@ -29,6 +29,7 @@ Route::prefix('api/v1')->group(function () {
     Route::resource('test_category','TestCategoryController');
     Route::resource('test_sub_category','TestSubCategoryController');
     Route::resource('test_type','TestTypeController');
+    Route::resource('test','TestController');
 });
 
 

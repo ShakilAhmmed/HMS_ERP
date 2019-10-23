@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TestTypeModel;
-use App\TestSubCategoryModel;
+use App\TestModel;
 use Validator;
 use Arr;
 
-class TestTypeController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,11 @@ class TestTypeController extends Controller
      */
     public function index()
     {
-        $data['test_type']=TestTypeModel::join('test_sub_category','test_type.test_sub_category_id','=','test_sub_category.test_sub_category_id')
-                                      ->select('test_type.status AS test_type_status',
-                                      'test_type.*','test_sub_category.*')
+        $data['test']=TestModel::join('test_type','test.test_type_id','=','test_type.test_type_id')
+                                      ->select('test.status AS test_status',
+                                      'test.*','test_type.*')
                                       ->paginate(10);
-        $data['test_sub_category']=TestSubCategoryModel::where('status',1)->get();
+        $data['test_type']=TestTypeModel::where('status',1)->get();
         return response()->json($data);
     }
 
@@ -43,8 +43,8 @@ class TestTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $test_type=new TestTypeModel;
-        $validator=Validator::make($request->all(),$test_type->validate());
+        $test=new TestModel;
+        $validator=Validator::make($request->all(),$test->validate());
         if($validator->fails())
         {
             $response=[
@@ -55,11 +55,11 @@ class TestTypeController extends Controller
         else
         {
             $requested_data=$request->all();
-            $requested_data=Arr::add($requested_data,'test_type_id',time());
-            $test_type->fill($requested_data)->save();
+            $requested_data=Arr::add($requested_data,'test_id',time());
+            $test->fill($requested_data)->save();
             $response=[
                 'status'=>201,
-                'data'=>$test_type
+                'data'=>$test
             ];
         }
         return response()->json($response);
@@ -73,15 +73,15 @@ class TestTypeController extends Controller
      */
     public function show($id)
     {
-        $test_type = TestTypeModel::findOrFail($id);
-        if ($test_type->status == 1)
+        $test = TestModel::findOrFail($id);
+        if ($test->status == 1)
         {
-          $test_type->update(['status'=>2]);
+          $test->update(['status'=>2]);
           $response=['status'=>202];
         }
         else
         {
-          $test_type->update(['status'=>1]);
+          $test->update(['status'=>1]);
           $response=['status'=>200];
         }
         return response()->json($response);
@@ -107,8 +107,8 @@ class TestTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $test_type=TestTypeModel::findOrFail($id);
-        $validator=Validator::make($request->all(),$test_type->validate($id));
+        $test=TestModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test->validate($id));
         if($validator->fails())
         {
             $response=[
@@ -119,10 +119,10 @@ class TestTypeController extends Controller
         else
         {
             $requested_data=$request->all();
-            $test_type->fill($requested_data)->save();
+            $test->fill($requested_data)->save();
             $response=[
                 'status'=>201,
-                'data'=>$test_type
+                'data'=>$test
             ];
         }
         return response()->json($response);
@@ -136,7 +136,7 @@ class TestTypeController extends Controller
      */
     public function destroy($id)
     {
-      $deleted=TestTypeModel::findOrFail($id)->delete();
-      return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
+        $deleted=TestModel::findOrFail($id)->delete();
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
