@@ -6477,6 +6477,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.EditTestForm.id = id;
       _this.EditTestForm = data;
+      _this.EditTestForm.status = data.test_status;
     },
     UpdateTest: function UpdateTest() {
       var _this4 = this;
@@ -7218,6 +7219,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.EditTestSubCategoryForm.id = id;
       _this.EditTestSubCategoryForm = data;
+      _this.EditTestSubCategoryForm.status = data.sub_category_status;
     },
     UpdateTestSubCategory: function UpdateTestSubCategory() {
       var _this4 = this;
@@ -7602,6 +7604,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.EditTestTypeForm.id = id;
       _this.EditTestTypeForm = data;
+      _this.EditTestTypeForm.status = data.test_type_status;
     },
     UpdateTestType: function UpdateTestType() {
       var _this4 = this;
