@@ -15,6 +15,7 @@ import PatientAppointmentComponent from './components/Monitor_hospital/Patient/P
 import TestCategoryComponent from './components/Test/TestCategory'
 import TestSubCategoryComponent from './components/Test/TestSubCategory'
 import TestTypeComponent from './components/Test/TestType'
+import TestComponent from './components/Test/Test'
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -102,6 +103,11 @@ export const routes = [
       path:'/test_type',
       component:TestTypeComponent,
       name:'/test_type'
+    },
+    {
+      path:'/test',
+      component:TestComponent,
+      name:'/test'
     }
 
 ]
