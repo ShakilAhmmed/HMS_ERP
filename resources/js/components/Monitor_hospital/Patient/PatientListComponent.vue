@@ -56,14 +56,19 @@
                    <button v-else class="btn btn-primary" @click="StatusChange(patient_data.users_id)">
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
-
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal">
-                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  </button>
+                 <button class="btn btn-info">
+                  <router-link :to="{ name: 'edit-patient', params:{patient_id: patient_data.users_id }}">
+                      <i class="fa fa-pencil-square-o router_link_color" aria-hidden="true"></i>
+                  </router-link>
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
+        <pagination :data="PatientList"  :limit=3 @pagination-change-page="GetPatientList">
+            <span slot="prev-nav">&lt; Previous</span>
+            <span slot="next-nav">Next &gt;</span>
+        </pagination>
       </div>
   </div>
 </template>
