@@ -73,7 +73,18 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        //
+        $test = TestModel::findOrFail($id);
+        if ($test->status == 1)
+        {
+          $test->update(['status'=>2]);
+          $response=['status'=>202];
+        }
+        else
+        {
+          $test->update(['status'=>1]);
+          $response=['status'=>200];
+        }
+        return response()->json($response);
     }
 
     /**
