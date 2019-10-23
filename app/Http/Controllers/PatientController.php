@@ -16,9 +16,17 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::whereType('9')->paginate(20);
+        $patient_data=User::where(function($patient_data) use ($request){
+            if($request->q)
+            {
+               $patient_data->where('users_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('email','LIKE','%'.$request->q.'%')
+                            ->orWhere('phone','LIKE','%'.$request->q.'%');
+            }
+        })->whereType('9')->paginate($request->row);
+        return $patient_data;
     }
 
     /**

@@ -2100,7 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var main_url = base_path + 'department?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
-      console.log(main_url);
+      this.LoadingStatus();
       this.axios.get(main_url).then(function (response) {
         _this.DepartmentList = response.data;
         console.log(response.data);
@@ -4556,20 +4556,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Users",
   data: function data() {
     return {
-      PatientList: {}
+      PatientList: {},
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
     };
   },
   methods: {
     GetPatientList: function GetPatientList() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
       var _this = this;
 
-      this.axios.get(base_path + 'patient?page=' + page).then(function (response) {
+      var main_url = base_path + 'patient?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+
+      if (_this.search == '') {
+        this.LoadingStatus();
+      }
+
+      this.axios.get(main_url).then(function (response) {
         _this.PatientList = response.data;
         console.log(response.data);
       })["catch"](function (error) {
@@ -71500,7 +71520,92 @@ var render = function() {
               _vm._v(" "),
               _vm._m(1)
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.custom_row,
+                      expression: "custom_row"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.custom_row = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.GetPatientList
+                    ]
+                  }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.GetPatientList,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
