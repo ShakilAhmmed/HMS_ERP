@@ -43,7 +43,26 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $test=new TestModel;
+        $validator=Validator::make($request->all(),$test->validate());
+        if($validator->fails())
+        {
+            $response=[
+                'status'=>400,
+                'errors'=>$validator->errors()
+            ];
+        }
+        else
+        {
+            $requested_data=$request->all();
+            $requested_data=Arr::add($requested_data,'test_id',time());
+            $test->fill($requested_data)->save();
+            $response=[
+                'status'=>201,
+                'data'=>$test
+            ];
+        }
+        return response()->json($response);
     }
 
     /**
