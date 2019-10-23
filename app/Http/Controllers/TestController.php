@@ -107,7 +107,25 @@ class TestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $test=TestModel::findOrFail($id);
+        $validator=Validator::make($request->all(),$test->validate($id));
+        if($validator->fails())
+        {
+            $response=[
+                'status'=>400,
+                'errors'=>$validator->errors()
+            ];
+        }
+        else
+        {
+            $requested_data=$request->all();
+            $test->fill($requested_data)->save();
+            $response=[
+                'status'=>201,
+                'data'=>$test
+            ];
+        }
+        return response()->json($response);
     }
 
     /**
@@ -118,6 +136,7 @@ class TestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleted=TestModel::findOrFail($id)->delete();
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
