@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TestSubCategoryModel;
 use App\TestCategoryModel;
+use App\TestTypeModel;
+use App\TestModel;
 use Validator;
 use Arr;
 
@@ -137,7 +139,12 @@ class TestSubCategoryController extends Controller
      */
     public function destroy($id)
     {
+      $test_type = TestTypeModel::where('test_sub_category_id',$id)->get();
+      $test_type_id=collect($test_type)->pluck('test_type_id')->toArray();
+      $delete_test=TestModel::whereIn('test_type_id',$test_type_id)->delete();
+      TestTypeModel::where('test_sub_category_id',$id)->delete();
       $deleted=TestSubCategoryModel::findOrFail($id)->delete();
+      
       return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }
