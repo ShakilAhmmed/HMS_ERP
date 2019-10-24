@@ -29,7 +29,25 @@
           <li><router-link to="/bedallotment">Bed Allotment</router-link></li>
         </ul>
       </li>
+ 
       <li><router-link to="/prescription"><i class="icon-list-unordered"></i> <span>Prescription</span></router-link></li>
+ 
+     <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Patient</span></a>
+          <ul>
+            <li><router-link to="/patient">Add Patient</router-link></li>
+            <li><router-link to="/patient_appointment">Patient Appointement</router-link></li>
+          </ul>
+      </li>
+
+      <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Ambulance</span></a>
+          <ul>
+            <li><router-link to="/ambulance_details">Ambulance</router-link></li>
+            
+          </ul>
+      </li>
+
 
        <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->

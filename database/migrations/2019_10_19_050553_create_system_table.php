@@ -25,7 +25,6 @@ class CreateSystemTable extends Migration
             $table->string('system_email');
             $table->string('system_language');
             $table->string('logo');
-            $table->string('text_align');
             $table->timestamps();
         });
     }

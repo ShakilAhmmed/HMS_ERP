@@ -8,8 +8,14 @@ import EditUsersComponent from './components/RBAC/EditUsers'
 import NoticeComponent from './components/Notice/Notice'
 import BedComponent from './components/Monitor_hospital/Bed/bed'
 import BedAllotmentComponent from './components/Monitor_hospital/Bed_Allotment/bed_allotment'
+
 import PrescriptionComponent from './components/Prescription/prescription'
 import SystemComponent from './components/System/system'
+
+import PatientComponent from './components/Monitor_hospital/Patient/PatientComponent'
+import PatientAppointmentComponent from './components/Monitor_hospital/Patient/PatientAppointmentComponent'
+import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -64,6 +70,7 @@ export const routes = [
 	  	name:"/bedallotment"
   	},
   	{
+ 
 	  	path: '/prescription',
 	  	component: PrescriptionComponent,
 	  	name:"/prescription"
@@ -72,6 +79,21 @@ export const routes = [
 	  	path: '/system',
 	  	component: SystemComponent,
 	  	name:"/system"
+  	},
+  	{
+  		path:'/patient',
+  		component:PatientComponent,
+  		name:'/patient'
+  	},
+  	{
+  		path:'/patient_appointment',
+  		component:PatientAppointmentComponent,
+  		name:'/patient_appointment'
+  	},
+  	{
+  		path:'/ambulance_details',
+  		component:AmbulanceComponent,
+  		name:'/ambulance_details'
   	},
 
 ]
