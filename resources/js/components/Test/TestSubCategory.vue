@@ -294,6 +294,7 @@
           const _this=this;
           _this.EditTestSubCategoryForm.id=id;
           _this.EditTestSubCategoryForm=data;
+          _this.EditTestSubCategoryForm.status=data.sub_category_status;
         },
         UpdateTestSubCategory:function()
         {
