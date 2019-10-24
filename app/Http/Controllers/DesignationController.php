@@ -14,9 +14,16 @@ class DesignationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $designation=DesignationModel::paginate(10);
+        $designation=DesignationModel::where(function($designation) use ($request){
+            if($request->q)
+            {
+               $designation->where('designation_name',$request->q)
+                            ->orWhere('description','LIKE','%'.$request->q.'%');
+            }
+        })->paginate($request->row);
+
         return $designation;
     }
 

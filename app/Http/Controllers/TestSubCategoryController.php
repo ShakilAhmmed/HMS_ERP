@@ -17,13 +17,22 @@ class TestSubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['test_sub_category']=TestSubCategoryModel::join('test_category','test_sub_category.test_category_id','=','test_category.test_category_id')
+        $test_sub_category=TestSubCategoryModel::where(function($test_sub_category) use ($request){
+            if($request->q)
+            {
+               $test_sub_category->where('test_sub_category.test_sub_category_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('test_sub_category.description','LIKE','%'.$request->q.'%');
+            }
+        });
+
+        $data['test_sub_category']=$test_sub_category->join('test_category','test_sub_category.test_category_id','=','test_category.test_category_id')
                                       ->select('test_category.test_category_name AS test_category_name',
                                       'test_sub_category.status AS sub_category_status',
                                       'test_sub_category.*','test_category.*')
-                                      ->paginate(10);
+                                      ->paginate($request->row);
+                                      
         $data['test_category']=TestCategoryModel::where('status',1)->get();
         return $data;
     }
@@ -144,7 +153,7 @@ class TestSubCategoryController extends Controller
       $delete_test=TestModel::whereIn('test_type_id',$test_type_id)->delete();
       TestTypeModel::where('test_sub_category_id',$id)->delete();
       $deleted=TestSubCategoryModel::findOrFail($id)->delete();
-      
+
       return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }

@@ -294,7 +294,6 @@
           const _this=this;
           _this.EditTestForm.id=id;
           _this.EditTestForm=data;
-          _this.EditTestForm.status=data.test_status;
         },
         UpdateTest:function()
         {

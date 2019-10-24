@@ -161,6 +161,16 @@
               <li><a data-action="close"></a></li>
             </ul>
           </div>
+          <div id="DataTables_Table_2_filter" class="dataTables_filter  margin-0">
+              <select class="form-control" @change="GetTestSubCategoryList" v-model="custom_row">
+                  <option v-for="row in select_row" v-text="row"></option>
+              </select>
+          </div>
+          <div id="DataTables_Table_2_filter" class="dataTables_filter">
+              <label>
+                  <input type="search" v-model="search" @keyup="GetTestSubCategoryList" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
+              </label>
+          </div>
         </div>
         <table class="table datatable-pagination">
           <thead>
@@ -231,6 +241,9 @@
             },
             TestCategory:[],
             AllError:[],
+            search:'',
+            custom_row:10,
+            select_row:[10,20,30,40,50]
           }
       },
       methods:{
@@ -256,10 +269,11 @@
                 console.error();
               });
         },
-        GetTestSubCategoryList(page = 1)
+        GetTestSubCategoryList(page = 1,custom_row=10)
         {
             const _this=this;
-            this.axios.get(base_path+'test_sub_category?page='+page)
+            const main_url=base_path+'test_sub_category?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+            this.axios.get(main_url)
             .then((response)=>{
                 _this.TestSubCategoryList=response.data.test_sub_category;
                 _this.TestCategory=response.data.test_category;
