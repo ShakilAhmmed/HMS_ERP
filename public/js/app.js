@@ -4784,7 +4784,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "Patient",
   data: function data() {
     return {
-      AddPatient: {
+      EditPatient: {
         users_name: '',
         guardian_name: '',
         address: '',
@@ -4813,55 +4813,44 @@ __webpack_require__.r(__webpack_exports__);
       this.LoadingStatus();
 
       reader.onload = function (event) {
-        _this2.AddPatient.image = event.target.result;
+        _this2.EditPatient.image = event.target.result;
         _this2.image_source = event.target.result;
       };
 
       reader.readAsDataURL(file);
     },
-    AddNewPatient: function AddNewPatient() {
+    GetPatientData: function GetPatientData() {
+      var _this = this;
+
+      this.axios.get(base_path + 'patient/' + this.$route.params.patient_id + '/edit').then(function (response) {
+        console.log(response.data);
+        _this.EditPatient = response.data;
+        _this.image_source = response.data.image;
+      });
+    },
+    UpdatePatient: function UpdatePatient() {
       var _this3 = this;
 
       var _this = this;
 
-      axios.post(this.baseUrl + 'patient', _this.AddPatient).then(function (response) {
+      axios.post(this.baseUrl + 'patient', _this.EditPatient).then(function (response) {
         console.log(response.data);
 
         if (response.data.status === 201) {
           _this3.$toastr.success('Users Added Successfully', 'Success');
 
           _this3.LoadingStatus();
-
-          _this.ClearForm();
         } else {
           _this.Errors = response.data.errors;
         }
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    ClearForm: function ClearForm() {
-      var _this = this;
-
-      _this.Errors = [];
-      _this.AddPatient.users_name = '';
-      _this.AddPatient.guardian_name = '';
-      _this.AddPatient.address = '';
-      _this.AddPatient.phone = '';
-      _this.AddPatient.sex = '';
-      _this.AddPatient.birth_date = '';
-      _this.AddPatient.age = '';
-      _this.AddPatient.blood_group = '';
-      _this.AddPatient.status = '';
-      _this.AddPatient.status = '';
-      _this.AddPatient.image = '';
-      _this.image_source = 'https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png';
-      _this.confirm_password = '';
-      _this.AddPatient.email = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
+    this.GetPatientData();
     console.log("Patient");
   }
 });
@@ -72819,22 +72808,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "add_users" }, [
     _c("div", { staticClass: "panel panel-flat" }, [
-      _c("div", { staticClass: "panel-heading" }, [
-        _c("div", { staticClass: "heading-elements" }, [
-          _c("ul", { staticClass: "icons-list" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", {
-                attrs: { "data-action": "reload" },
-                on: { click: _vm.ClearForm }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ])
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
         _c(
@@ -72843,7 +72817,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.AddNewPatient($event)
+                return _vm.EditPatient($event)
               }
             }
           },
@@ -72851,7 +72825,10 @@ var render = function() {
             _c("fieldset", { staticClass: "content-group" }, [
               _c("form", { staticClass: "form-horizontal" }, [
                 _c("legend", { staticClass: "text-bold" }, [
-                  _vm._v("Add New Patient")
+                  _vm._v(
+                    _vm._s(_vm.EditPatient.users_name) +
+                      " 's Update Information"
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -72867,20 +72844,20 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.users_name,
-                              expression: "AddPatient.users_name"
+                              value: _vm.EditPatient.users_name,
+                              expression: "EditPatient.users_name"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text", placeholder: "Name" },
-                          domProps: { value: _vm.AddPatient.users_name },
+                          domProps: { value: _vm.EditPatient.users_name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "users_name",
                                 $event.target.value
                               )
@@ -72914,8 +72891,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.guardian_name,
-                              expression: "AddPatient.guardian_name"
+                              value: _vm.EditPatient.guardian_name,
+                              expression: "EditPatient.guardian_name"
                             }
                           ],
                           staticClass: "form-control",
@@ -72923,14 +72900,14 @@ var render = function() {
                             type: "text",
                             placeholder: "Enter Guardian Name"
                           },
-                          domProps: { value: _vm.AddPatient.guardian_name },
+                          domProps: { value: _vm.EditPatient.guardian_name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "guardian_name",
                                 $event.target.value
                               )
@@ -72966,20 +72943,20 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.address,
-                              expression: "AddPatient.address"
+                              value: _vm.EditPatient.address,
+                              expression: "EditPatient.address"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { placeholder: "Enter Address" },
-                          domProps: { value: _vm.AddPatient.address },
+                          domProps: { value: _vm.EditPatient.address },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "address",
                                 $event.target.value
                               )
@@ -73013,8 +72990,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.phone,
-                              expression: "AddPatient.phone"
+                              value: _vm.EditPatient.phone,
+                              expression: "EditPatient.phone"
                             }
                           ],
                           staticClass: "form-control",
@@ -73022,14 +72999,14 @@ var render = function() {
                             type: "text",
                             placeholder: "Enter Phone Number"
                           },
-                          domProps: { value: _vm.AddPatient.phone },
+                          domProps: { value: _vm.EditPatient.phone },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "phone",
                                 $event.target.value
                               )
@@ -73065,8 +73042,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.AddPatient.sex,
-                                expression: "AddPatient.sex"
+                                value: _vm.EditPatient.sex,
+                                expression: "EditPatient.sex"
                               }
                             ],
                             staticClass: "form-control",
@@ -73081,7 +73058,7 @@ var render = function() {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.AddPatient,
+                                  _vm.EditPatient,
                                   "sex",
                                   $event.target.multiple
                                     ? $$selectedVal
@@ -73135,8 +73112,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.birth_date,
-                              expression: "AddPatient.birth_date"
+                              value: _vm.EditPatient.birth_date,
+                              expression: "EditPatient.birth_date"
                             }
                           ],
                           staticClass: "form-control",
@@ -73144,14 +73121,14 @@ var render = function() {
                             type: "date",
                             placeholder: "Enter Birth Date"
                           },
-                          domProps: { value: _vm.AddPatient.birth_date },
+                          domProps: { value: _vm.EditPatient.birth_date },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "birth_date",
                                 $event.target.value
                               )
@@ -73185,20 +73162,20 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.age,
-                              expression: "AddPatient.age"
+                              value: _vm.EditPatient.age,
+                              expression: "EditPatient.age"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text", placeholder: "Enter Age" },
-                          domProps: { value: _vm.AddPatient.age },
+                          domProps: { value: _vm.EditPatient.age },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "age",
                                 $event.target.value
                               )
@@ -73234,8 +73211,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.AddPatient.blood_group,
-                                expression: "AddPatient.blood_group"
+                                value: _vm.EditPatient.blood_group,
+                                expression: "EditPatient.blood_group"
                               }
                             ],
                             staticClass: "form-control",
@@ -73250,7 +73227,7 @@ var render = function() {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.AddPatient,
+                                  _vm.EditPatient,
                                   "blood_group",
                                   $event.target.multiple
                                     ? $$selectedVal
@@ -73337,8 +73314,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.AddPatient.status,
-                                expression: "AddPatient.status"
+                                value: _vm.EditPatient.status,
+                                expression: "EditPatient.status"
                               }
                             ],
                             staticClass: "form-control",
@@ -73353,7 +73330,7 @@ var render = function() {
                                     return val
                                   })
                                 _vm.$set(
-                                  _vm.AddPatient,
+                                  _vm.EditPatient,
                                   "status",
                                   $event.target.multiple
                                     ? $$selectedVal
@@ -73403,20 +73380,20 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.email,
-                              expression: "AddPatient.email"
+                              value: _vm.EditPatient.email,
+                              expression: "EditPatient.email"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text", placeholder: "Enter Email" },
-                          domProps: { value: _vm.AddPatient.email },
+                          domProps: { value: _vm.EditPatient.email },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "email",
                                 $event.target.value
                               )
@@ -73452,8 +73429,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.AddPatient.password,
-                              expression: "AddPatient.password"
+                              value: _vm.EditPatient.password,
+                              expression: "EditPatient.password"
                             }
                           ],
                           staticClass: "form-control",
@@ -73461,14 +73438,14 @@ var render = function() {
                             type: "password",
                             placeholder: "Enter Password"
                           },
-                          domProps: { value: _vm.AddPatient.password },
+                          domProps: { value: _vm.EditPatient.password },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(
-                                _vm.AddPatient,
+                                _vm.EditPatient,
                                 "password",
                                 $event.target.value
                               )
@@ -73476,9 +73453,9 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        (_vm.AddPatient.password &&
-                        _vm.AddPatient.password.length
-                          ? _vm.AddPatient.password.length
+                        (_vm.EditPatient.password &&
+                        _vm.EditPatient.password.length
+                          ? _vm.EditPatient.password.length
                           : 0) == 0
                           ? _c("span", { staticClass: "text-warning" }, [
                               _c("i", {
@@ -73487,9 +73464,9 @@ var render = function() {
                               }),
                               _vm._v(" Password Is Empty")
                             ])
-                          : (_vm.AddPatient.password &&
-                            _vm.AddPatient.password.length
-                              ? _vm.AddPatient.password.length
+                          : (_vm.EditPatient.password &&
+                            _vm.EditPatient.password.length
+                              ? _vm.EditPatient.password.length
                               : 0) < 8
                           ? _c("span", { staticClass: "text-danger" }, [
                               _c("i", {
@@ -73546,9 +73523,9 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _vm.confirm_password.length != 0 &&
-                        _vm.AddPatient.password &&
-                        _vm.AddPatient.password.length != 0 &&
-                        _vm.AddPatient.password != _vm.confirm_password
+                        _vm.EditPatient.password &&
+                        _vm.EditPatient.password.length != 0 &&
+                        _vm.EditPatient.password != _vm.confirm_password
                           ? _c("span", { staticClass: "text-danger" }, [
                               _c("i", {
                                 staticClass: "fa fa-exclamation-triangle",
@@ -73556,9 +73533,9 @@ var render = function() {
                               }),
                               _vm._v(" Password Not Mactched")
                             ])
-                          : _vm.AddPatient.password &&
-                            _vm.AddPatient.password.length != 0 &&
-                            _vm.AddPatient.password == _vm.confirm_password
+                          : _vm.EditPatient.password &&
+                            _vm.EditPatient.password.length != 0 &&
+                            _vm.EditPatient.password == _vm.confirm_password
                           ? _c("span", { staticClass: "text-success" }, [
                               _c("i", {
                                 staticClass: "fa fa-check-circle",
@@ -73600,7 +73577,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       ])
@@ -73612,13 +73589,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("div", { staticClass: "heading-elements" }, [
+        _c("ul", { staticClass: "icons-list" }, [
+          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this

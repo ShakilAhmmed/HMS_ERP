@@ -129,7 +129,7 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        //
+        return User::findOrFail($id);
     }
 
     /**

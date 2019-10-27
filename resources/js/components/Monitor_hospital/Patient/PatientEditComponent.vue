@@ -6,7 +6,7 @@
         <div class="heading-elements">
           <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload" @click="ClearForm"></a></li>
+                    <li><a data-action="reload"></a></li>
                     <li><a data-action="close"></a></li>
                   </ul>
                 </div>
@@ -14,16 +14,16 @@
 
       <div class="panel-body">
 
-        <form @submit.prevent="AddNewPatient">
+        <form @submit.prevent="EditPatient">
           <fieldset class="content-group">
             <form class="form-horizontal">
-            <legend class="text-bold">Add New Patient</legend>
+            <legend class="text-bold">Update {{EditPatient.users_name}} 's Information</legend>
             <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
                   <label class="col-lg-2 control-label">Name:</label>
                   <div class="col-md-10">
-                    <input type="text"  class="form-control" v-model="AddPatient.users_name" placeholder="Name" >
+                    <input type="text"  class="form-control" v-model="EditPatient.users_name" placeholder="Name" >
                     <span class="text-danger" v-if="Errors.users_name" v-text="Errors.users_name[0]"></span>
                   </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Guardian Name: </label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddPatient.guardian_name" placeholder="Enter Guardian Name" >
+                    <input type="text" class="form-control" v-model="EditPatient.guardian_name" placeholder="Enter Guardian Name" >
                     <span class="text-danger" v-if="Errors.guardian_name" v-text="Errors.guardian_name[0]"></span>
                   </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                   <label class="col-md-1 control-label text-left">Address: </label>
                   <div class="col-md-11">
-                    <textarea class="form-control" v-model="AddPatient.address" placeholder="Enter Address"></textarea>
+                    <textarea class="form-control" v-model="EditPatient.address" placeholder="Enter Address"></textarea>
                     <span class="text-danger" v-if="Errors.address" v-text="Errors.address[0]"></span>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Phone:</label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddPatient.phone" placeholder="Enter Phone Number" >
+                    <input type="text" class="form-control" v-model="EditPatient.phone" placeholder="Enter Phone Number" >
                     <span class="text-danger" v-if="Errors.phone" v-text="Errors.phone[0]"></span>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Sex: </label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddPatient.sex">
+                    <select  class="form-control" v-model="EditPatient.sex">
                       <option value="">Select</option>
                       <option value="1">Male</option>
                       <option value="2">Female</option>
@@ -84,7 +84,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Birth Date:</label>
                   <div class="col-md-10">
-                    <input type="date" v-model="AddPatient.birth_date" class="form-control" placeholder="Enter Birth Date" >
+                    <input type="date" v-model="EditPatient.birth_date" class="form-control" placeholder="Enter Birth Date" >
                     <span class="text-danger" v-if="Errors.birth_date" v-text="Errors.birth_date[0]"></span>
                   </div>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Age: </label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddPatient.age" placeholder="Enter Age" >
+                    <input type="text" class="form-control" v-model="EditPatient.age" placeholder="Enter Age" >
                     <span class="text-danger" v-if="Errors.age" v-text="Errors.age[0]"></span>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Blood Group:</label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddPatient.blood_group">
+                    <select  class="form-control" v-model="EditPatient.blood_group">
                       <option value="">Select</option>
                       <option>O−</option>
                       <option>O+</option>
@@ -140,7 +140,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Status:</label>
                   <div class="col-md-10">
-                    <select class="form-control" v-model="AddPatient.status">
+                    <select class="form-control" v-model="EditPatient.status">
                         <option value=''>Select</option>
                         <option value='1'>Active</option>
                         <option value="2">Inactive</option>
@@ -157,7 +157,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Email:</label>
                   <div class="col-md-10">
-                    <input type="text"  v-model="AddPatient.email" class="form-control" placeholder="Enter Email" >
+                    <input type="text"  v-model="EditPatient.email" class="form-control" placeholder="Enter Email" >
                     <span class="text-danger" v-if="Errors.email" v-text="Errors.email[0]"></span>
                   </div>
                 </div>
@@ -169,10 +169,10 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Password:</label>
                   <div class="col-md-10">
-                    <input type="password" v-model="AddPatient.password"  class="form-control" placeholder="Enter Password" >
+                    <input type="password" v-model="EditPatient.password"  class="form-control" placeholder="Enter Password" >
 
-                    <span class="text-warning" v-if="(AddPatient.password && AddPatient.password.length ? AddPatient.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
-                     <span class="text-danger" v-else-if="(AddPatient.password && AddPatient.password.length ? AddPatient.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
+                    <span class="text-warning" v-if="(EditPatient.password && EditPatient.password.length ? EditPatient.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
+                     <span class="text-danger" v-else-if="(EditPatient.password && EditPatient.password.length ? EditPatient.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
                     <span class="text-success" v-else><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Is Strong</span>
                   </div>
                 </div>
@@ -184,8 +184,8 @@
                   <label class="col-md-2 control-label text-left">Confirm Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="confirm_password" class="form-control" placeholder="Enter Password" >
-                    <span class="text-danger" v-if="confirm_password.length !=0 &&  AddPatient.password && AddPatient.password.length !=0 && AddPatient.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
-                     <span class="text-success" v-else-if="AddPatient.password && AddPatient.password.length !=0 && AddPatient.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
+                    <span class="text-danger" v-if="confirm_password.length !=0 &&  EditPatient.password && EditPatient.password.length !=0 && EditPatient.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
+                     <span class="text-success" v-else-if="EditPatient.password && EditPatient.password.length !=0 && EditPatient.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
 
                       <span class="text-danger" v-if="Errors.password" v-text="Errors.password[0]"></span>
                   </div>
@@ -224,7 +224,7 @@
        name:"Patient",
        data(){
           return {
-            AddPatient:{
+            EditPatient:{
               users_name:'',
               guardian_name:'',
               address:'',
@@ -251,21 +251,29 @@
             let reader=new FileReader();
             this.LoadingStatus();
             reader.onload=event =>{
-              this.AddPatient.image = event.target.result;
+              this.EditPatient.image = event.target.result;
               this.image_source=event.target.result;
             }
               reader.readAsDataURL(file)
           },
-          AddNewPatient:function(){
+          GetPatientData:function(){
               const _this=this;
-              axios.post(this.baseUrl+'patient',_this.AddPatient)
+              this.axios.get(base_path+'patient/'+this.$route.params.patient_id+'/edit')
+               .then((response)=>{
+                 console.log(response.data);
+                 _this.EditPatient=response.data;
+                 _this.image_source=response.data.image;
+               })
+          },
+          UpdatePatient:function(){
+              const _this=this;
+              axios.post(this.baseUrl+'patient',_this.EditPatient)
               .then((response)=>{
                   console.log(response.data);
                   if(response.data.status===201)
                   {
                      this.$toastr.success('Users Added Successfully', 'Success');
                      this.LoadingStatus();
-                     _this.ClearForm();
                   }
                   else
                   {
@@ -276,28 +284,10 @@
                   console.log(error)
               })
           },
-          ClearForm:function(){
-            const _this=this;
-            _this.Errors=[];
-            _this.AddPatient.users_name='';
-            _this.AddPatient.guardian_name='';
-            _this.AddPatient.address='';
-            _this.AddPatient.phone='';
-            _this.AddPatient.sex='';
-            _this.AddPatient.birth_date='';
-            _this.AddPatient.age='';
-            _this.AddPatient.blood_group='';
-            _this.AddPatient.status='';
-            _this.AddPatient.status='';
-            _this.AddPatient.image='';
-            _this.image_source='https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png';
-            _this.confirm_password='';
-            _this.AddPatient.email='';
-          }
-
         },
         mounted(){
           this.LoadingStatus();
+          this.GetPatientData();
           console.log("Patient");
         }
       }
