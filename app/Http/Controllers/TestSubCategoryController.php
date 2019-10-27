@@ -23,7 +23,8 @@ class TestSubCategoryController extends Controller
             if($request->q)
             {
                $test_sub_category->where('test_sub_category.test_sub_category_name','LIKE','%'.$request->q.'%')
-                            ->orWhere('test_sub_category.description','LIKE','%'.$request->q.'%');
+                            ->orWhere('test_sub_category.description','LIKE','%'.$request->q.'%')
+                            ->orWhere('test_category.test_category_name','LIKE','%'.$request->q.'%');
             }
         });
 
@@ -32,7 +33,7 @@ class TestSubCategoryController extends Controller
                                       'test_sub_category.status AS sub_category_status',
                                       'test_sub_category.*','test_category.*')
                                       ->paginate($request->row);
-                                      
+
         $data['test_category']=TestCategoryModel::where('status',1)->get();
         return $data;
     }

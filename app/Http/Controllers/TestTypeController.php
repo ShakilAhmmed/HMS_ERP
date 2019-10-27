@@ -16,12 +16,20 @@ class TestTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $data['test_type']=TestTypeModel::join('test_sub_category','test_type.test_sub_category_id','=','test_sub_category.test_sub_category_id')
+      $test_type=TestTypeModel::where(function($test_type) use ($request){
+          if($request->q)
+          {
+             $test_type->where('test_type.test_type_name','LIKE','%'.$request->q.'%')
+                          ->orWhere('test_sub_category.test_sub_category_name','LIKE','%'.$request->q.'%');
+          }
+      });
+
+      $data['test_type']=$test_type->join('test_sub_category','test_type.test_sub_category_id','=','test_sub_category.test_sub_category_id')
                                     ->select('test_type.status AS test_type_status',
                                     'test_type.*','test_sub_category.*')
-                                    ->paginate(10);
+                                    ->paginate($request->row);
       $data['test_sub_category']=TestSubCategoryModel::where('status',1)->get();
       return response()->json($data);
     }
@@ -139,7 +147,7 @@ class TestTypeController extends Controller
     {
         TestModel::where('test_type_id',$id)->get();
         $deleted=TestTypeModel::findOrFail($id)->delete();
-        
+
         return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }

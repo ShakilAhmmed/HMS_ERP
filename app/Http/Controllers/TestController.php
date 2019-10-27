@@ -15,12 +15,22 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['test']=TestModel::join('test_type','test.test_type_id','=','test_type.test_type_id')
+        $test=TestModel::where(function($test) use ($request){
+            if($request->q)
+            {
+               $test->where('test.test_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('test_type.test_type_name','LIKE','%'.$request->q.'%');
+            }
+        });
+
+
+        $data['test']=$test->join('test_type','test.test_type_id','=','test_type.test_type_id')
                                       ->select('test.status AS test_status',
                                       'test.*','test_type.*')
-                                      ->paginate(10);
+                                      ->paginate($request->row);
+
         $data['test_type']=TestTypeModel::where('status',1)->get();
         return response()->json($data);
     }
