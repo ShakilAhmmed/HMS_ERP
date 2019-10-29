@@ -29,9 +29,9 @@
           <li><router-link to="/bedallotment">Bed Allotment</router-link></li>
         </ul>
       </li>
- 
+
       <li><router-link to="/prescription"><i class="icon-list-unordered"></i> <span>Prescription</span></router-link></li>
- 
+
      <li>
         <a href="#"><i class="icon-stack2"></i> <span>Patient</span></a>
           <ul>
@@ -54,7 +54,14 @@
         <a href="#"><i class="icon-stack2"></i> <span>Ambulance</span></a>
           <ul>
             <li><router-link to="/ambulance_details">Ambulance</router-link></li>
-            
+
+          </ul>
+      </li>
+
+      <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Operation</span></a>
+          <ul>
+            <li><router-link to="/operation">Operation</router-link></li>
           </ul>
       </li>
 
@@ -93,7 +100,7 @@
           <li><a href="wizard_steps.html">Steps wizard</a></li>
           <li><a href="wizard_form.html">Form wizard</a></li>
           <li><a href="wizard_stepy.html">Stepy wizard</a></li>
-        </ul>
+        </ul>Ambulance/ambulance_details
       </li> -->
       <!-- <li>
         <a href="#"><i class="icon-spell-check"></i> <span>Editors</span></a>
