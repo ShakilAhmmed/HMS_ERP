@@ -110,7 +110,6 @@
 
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="col-lg-3 control-label">Description:</label>
                                                 <div class="col-lg-9">
@@ -163,6 +162,16 @@
                 		<li><a data-action="close"></a></li>
                 	</ul>
             	</div>
+              <div id="DataTables_Table_2_filter" class="dataTables_filter  margin-0">
+                  <select class="form-control" @change="GetDesignationList" v-model="custom_row">
+                      <option v-for="row in select_row" v-text="row"></option>
+                  </select>
+              </div>
+              <div id="DataTables_Table_2_filter" class="dataTables_filter">
+                  <label>
+                      <input type="search" v-model="search" @keyup="GetDesignationList" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
+                  </label>
+              </div>
 			</div>
 
 
@@ -229,20 +238,23 @@
                     status: ''
                 },
                 AllError:[],
+                search:'',
+                custom_row:10,
+                select_row:[10,20,30,40,50]
             }
         },
         methods:{
-            GetDesignationList(page = 1)
+            GetDesignationList(page = 1,custom_row=10)
             {
                 const _this=this;
-                this.axios.get(base_path+'designation?page='+page)
+                const main_url=base_path+'designation?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+                this.axios.get(main_url)
                 .then((response)=>{
                     _this.DesignationList=response.data;
-                    console.log(response.data)
                 })
                 .catch((error)=>{
-						console.log(error)
-				})
+        						console.log(error)
+        				})
             },
             AddDesignation:function(){
 
@@ -325,7 +337,7 @@
                       showCancelButton: true,
                       confirmButtonColor: '#3085d6',
                       cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, delete it!' 
+                      confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                       if (result.value) {
                         this.axios.delete(base_path+'designation/'+id)
@@ -379,7 +391,7 @@
                 .catch((error)=>{
                     console.log(error)
                 })
-            },  
+            },
     },
 
 	mounted(){

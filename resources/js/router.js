@@ -78,7 +78,7 @@ export const routes = [
 	  	name:"/bedallotment"
   	},
   	{
- 
+
 	  	path: '/prescription',
 	  	component: PrescriptionComponent,
 	  	name:"/prescription"

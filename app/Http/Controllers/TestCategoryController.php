@@ -17,9 +17,16 @@ class TestCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $test_category=TestCategoryModel::paginate(10);
+      $test_category=TestCategoryModel::where(function($test_category) use ($request){
+          if($request->q)
+          {
+             $test_category->where('test_category_name',$request->q)
+                          ->orWhere('description','LIKE','%'.$request->q.'%');
+          }
+      })->paginate($request->row);
+
       return $test_category;
     }
 
