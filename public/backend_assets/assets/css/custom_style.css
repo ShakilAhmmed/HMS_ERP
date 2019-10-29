@@ -18,7 +18,9 @@
 .view_modal_width{
 	width: 130%;
   margin-left: -14%;
-
+}
+.view_modal_image_width > img{
+	width: 170px;
 }
 .panel-body .text-center > img{
 	margin-bottom: 40px;

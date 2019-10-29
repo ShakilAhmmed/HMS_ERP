@@ -16,7 +16,8 @@
       <li>
         <a href="#"><i class="icon-stack2"></i> <span>RBAC</span></a>
         <ul>
-          <li><router-link to="/users">Users</router-link></li>
+          <li><router-link to="/add_users">Add Users</router-link></li>
+          <li><router-link to="/users_list">Users List</router-link></li>
         </ul>
       </li>
       <li><router-link to="/notice"><i class="icon-list-unordered"></i> <span>Notice</span></router-link></li>

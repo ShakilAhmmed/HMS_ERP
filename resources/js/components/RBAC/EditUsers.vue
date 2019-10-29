@@ -16,8 +16,8 @@
 
         <form @submit.prevent="UpdateShift">
           <fieldset class="content-group">
-            <form class="form-horizontal" @submit.prevent="UpdateShift">
-            <legend class="text-bold">Edit New User</legend>
+            <form class="form-horizontal" @submit.prevent="AddUsers">
+            <legend class="text-bold">Add New User</legend>
             <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
@@ -31,10 +31,14 @@
 
               <div class="col-md-6">
                 <div class="row">
-                  <label class="col-md-2 control-label text-left">Guardian Name: </label>
+                  <label class="col-md-2 control-label text-left">User type: </label>
                   <div class="col-md-10">
-                    <input type="text" v-model="EditUsersForm.guardian_name" class="form-control" placeholder="Enter Guardian Name" >
-                    <span class="text-danger" v-if="AllError.guardian_name" v-text="AllError.guardian_name[0]"></span>
+                    <select v-model="EditUsersForm.type" class="form-control">
+                      <option value="">Select</option>
+                      <option value="1">Super Admin</option>
+                      <option value="2">Admin</option>
+                    </select>
+                    <span class="text-danger" v-if="AllError.type" v-text="AllError.type[0]"></span>
                   </div>
                 </div>
               </div>
@@ -89,15 +93,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Age: </label>
-                  <div class="col-md-10">
-                    <input type="text" v-model="EditUsersForm.age" class="form-control" placeholder="Enter Age" >
-                    <span class="text-danger" v-if="AllError.age" v-text="AllError.age[0]"></span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="form-group">
@@ -120,67 +115,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Department: </label>
-                  <div class="col-md-10">
-                    <select v-model="EditUsersForm.department_id" class="form-control">
-                      <option v-for="data_value in GetDataValue.department" v-text="data_value.department_name" :value="data_value.departments_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.department_id" v-text="AllError.department_id[0]"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-lg-2 control-label">Designation:</label>
-                  <div class="col-md-10">
-                    <select v-model="EditUsersForm.designation_id" class="form-control">
-                      <option v-for="data_value in GetDataValue.designation" v-text="data_value.designation_name" :value="data_value.designation_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.designation_id" v-text="AllError.designation_id[0]"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Shift: </label>
-                  <div class="col-md-10">
-                    <select v-model="EditUsersForm.shift_id" class="form-control">
-                      <option v-for="data_value in GetDataValue.shift" v-text="data_value.shift_name" :value="data_value.shift_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.shift_id" v-text="AllError.shift_id[0]"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-lg-2 control-label">Working Hours</label>
-                  <div class="col-md-10">
-                    <input type="text" v-model="EditUsersForm.working_hours" class="form-control" placeholder="Enter Working Hours" >
-                    <span class="text-danger" v-if="AllError.working_hours" v-text="AllError.working_hours[0]"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Status:</label>
-                  <div class="col-md-10">
-                    <select class="form-control" v-model="EditUsersForm.status">
-                        <option value=''>Select</option>
-                        <option value='1'>Active</option>
-                        <option value="2">Inactive</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.status" v-text="AllError.status[0]"></span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="form-group">
@@ -193,12 +127,15 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
                   <label class="col-lg-2 control-label">Image:</label>
                   <div class="col-md-10">
                     <input type="file" class="form-control" @change="ImageGet">
+                    <span class="text-danger" v-if="AllError.project_logo_ext" v-text="AllError.project_logo_ext"></span>
                   </div>
                 </div>
               </div>
@@ -207,25 +144,27 @@
             <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
-                  <label class="col-md-2 control-label text-left">Password:</label>
-                  <div class="col-md-10">
-                    <input type="password" v-model="EditUsersForm.password" class="form-control" placeholder="Enter Password" >
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Confirm Password:</label>
-                  <div class="col-md-10">
-                    <input type="password" v-model="EditUsersForm.password_confirmation" class="form-control" placeholder="Re-Type Password" >
-                    <span class="text-danger" v-if="AllError.password" v-text="AllError.password[0]"></span>
-                  </div>
+                  
                 </div>
               </div>
             </div>
+
+            <div class="form-group">
+                <div class="col-md-6">
+                </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-lg-2 control-label"></label>
+                      <div class="col-md-10">
+                        <img class="custom-image" v-if="EditUsersForm.image" :src="EditUsersForm.image">
+                        <img class="custom-image" else :src="image_source">
+                      </div>
+                    </div>
+                  </div>
+              </div>
           </form>
           </fieldset>
-
           <div class="text-right">
             <button  type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
           </div>
@@ -257,11 +196,12 @@
                 status:'',
                 image:'',
                 email:'',
-                password:'',
-                password_confirmation:'',
+                // password:'',
+                // password_confirmation:'',
               },
               AllError:[],
               GetDataValue:[],
+              image_source:"https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
           }
         },
         methods:{

@@ -50,9 +50,9 @@ export const routes = [
 	  	name:"shift"
   	},
     {
-	  	path: '/users',
+	  	path: '/users_list',
 	  	component: UsersComponent,
-	  	name:"users"
+	  	name:"users_list"
   	},
     {
 	  	path: '/add_users',
@@ -96,9 +96,9 @@ export const routes = [
   		name:'/patient'
   	},
     {
-            path:"/patient-list",
-            component:PatientListComponent,
-            name:'/patient-list'
+      path:"/patient-list",
+      component:PatientListComponent,
+      name:'/patient-list'
     },
     {
   		path:'/edit-patient/:patient_id',

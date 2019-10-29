@@ -22,12 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-      $user=User::join('departments','departments.departments_id','=','users.department_id')
-                      ->join('designation','designation.designation_id','=','users.designation_id')
-                      ->join('shift','shift.shift_id','=','users.shift_id')
-                      ->select('users.status as U_status','users.*','departments.*','designation.*','shift.*')
-                      ->where('users.type','1')
-                      ->paginate(10);
+      $user=User::paginate(10);
       return $user;
     }
 
@@ -79,13 +74,6 @@ class UserController extends Controller
                   $requested_data=Arr::add($requested_data,'users_id',time());
                   $password = Hash::make($request->password);
                   $requested_data=Arr::set($requested_data,'password',$password);
-                  //$requested_data=Arr::set($requested_data,'type',$request->type);
-
-                  $users->fill($requested_data)->save();
-                  $response=[
-                        'status'=>201,
-                        'data'=>$users
-                    ];
               }
               else
               {
@@ -96,12 +84,13 @@ class UserController extends Controller
               }
 
           }
-          else {
-              $response=[
-                 'errors'=>['project_logo_ext'=>"Please Provide An Image"],
-                 'status'=>400
-             ];
-          }
+
+          $requested_data=Arr::set($requested_data,'status',1);
+          $users->fill($requested_data)->save();
+          $response=[
+                'status'=>201,
+                'data'=>$users
+            ];
 
       }
       return response()->json($response);
@@ -152,7 +141,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
       $user=User::findOrFail($id);
-      $validator=Validator::make($request->all(),$user->validate($id));
+      $validator=Validator::make($request->all(),$user->update_validate($id));
       if($validator->fails())
       {
           $response=[
