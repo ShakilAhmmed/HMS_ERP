@@ -57,7 +57,7 @@ class User extends Authenticatable
       ];
     }
 
-    public function patient_validate()
+    public function patient_validate($id)
     {
         return [
         'users_name'=>'required|max:50',
@@ -66,7 +66,7 @@ class User extends Authenticatable
         'sex'=>'required|max:20',
         'status'=>'required',
         'blood_group'=>'required',
-        'email'=>'required|unique:users,email',
+        'email'=>'required|unique:users,email,'.$id.',users_id',
         'password'=>'required',
       ];
     }
