@@ -24,6 +24,8 @@ import TestComponent from './components/Test/Test'
 
 import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
 
+import OperationComponent from './components/Operation/operation'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -132,6 +134,11 @@ export const routes = [
   		path:'/ambulance_details',
   		component:AmbulanceComponent,
   		name:'/ambulance_details'
+  	},
+  	{
+  		path:'/operation',
+  		component:OperationComponent,
+  		name:'/operation'
   	},
 
 ]
