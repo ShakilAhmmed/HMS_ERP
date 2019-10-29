@@ -9,6 +9,7 @@ use Image;
 use Hash;
 use Arr;
 use Helper;
+use File;
 class PatientController extends Controller
 {
     /**
@@ -68,6 +69,7 @@ class PatientController extends Controller
                 $allowed=Helper::ImageExtension($extenstion[1]);
                 if($allowed=="Allowed")
                 {
+
                     $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
                     $image_upload=Image::make($request->image)->resize(300, 300);
                     $image_upload->save($upload_path);
@@ -141,7 +143,56 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+      $patient_model=User::where('users_id',$id)->firstOrFail();
+      $validation=Validator::make($request->all(),$patient_model->patient_validate($id));
+      if($validation->fails())
+      {
+            $response=[
+             'status'=>400,
+             'errors'=>$validation->errors()
+         ];
+      }
+      else
+      {
+           $requested_data=$request->all();
+
+           if($request->image && $request->image!=$patient_model->image)
+           {
+               $position=strpos($request->image,";");
+               $sub_str=substr($request->image, 0,$position);
+               $extenstion=explode("/", $sub_str);
+               $allowed=Helper::ImageExtension($extenstion[1]);
+               if($allowed=="Allowed")
+               {
+                   if(File::exists($patient_model->image)):
+                      File::delete($patient_model->image);
+                   endif;
+                   $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+                   $image_upload=Image::make($request->image)->resize(300, 300);
+                   $image_upload->save($upload_path);
+                   $requested_data=Arr::set($requested_data, 'image',$upload_path);
+               }
+               else
+               {
+                   $response=[
+                      'errors'=>['project_logo_ext'=>$allowed],
+                      'status'=>400
+                  ];
+               }
+
+           }
+           $password = Hash::make($request->password);
+           $requested_data=Arr::set($requested_data,'password',$password);
+           $patient_model->fill($requested_data)->save();
+           $response=[
+                 'status'=>201,
+                 'data'=>$patient_model
+             ];
+
+      }
+
+       return response()->json($response);
     }
 
     /**

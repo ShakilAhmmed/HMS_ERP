@@ -14,7 +14,7 @@
 
       <div class="panel-body">
 
-        <form @submit.prevent="EditPatient">
+        <form @submit.prevent="UpdatePatient">
           <fieldset class="content-group">
             <form class="form-horizontal">
             <legend class="text-bold">Update {{EditPatient.users_name}} 's Information</legend>
@@ -170,10 +170,10 @@
                   <label class="col-md-2 control-label text-left">Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="EditPatient.password"  class="form-control" placeholder="Enter Password" >
-
                     <span class="text-warning" v-if="(EditPatient.password && EditPatient.password.length ? EditPatient.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
                      <span class="text-danger" v-else-if="(EditPatient.password && EditPatient.password.length ? EditPatient.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
                     <span class="text-success" v-else><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Is Strong</span>
+                    <span class="text-danger" v-if="Errors.password" v-text="Errors.password[0]"></span>
                   </div>
                 </div>
               </div>
@@ -184,10 +184,9 @@
                   <label class="col-md-2 control-label text-left">Confirm Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="confirm_password" class="form-control" placeholder="Enter Password" >
-                    <span class="text-danger" v-if="confirm_password.length !=0 &&  EditPatient.password && EditPatient.password.length !=0 && EditPatient.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
-                     <span class="text-success" v-else-if="EditPatient.password && EditPatient.password.length !=0 && EditPatient.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
-
-                      <span class="text-danger" v-if="Errors.password" v-text="Errors.password[0]"></span>
+                    <span class="text-danger" v-if="confirm_password.length != 0 && EditPatient.password && EditPatient.password.length !=0 && EditPatient.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
+                    <span class="text-success" v-else-if="EditPatient.password && EditPatient.password.length !=0 && EditPatient.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
+                      <span class="text-danger" v-show="confirm_password.length ==0 "><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Please Confirm Password</span>
                   </div>
                 </div>
               </div>
@@ -211,7 +210,7 @@
           </fieldset>
 
           <div class="text-right">
-            <button  type="submit" class="btn btn-success">Submit <i class="icon-arrow-right14 position-right"></i></button>
+            <button  type="submit" :disabled="EditPatient.password && EditPatient.password.length !=0 && EditPatient.password != confirm_password" class="btn btn-success">Submit <i class="icon-arrow-right14 position-right"></i></button>
           </div>
         </form>
       </div>
@@ -225,6 +224,7 @@
        data(){
           return {
             EditPatient:{
+              users_id:'',
               users_name:'',
               guardian_name:'',
               address:'',
@@ -267,21 +267,21 @@
           },
           UpdatePatient:function(){
               const _this=this;
-              axios.post(this.baseUrl+'patient',_this.EditPatient)
+              this.axios.put(base_path+'patient/'+_this.EditPatient.users_id,_this.EditPatient)
               .then((response)=>{
                   console.log(response.data);
-                  if(response.data.status===201)
+                  if(response.data.status==201)
                   {
-                     this.$toastr.success('Users Added Successfully', 'Success');
-                     this.LoadingStatus();
+                      this.$toastr.success('Patient Edited Successfully', 'Success');
+                      this.LoadingStatus();
                   }
                   else
                   {
-                     _this.Errors=response.data.errors
+                      _this.Errors=response.data.errors;
                   }
               })
               .catch((error)=>{
-                  console.log(error)
+                console.error();
               })
           },
         },
