@@ -144,7 +144,7 @@
             <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
-                  
+
                 </div>
               </div>
             </div>
@@ -158,7 +158,7 @@
                       <label class="col-lg-2 control-label"></label>
                       <div class="col-md-10">
                         <img class="custom-image" v-if="EditUsersForm.image" :src="EditUsersForm.image">
-                        <img class="custom-image" else :src="image_source">
+                        <img class="custom-image" v-else-if="EditUsersForm.image === null" :src="image_source">
                       </div>
                     </div>
                   </div>

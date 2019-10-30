@@ -153,7 +153,7 @@ class UserController extends Controller
       {
         $requested_data=$request->all();
 
-        if($request['image'])
+        if(isset($request['image']) && $request['image'] != $user->image)
         {
           if(File::exists($user->image))
           {
