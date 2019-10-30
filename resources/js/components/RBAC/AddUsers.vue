@@ -6,7 +6,7 @@
         <div class="heading-elements">
           <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
-                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="reload" @click="resetForm()"></a></li>
                     <li><a data-action="close"></a></li>
                   </ul>
                 </div>
@@ -31,10 +31,14 @@
 
               <div class="col-md-6">
                 <div class="row">
-                  <label class="col-md-2 control-label text-left">Guardian Name: </label>
+                  <label class="col-md-2 control-label text-left">User type: </label>
                   <div class="col-md-10">
-                    <input type="text" v-model="UsersForm.guardian_name" class="form-control" placeholder="Enter Guardian Name" >
-                    <span class="text-danger" v-if="AllError.guardian_name" v-text="AllError.guardian_name[0]"></span>
+                    <select v-model="UsersForm.type" class="form-control">
+                      <option value="">Select</option>
+                      <option value="1">Super Admin</option>
+                      <option value="2">Admin</option>
+                    </select>
+                    <span class="text-danger" v-if="AllError.type" v-text="AllError.type[0]"></span>
                   </div>
                 </div>
               </div>
@@ -89,12 +93,13 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="row">
-                  <label class="col-md-2 control-label text-left">Age: </label>
+                  <label class="col-lg-2 control-label">Image:</label>
                   <div class="col-md-10">
-                    <input type="text" v-model="UsersForm.age" class="form-control" placeholder="Enter Age" >
-                    <span class="text-danger" v-if="AllError.age" v-text="AllError.age[0]"></span>
+                    <input type="file" class="form-control" @change="ImageGet">
+                    <span class="text-danger" v-if="AllError.project_logo_ext" v-text="AllError.project_logo_ext"></span>
                   </div>
                 </div>
               </div>
@@ -120,71 +125,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Department: </label>
-                  <div class="col-md-10">
-                    <select v-model="UsersForm.department_id" class="form-control">
-                      <option value="">Select</option>
-                      <option v-for="data_value in GetDataValue.department" v-text="data_value.department_name" :value="data_value.departments_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.department_id" v-text="AllError.department_id[0]"></span>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-lg-2 control-label">Designation:</label>
-                  <div class="col-md-10">
-                    <select v-model="UsersForm.designation_id" class="form-control">
-                      <option value="">Select</option>
-                      <option v-for="data_value in GetDataValue.designation" v-text="data_value.designation_name" :value="data_value.designation_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.designation_id" v-text="AllError.designation_id[0]"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Shift: </label>
-                  <div class="col-md-10">
-                    <select v-model="UsersForm.shift_id" class="form-control">
-                      <option value="">Select</option>
-                      <option v-for="data_value in GetDataValue.shift" v-text="data_value.shift_name" :value="data_value.shift_id">Select</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.shift_id" v-text="AllError.shift_id[0]"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-lg-2 control-label">Working Hours</label>
-                  <div class="col-md-10">
-                    <input type="text" v-model="UsersForm.working_hours" class="form-control" placeholder="Enter Working Hours" >
-                    <span class="text-danger" v-if="AllError.working_hours" v-text="AllError.working_hours[0]"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-md-2 control-label text-left">Status:</label>
-                  <div class="col-md-10">
-                    <select class="form-control" v-model="UsersForm.status">
-                        <option value=''>Select</option>
-                        <option value='1'>Active</option>
-                        <option value="2">Inactive</option>
-                    </select>
-                    <span class="text-danger" v-if="AllError.status" v-text="AllError.status[0]"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div class="form-group">
               <div class="col-md-6">
@@ -197,15 +139,6 @@
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="row">
-                  <label class="col-lg-2 control-label">Image:</label>
-                  <div class="col-md-10">
-                    <input type="file" class="form-control" @change="ImageGet">
-                    <span class="text-danger" v-if="AllError.project_logo_ext" v-text="AllError.project_logo_ext"></span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="form-group">
@@ -220,6 +153,8 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="form-group">
               <div class="col-md-6">
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Confirm Password:</label>
@@ -233,6 +168,19 @@
                 </div>
               </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-lg-2 control-label"></label>
+                      <div class="col-md-10">
+                        <img class="custom-image" :src="image_source">
+                      </div>
+                    </div>
+                  </div>
+              </div>
           </form>
           </fieldset>
 
@@ -252,41 +200,25 @@
           return{
             UsersForm:{
                 users_name:'',
-                guardian_name:'',
                 address:'',
                 phone:'',
                 sex:'',
                 birth_date:'',
-                age:'',
                 blood_group:'',
-                department_id:'',
-                designation_id:'',
-                shift_id:'',
+                type:'',
                 working_hours:'',
                 status:'',
                 image:'',
                 email:'',
                 password:'',
-                type:'1',
                 password_confirmation:'',
 
               },
               AllError:[],
-              GetDataValue:[],
+              image_source:"https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
           }
         },
         methods:{
-          GetData:function(){
-            const _this = this;
-            this.axios.get(base_path+"get_users_add_data")
-              .then((response)=>{
-                _this.GetDataValue = response.data;
-                  console.log(response.data);
-              })
-              .catch((error)=>{
-                console.error();
-              });
-          },
           AddUsers:function(){
               const _this = this;
               this.axios.post(base_path+"users",_this.UsersForm)
@@ -294,10 +226,9 @@
                     if(response.data.status==201)
                     {
                         this.$toastr.success('Users Added Successfully', 'Success');
-                        //_this.UsersList.data.push(response.data.data);
-
                         this.LoadingStatus();
-                        this.$router.push({path:'users'})
+                        _this.AllError=[];
+                        _this.resetForm();
                     }
                     else
                     {
@@ -314,12 +245,17 @@
     			  let reader=new FileReader();
               reader.onload=event =>{
               	this.UsersForm.image = event.target.result;
+                this.image_source=event.target.result;
               }
               reader.readAsDataURL(file)
       		},
-        },
-        mounted(){
-          this.GetData();
+          resetForm() {
+              var _this = this;
+              var FORM = _this.UsersForm;
+              Object.keys(FORM).forEach(function (key, index) {
+                  FORM[key] = '';
+              });
+          },
         },
       }
   </script>

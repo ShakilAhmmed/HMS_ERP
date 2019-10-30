@@ -41,23 +41,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function validate()
+    public function validate($id=0)
     {
       return [
         'users_name'=>'required|max:50',
         'address'=>'required|max:255',
         'phone'=>'required|digits_between:11,14',
         'sex'=>'required|max:20',
-        'department_id'=>'required',
-        'designation_id'=>'required',
-        'shift_id'=>'required',
-        'status'=>'required',
-        'email'=>'required|unique:users,email',
+        'type'=>'required',
+        'email'=>'required|unique:users,email,'.$id.',users_id',
         'password'=>'required|confirmed',
       ];
     }
 
-    public function patient_validate($id)
+    public function update_validate($id=0)
+    {
+      return [
+        'users_name'=>'required|max:50',
+        'address'=>'required|max:255',
+        'phone'=>'required|digits_between:11,14',
+        'sex'=>'required|max:20',
+        'type'=>'required',
+        'email'=>'required|unique:users,email,'.$id.',users_id',
+      ];
+    }
+
+    public function patient_validate($id=0)
     {
         return [
         'users_name'=>'required|max:50',
