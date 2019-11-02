@@ -62,7 +62,7 @@
                         <router-view></router-view>
 
   					<div class="footer text-muted">
-  						&copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+  						&copy; 2019. <a href="#">Hospital ERP</a> by <a href="#" target="_blank">...</a>
   					</div>
   					<!-- /footer -->
 
