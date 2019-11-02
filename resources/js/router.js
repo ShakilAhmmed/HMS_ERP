@@ -16,6 +16,8 @@ import PatientComponent from './components/Monitor_hospital/Patient/PatientCompo
 import PatientAppointmentComponent from './components/Monitor_hospital/Patient/PatientAppointmentComponent'
 import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
 
+import AmbulanceCallComponent from './components/Ambulance/ambulance_call/ambulance_call'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -95,5 +97,10 @@ export const routes = [
   		component:AmbulanceComponent,
   		name:'/ambulance_details'
   	},
+    {
+      path:'/ambulance_call',
+      component:AmbulanceCallComponent,
+      name:'/ambulance_call'
+    },
 
 ]
