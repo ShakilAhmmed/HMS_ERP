@@ -23,9 +23,8 @@ import TestTypeComponent from './components/Test/TestType'
 import TestComponent from './components/Test/Test'
 
 import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
-
+import AmbulanceCallComponent from './components/Ambulance/ambulance_call/ambulance_call'
 import OperationComponent from './components/Operation/operation'
-
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
@@ -147,5 +146,10 @@ export const routes = [
   		component:DoctorAddComponent,
   		name:'/doctor_add'
   	},
+    {
+      path:'/ambulance_call',
+      component:AmbulanceCallComponent,
+      name:'/ambulance_call'
+    },
 
 ]

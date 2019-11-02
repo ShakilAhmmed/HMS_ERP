@@ -15,7 +15,7 @@ class AmbulanceModel extends Model
         return [
             'vehicle_number'=>'required|unique:ambulance,vehicle_number,'.$id.',ambulance_id',
             'driver_name'=>'required',
-            'driver_contact'=>'required',
+            'driver_contact'=>'required|digits_between:11,14',
             'driver_license'=>'required',
             'vehicle_type'=>'required'
         ];
