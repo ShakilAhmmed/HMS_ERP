@@ -3396,6 +3396,356 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Doctor",
+  data: function data() {
+    return {
+      AddDoctor: {
+        users_name: '',
+        address: '',
+        phone: '',
+        sex: '',
+        birth_date: '',
+        age: '',
+        blood_group: '',
+        department_id: '',
+        designation_id: '',
+        status: '',
+        password: '',
+        image: '',
+        email: '',
+        type: '3'
+      },
+      confirm_password: '',
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
+      Errors: [],
+      DeptDegtn: []
+    };
+  },
+  methods: {
+    ImageGet: function ImageGet(event) {
+      var _this2 = this;
+
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      this.LoadingStatus();
+
+      reader.onload = function (event) {
+        _this2.AddDoctor.image = event.target.result;
+        _this2.image_source = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    AddNewDoctor: function AddNewDoctor() {
+      var _this3 = this;
+
+      var _this = this;
+
+      axios.post(this.baseUrl + 'doctor', _this.AddDoctor).then(function (response) {
+        console.log(response.data);
+
+        if (response.data.status === 201) {
+          _this3.$toastr.success('Users Added Successfully', 'Success');
+
+          _this3.LoadingStatus();
+
+          _this.resetForm();
+        } else {
+          _this.Errors = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    GetData: function GetData() {
+      var _this = this;
+
+      axios.get(this.baseUrl + 'doctor/create', _this.AddDoctor).then(function (response) {
+        _this.DeptDegtn = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    resetForm: function resetForm() {
+      var _this = this;
+
+      var FORM = _this.AddDoctor;
+      Object.keys(FORM).forEach(function (key, index) {
+        FORM[key] = '';
+      });
+      _this.AddDoctor.type = '3';
+
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetData();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js& ***!
@@ -64987,6 +65337,955 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "add_users" }, [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", {
+                attrs: { "data-action": "reload" },
+                on: { click: _vm.resetForm }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.AddNewDoctor($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("form", { staticClass: "form-horizontal" }, [
+                _c("legend", { staticClass: "text-bold" }, [
+                  _vm._v("Add New Doctor")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-1 control-label" }, [
+                        _vm._v("Name:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.users_name,
+                              expression: "AddDoctor.users_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Name" },
+                          domProps: { value: _vm.AddDoctor.users_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "users_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.users_name
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.users_name[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-1 control-label text-left" },
+                        [_vm._v("Address: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.address,
+                              expression: "AddDoctor.address"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { placeholder: "Enter Address" },
+                          domProps: { value: _vm.AddDoctor.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.address
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.address[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Phone:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.phone,
+                              expression: "AddDoctor.phone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Phone Number"
+                          },
+                          domProps: { value: _vm.AddDoctor.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "phone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.phone
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.phone[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Sex: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddDoctor.sex,
+                                expression: "AddDoctor.sex"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddDoctor,
+                                  "sex",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Male")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Female")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("Common")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.sex
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.sex[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Department:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddDoctor.department_id,
+                                expression: "AddDoctor.department_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddDoctor,
+                                  "department_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.DeptDegtn.department, function(
+                              data_value
+                            ) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.departments_id,
+                                    textContent: _vm._s(
+                                      data_value.department_name
+                                    )
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.departments_id
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.Errors.departments_id[0]
+                                )
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Designation: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddDoctor.designation_id,
+                                expression: "AddDoctor.designation_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddDoctor,
+                                  "designation_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.DeptDegtn.designation, function(
+                              data_value
+                            ) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.designation_id,
+                                    textContent: _vm._s(
+                                      data_value.designation_name
+                                    )
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.designation_id
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(
+                                  _vm.Errors.designation_id[0]
+                                )
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Birth Date:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.birth_date,
+                              expression: "AddDoctor.birth_date"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            placeholder: "Enter Birth Date"
+                          },
+                          domProps: { value: _vm.AddDoctor.birth_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "birth_date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.birth_date
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.birth_date[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Age: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.age,
+                              expression: "AddDoctor.age"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Age" },
+                          domProps: { value: _vm.AddDoctor.age },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "age",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.age
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.age[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Blood Group:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddDoctor.blood_group,
+                                expression: "AddDoctor.blood_group"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddDoctor,
+                                  "blood_group",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB+")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.blood_group
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.blood_group[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Image:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file" },
+                          on: { change: _vm.ImageGet }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.project_logo_ext
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.project_logo_ext)
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Status:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddDoctor.status,
+                                expression: "AddDoctor.status"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddDoctor,
+                                  "status",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Active")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Inactive")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.status
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.status[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Email:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.email,
+                              expression: "AddDoctor.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Email" },
+                          domProps: { value: _vm.AddDoctor.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.email
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.email[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddDoctor.password,
+                              expression: "AddDoctor.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.AddDoctor.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddDoctor,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        (_vm.AddDoctor.password && _vm.AddDoctor.password.length
+                          ? _vm.AddDoctor.password.length
+                          : 0) == 0
+                          ? _c("span", { staticClass: "text-warning" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Empty")
+                            ])
+                          : (_vm.AddDoctor.password &&
+                            _vm.AddDoctor.password.length
+                              ? _vm.AddDoctor.password.length
+                              : 0) < 8
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Weak")
+                            ])
+                          : _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Strong")
+                            ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Confirm Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.confirm_password,
+                              expression: "confirm_password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.confirm_password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.confirm_password = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.confirm_password.length != 0 &&
+                        _vm.AddDoctor.password &&
+                        _vm.AddDoctor.password.length != 0 &&
+                        _vm.AddDoctor.password != _vm.confirm_password
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Not Mactched")
+                            ])
+                          : _vm.AddDoctor.password &&
+                            _vm.AddDoctor.password.length != 0 &&
+                            _vm.AddDoctor.password == _vm.confirm_password
+                          ? _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Matched")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.Errors.password
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.password[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("img", {
+                          staticClass: "custom-image",
+                          attrs: { src: _vm.image_source }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _vm._v("Submit "),
+          _c("i", { staticClass: "icon-arrow-right14 position-right" })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loading.vue?vue&type=template&id=6ca9e6be&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Loading.vue?vue&type=template&id=6ca9e6be& ***!
@@ -93682,17 +94981,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DoctorAddComponent.vue?vue&type=template&id=e1b82460& */ "./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460&");
+/* harmony import */ var _DoctorAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DoctorAddComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DoctorAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -93700,8 +95002,42 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/components/Doctor/DoctorAddComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DoctorAddComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DoctorAddComponent.vue?vue&type=template&id=e1b82460& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=template&id=e1b82460&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorAddComponent_vue_vue_type_template_id_e1b82460___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
