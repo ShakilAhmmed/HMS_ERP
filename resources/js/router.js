@@ -26,6 +26,8 @@ import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulan
 
 import OperationComponent from './components/Operation/operation'
 
+import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -139,6 +141,11 @@ export const routes = [
   		path:'/operation',
   		component:OperationComponent,
   		name:'/operation'
+  	},
+  	{
+  		path:'/doctor_add',
+  		component:DoctorAddComponent,
+  		name:'/doctor_add'
   	},
 
 ]

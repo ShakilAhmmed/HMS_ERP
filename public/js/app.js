@@ -93673,6 +93673,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Doctor/DoctorAddComponent.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorAddComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Doctor/DoctorAddComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Loading.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Loading.vue ***!
@@ -94955,6 +94987,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Test_Test__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Test/Test */ "./resources/js/components/Test/Test.vue");
 /* harmony import */ var _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Ambulance/ambulance_details/ambulance */ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue");
 /* harmony import */ var _components_Operation_operation__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Operation/operation */ "./resources/js/components/Operation/operation.vue");
+/* harmony import */ var _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Doctor/DoctorAddComponent */ "./resources/js/components/Doctor/DoctorAddComponent.vue");
+
 
 
 
@@ -95066,6 +95100,10 @@ var routes = [{
   path: '/operation',
   component: _components_Operation_operation__WEBPACK_IMPORTED_MODULE_21__["default"],
   name: '/operation'
+}, {
+  path: '/doctor_add',
+  component: _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
+  name: '/doctor_add'
 }];
 
 /***/ }),
