@@ -253,6 +253,7 @@
        data(){
           return {
             AddDoctor:{
+              users_id:'',
               users_name:'',
               address:'',
               phone:'',
@@ -275,8 +276,7 @@
           }
        },
        methods:{
-         ImageGet:function(event)
-          {
+         ImageGet:function(event){
             let file=event.target.files[0];
             let reader=new FileReader();
             this.LoadingStatus();
@@ -288,21 +288,41 @@
           },
           AddNewDoctor:function(){
               const _this=this;
-              axios.post(this.baseUrl+'doctor',_this.AddDoctor)
-              .then((response)=>{
-                  console.log(response.data);
-                  if(response.data.status===201){
-                     this.$toastr.success('Users Added Successfully', 'Success');
-                     this.LoadingStatus();
-                     _this.resetForm();
-                  }
-                  else{
-                     _this.Errors=response.data.errors
-                  }
-              })
-              .catch((error)=>{
-                  console.log(error)
-              })
+              if (_this.AddDoctor.users_id) {
+                  axios.put(this.baseUrl+'doctor/'+_this.AddDoctor.users_id,_this.AddDoctor)
+                  .then((response)=>{
+                      console.log(response.data);
+                      if(response.data.status===201){
+                         this.$toastr.success('Users Added Successfully', 'Success');
+                         this.LoadingStatus();
+                         _this.resetForm();
+                      }
+                      else{
+                         _this.Errors=response.data.errors
+                      }
+                  })
+                  .catch((error)=>{
+                      console.log(error)
+                  })
+              }
+              else {
+                  axios.post(this.baseUrl+'doctor',_this.AddDoctor)
+                  .then((response)=>{
+                      console.log(response.data);
+                      if(response.data.status===201){
+                         this.$toastr.success('Users Added Successfully', 'Success');
+                         this.LoadingStatus();
+                         _this.resetForm();
+                      }
+                      else{
+                         _this.Errors=response.data.errors
+                      }
+                  })
+                  .catch((error)=>{
+                      console.log(error)
+                  })
+              }
+
           },
           GetData:function(){
               const _this=this;
@@ -315,6 +335,18 @@
                   console.log(error)
               })
           },
+          GetDoctorEditData:function(){
+              const _this=this;
+              this.axios.get(base_path+'doctor/'+this.$route.params.doctor_id+'/edit')
+               .then((response)=>{
+                 console.log(response.data);
+                 _this.AddDoctor=response.data;
+                 _this.AddDoctor.password='';
+                 if (response.data.image) {
+                   _this.image_source=response.data.image;
+                 }
+               })
+          },
           resetForm() {
               var _this = this;
               var FORM = _this.AddDoctor;
@@ -322,6 +354,7 @@
                   FORM[key] = '';
               });
               _this.AddDoctor.type = '3';
+              _this.Errors=[];
               image_source:"https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
           },
 
@@ -329,6 +362,9 @@
         mounted(){
           this.LoadingStatus();
           this.GetData();
+          if (this.$route.params.doctor_id) {
+            this.GetDoctorEditData();
+          }
         }
       }
   </script>

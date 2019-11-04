@@ -20,9 +20,17 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $doctors_data=User::where(function($doctors_data) use ($request){
+            if($request->q)
+            {
+               $doctors_data->where('users_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('email','LIKE','%'.$request->q.'%')
+                            ->orWhere('phone','LIKE','%'.$request->q.'%');
+            }
+        })->whereType('3')->paginate($request->row);
+        return $doctors_data;
     }
 
     /**
@@ -106,7 +114,18 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        //
+        $doctor = User::findOrFail($id);
+        if ($doctor->status == 1)
+        {
+          $doctor->update(['status'=>2]);
+          $response=['status'=>202];
+        }
+        else
+        {
+          $doctor->update(['status'=>1]);
+          $response=['status'=>200];
+        }
+        return response()->json($response);
     }
 
     /**
@@ -117,7 +136,7 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+        return User::findOrFail($id);
     }
 
     /**
@@ -129,7 +148,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("okey");
     }
 
     /**
@@ -140,6 +159,12 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=User::findOrFail($id);
+        if(File::exists($data->image))
+        {
+          File::delete( $data->image );
+        }
+        $deleted = $data->delete();
+        return $deleted ? response()->json(['status'=>200]) : response()->json(['status'=>400]) ;
     }
 }

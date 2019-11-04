@@ -3659,6 +3659,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       AddDoctor: {
+        users_id: '',
         users_name: '',
         address: '',
         phone: '',
@@ -3700,21 +3701,39 @@ __webpack_require__.r(__webpack_exports__);
 
       var _this = this;
 
-      axios.post(this.baseUrl + 'doctor', _this.AddDoctor).then(function (response) {
-        console.log(response.data);
+      if (_this.AddDoctor.users_id) {
+        axios.put(this.baseUrl + 'doctor/' + _this.AddDoctor.users_id, _this.AddDoctor).then(function (response) {
+          console.log(response.data);
 
-        if (response.data.status === 201) {
-          _this3.$toastr.success('Users Added Successfully', 'Success');
+          if (response.data.status === 201) {
+            _this3.$toastr.success('Users Added Successfully', 'Success');
 
-          _this3.LoadingStatus();
+            _this3.LoadingStatus();
 
-          _this.resetForm();
-        } else {
-          _this.Errors = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
+            _this.resetForm();
+          } else {
+            _this.Errors = response.data.errors;
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        axios.post(this.baseUrl + 'doctor', _this.AddDoctor).then(function (response) {
+          console.log(response.data);
+
+          if (response.data.status === 201) {
+            _this3.$toastr.success('Users Added Successfully', 'Success');
+
+            _this3.LoadingStatus();
+
+            _this.resetForm();
+          } else {
+            _this.Errors = response.data.errors;
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
     GetData: function GetData() {
       var _this = this;
@@ -3726,6 +3745,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    GetDoctorEditData: function GetDoctorEditData() {
+      var _this = this;
+
+      this.axios.get(base_path + 'doctor/' + this.$route.params.doctor_id + '/edit').then(function (response) {
+        console.log(response.data);
+        _this.AddDoctor = response.data;
+        _this.AddDoctor.password = '';
+
+        if (response.data.image) {
+          _this.image_source = response.data.image;
+        }
+      });
+    },
     resetForm: function resetForm() {
       var _this = this;
 
@@ -3734,6 +3766,7 @@ __webpack_require__.r(__webpack_exports__);
         FORM[key] = '';
       });
       _this.AddDoctor.type = '3';
+      _this.Errors = [];
 
       image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
     }
@@ -3741,6 +3774,196 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetData();
+
+    if (this.$route.params.doctor_id) {
+      this.GetDoctorEditData();
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Users",
+  data: function data() {
+    return {
+      DoctorList: {},
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
+    };
+  },
+  methods: {
+    GetDoctorList: function GetDoctorList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+
+      var _this = this;
+
+      var main_url = base_path + 'doctor?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+
+      if (_this.search == '') {
+        this.LoadingStatus();
+      }
+
+      this.axios.get(main_url).then(function (response) {
+        _this.DoctorList = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    DeleteDoctor: function DeleteDoctor(id, index) {
+      var _this2 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.axios["delete"](base_path + 'doctor/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status === 200) {
+              _this.DoctorList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Doctor Deleted Successfully', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'doctor/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Doctor Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('Doctor Status Changed Into Inactive', 'Success');
+        }
+
+        _this3.LoadingStatus();
+
+        _this.GetDoctorList();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetDoctorList();
   }
 });
 
@@ -66286,6 +66509,345 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "doctor" }, [
+    _c(
+      "button",
+      { staticClass: "btn btn-info pull-right", attrs: { type: "button" } },
+      [
+        _c(
+          "router-link",
+          { staticClass: "router_link_button", attrs: { to: "/doctor_add" } },
+          [_vm._v("Add New Doctor")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "panel panel-flat" },
+      [
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("h5", { staticClass: "panel-title" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", {
+                  attrs: { "data-action": "reload" },
+                  on: { click: _vm.GetDoctorList }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.custom_row,
+                      expression: "custom_row"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.custom_row = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.GetDoctorList
+                    ]
+                  }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.GetDoctorList,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table datatable-pagination" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.DoctorList.data, function(doctor_data, index) {
+              return _c("tr", [
+                _c("td", { domProps: { textContent: _vm._s(index + 1) } }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(doctor_data.users_name) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(doctor_data.email) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(doctor_data.phone) }
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  doctor_data.sex == 1
+                    ? _c("span", [_vm._v("Male")])
+                    : doctor_data.sex == 2
+                    ? _c("span", [_vm._v("Female")])
+                    : doctor_data.sex == 3
+                    ? _c("span", [_vm._v("Common")])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(doctor_data.blood_group) }
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  doctor_data.status == 1
+                    ? _c("span", { staticClass: "text-success" }, [
+                        _c("i", { staticClass: "fa fa-check text-success" })
+                      ])
+                    : doctor_data.status == 2
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _c("i", { staticClass: "fa fa-close text-danger" })
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.DeleteDoctor(doctor_data.users_id, index)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  doctor_data.status == 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(doctor_data.users_id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(doctor_data.users_id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-info" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "edit-doctor",
+                              params: { doctor_id: doctor_data.users_id }
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fa fa-pencil-square-o router_link_color",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "pagination",
+          {
+            attrs: { data: _vm.DoctorList, limit: 3 },
+            on: { "pagination-change-page": _vm.GetDoctorList }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Sl No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sex")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Blood Group")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loading.vue?vue&type=template&id=6ca9e6be&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Loading.vue?vue&type=template&id=6ca9e6be& ***!
@@ -95041,6 +95603,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Doctor/DoctorListComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorListComponent.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DoctorListComponent.vue?vue&type=template&id=52db94bb& */ "./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb&");
+/* harmony import */ var _DoctorListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DoctorListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DoctorListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Doctor/DoctorListComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DoctorListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DoctorListComponent.vue?vue&type=template&id=52db94bb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=template&id=52db94bb&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorListComponent_vue_vue_type_template_id_52db94bb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Loading.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Loading.vue ***!
@@ -96324,6 +96955,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Ambulance/ambulance_details/ambulance */ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue");
 /* harmony import */ var _components_Operation_operation__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Operation/operation */ "./resources/js/components/Operation/operation.vue");
 /* harmony import */ var _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Doctor/DoctorAddComponent */ "./resources/js/components/Doctor/DoctorAddComponent.vue");
+/* harmony import */ var _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Doctor/DoctorListComponent */ "./resources/js/components/Doctor/DoctorListComponent.vue");
+
 
 
 
@@ -96440,6 +97073,14 @@ var routes = [{
   path: '/doctor_add',
   component: _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
   name: '/doctor_add'
+}, {
+  path: '/doctor_list',
+  component: _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
+  name: '/doctor_list'
+}, {
+  path: '/edit-doctor/:doctor_id',
+  component: _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
+  name: 'edit-doctor'
 }];
 
 /***/ }),
