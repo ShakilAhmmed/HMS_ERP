@@ -28,6 +28,7 @@ import OperationComponent from './components/Operation/operation'
 
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 import DoctorListComponent from './components/Doctor/DoctorListComponent'
+import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
 
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
@@ -155,7 +156,7 @@ export const routes = [
   	},
     {
       path:'/edit-doctor/:doctor_id',
-      component:DoctorAddComponent,
+      component:DoctorEditComponent,
       name:'edit-doctor'
     },
 

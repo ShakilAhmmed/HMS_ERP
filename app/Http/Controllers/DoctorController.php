@@ -136,7 +136,11 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        return User::findOrFail($id);
+        $data['department']=DepartmentModel::all();
+        $data['designation']=DesignationModel::all();
+        $data['user']=User::findOrFail($id);
+
+        return response()->json($data);
     }
 
     /**
@@ -148,7 +152,60 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("okey");
+        $doctor=User::findOrFail($id);
+        $validation=Validator::make($request->all(),$doctor->doctor_validate($id));
+        if($validation->fails())
+        {
+              $response=[
+               'status'=>400,
+               'errors'=>$validation->errors()
+           ];
+        }
+        else
+        {
+             $requested_data=$request->all();
+
+             if($request->image != $doctor->image)
+             {
+                 $position=strpos($request->image,";");
+                 $sub_str=substr($request->image, 0,$position);
+                 $extenstion=explode("/", $sub_str);
+                 $allowed=Helper::ImageExtension($extenstion[1]);
+                 if($allowed=="Allowed")
+                 {
+                     if(File::exists($doctor->image))
+                     {
+                       File::delete( $doctor->image );
+                     }
+                     $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
+                     $image_upload=Image::make($request->image)->resize(300, 300);
+                     $image_upload->save($upload_path);
+                     $requested_data=Arr::set($requested_data, 'image',$upload_path);
+                     $requested_data=Arr::add($requested_data,'users_id',time());
+                     $password = Hash::make($request->password);
+                     $requested_data=Arr::set($requested_data,'password',$password);
+                     $doctor->fill($requested_data)->save();
+                     $response=[
+                           'status'=>201,
+                           'data'=>$doctor
+                       ];
+                 }
+                 else
+                 {
+                     $response=[
+                        'errors'=>['project_logo_ext'=>$allowed],
+                        'status'=>400
+                    ];
+                 }
+             }
+             $requested_data=Arr::set($requested_data,'status',1);
+             $doctor->fill($requested_data)->save();
+             $response=[
+                   'status'=>201,
+                   'data'=>$doctor
+               ];
+        }
+        return response()->json($response);
     }
 
     /**
