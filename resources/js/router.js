@@ -26,6 +26,8 @@ import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulan
 import AmbulanceCallComponent from './components/Ambulance/ambulance_call/ambulance_call'
 import OperationComponent from './components/Operation/operation'
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
+import DoctorListComponent from './components/Doctor/DoctorListComponent'
+import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
 
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
@@ -131,6 +133,11 @@ export const routes = [
       component:TestComponent,
       name:'/test'
     },
+    {
+      path:'/ambulance_call',
+      component:AmbulanceCallComponent,
+      name:'/ambulance_call'
+    },
   	{
   		path:'/ambulance_details',
   		component:AmbulanceComponent,
@@ -146,10 +153,15 @@ export const routes = [
   		component:DoctorAddComponent,
   		name:'/doctor_add'
   	},
+  	{
+  		path:'/doctor_list',
+  		component:DoctorListComponent,
+  		name:'/doctor_list'
+  	},
     {
-      path:'/ambulance_call',
-      component:AmbulanceCallComponent,
-      name:'/ambulance_call'
+      path:'/edit-doctor/:doctor_id',
+      component:DoctorEditComponent,
+      name:'edit-doctor'
     },
 
 ]

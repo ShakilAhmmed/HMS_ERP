@@ -7,14 +7,14 @@
         <div class="heading-elements">
           <ul class="icons-list">
             <li><a data-action="collapse"></a></li>
-            <li><a data-action="reload" @click="resetForm"></a></li>
+            <li><a data-action="reload" @click="GetData"></a></li>
             <li><a data-action="close"></a></li>
           </ul>
         </div>
       </div>
 
       <div class="panel-body">
-        <form @submit.prevent="AddNewDoctor">
+        <form @submit.prevent="EditDoctorData">
           <fieldset class="content-group">
             <form class="form-horizontal">
             <legend class="text-bold">Add New Doctor</legend>
@@ -23,7 +23,7 @@
                 <div class="row">
                   <label class="col-lg-1 control-label">Name:</label>
                   <div class="col-md-11">
-                    <input type="text"  class="form-control" v-model="AddDoctor.users_name" placeholder="Name" >
+                    <input type="text"  class="form-control" v-model="EditDoctor.users_name" placeholder="Name" >
                     <span class="text-danger" v-if="Errors.users_name" v-text="Errors.users_name[0]"></span>
                   </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Guardian Name: </label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddDoctor.guardian_name" placeholder="Enter Guardian Name" >
+                    <input type="text" class="form-control" v-model="EditDoctor.guardian_name" placeholder="Enter Guardian Name" >
                     <span class="text-danger" v-if="Errors.guardian_name" v-text="Errors.guardian_name[0]"></span>
                   </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                   <label class="col-md-1 control-label text-left">Address: </label>
                   <div class="col-md-11">
-                    <textarea class="form-control" v-model="AddDoctor.address" placeholder="Enter Address"></textarea>
+                    <textarea class="form-control" v-model="EditDoctor.address" placeholder="Enter Address"></textarea>
                     <span class="text-danger" v-if="Errors.address" v-text="Errors.address[0]"></span>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Phone:</label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddDoctor.phone" placeholder="Enter Phone Number" >
+                    <input type="text" class="form-control" v-model="EditDoctor.phone" placeholder="Enter Phone Number" >
                     <span class="text-danger" v-if="Errors.phone" v-text="Errors.phone[0]"></span>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Sex: </label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddDoctor.sex">
+                    <select  class="form-control" v-model="EditDoctor.sex">
                       <option value="">Select</option>
                       <option value="1">Male</option>
                       <option value="2">Female</option>
@@ -84,7 +84,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Department:</label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddDoctor.department_id">
+                    <select  class="form-control" v-model="EditDoctor.department_id">
                       <option value="">Select</option>
                       <option v-for="data_value in DeptDegtn.department" :value="data_value.departments_id" v-text="data_value.department_name">Select</option>
                     </select>
@@ -97,7 +97,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Designation: </label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddDoctor.designation_id">
+                    <select  class="form-control" v-model="EditDoctor.designation_id">
                       <option value="">Select</option>
                       <option v-for="data_value in DeptDegtn.designation" :value="data_value.designation_id" v-text="data_value.designation_name">Select</option>
                     </select>
@@ -112,7 +112,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Birth Date:</label>
                   <div class="col-md-10">
-                    <input type="date" v-model="AddDoctor.birth_date" class="form-control" placeholder="Enter Birth Date" >
+                    <input type="date" v-model="EditDoctor.birth_date" class="form-control" placeholder="Enter Birth Date" >
                     <span class="text-danger" v-if="Errors.birth_date" v-text="Errors.birth_date[0]"></span>
                   </div>
                 </div>
@@ -121,7 +121,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Age: </label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" v-model="AddDoctor.age" placeholder="Enter Age" >
+                    <input type="text" class="form-control" v-model="EditDoctor.age" placeholder="Enter Age" >
                     <span class="text-danger" v-if="Errors.age" v-text="Errors.age[0]"></span>
                   </div>
                 </div>
@@ -133,7 +133,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Blood Group:</label>
                   <div class="col-md-10">
-                    <select  class="form-control" v-model="AddDoctor.blood_group">
+                    <select  class="form-control" v-model="EditDoctor.blood_group">
                       <option value="">Select</option>
                       <option>O−</option>
                       <option>O+</option>
@@ -168,7 +168,7 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Status:</label>
                   <div class="col-md-10">
-                    <select class="form-control" v-model="AddDoctor.status">
+                    <select class="form-control" v-model="EditDoctor.status">
                         <option value=''>Select</option>
                         <option value='1'>Active</option>
                         <option value="2">Inactive</option>
@@ -185,7 +185,7 @@
                 <div class="row">
                   <label class="col-lg-2 control-label">Email:</label>
                   <div class="col-md-10">
-                    <input type="text"  v-model="AddDoctor.email" class="form-control" placeholder="Enter Email" >
+                    <input type="text"  v-model="EditDoctor.email" class="form-control" placeholder="Enter Email" >
                     <span class="text-danger" v-if="Errors.email" v-text="Errors.email[0]"></span>
                   </div>
                 </div>
@@ -197,10 +197,10 @@
                 <div class="row">
                   <label class="col-md-2 control-label text-left">Password:</label>
                   <div class="col-md-10">
-                    <input type="password" v-model="AddDoctor.password"  class="form-control" placeholder="Enter Password" >
+                    <input type="password" v-model="EditDoctor.password"  class="form-control" placeholder="Enter Password" >
 
-                    <span class="text-warning" v-if="(AddDoctor.password && AddDoctor.password.length ? AddDoctor.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
-                     <span class="text-danger" v-else-if="(AddDoctor.password && AddDoctor.password.length ? AddDoctor.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
+                    <span class="text-warning" v-if="(EditDoctor.password && EditDoctor.password.length ? EditDoctor.password.length : 0) == 0"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Empty</span>
+                     <span class="text-danger" v-else-if="(EditDoctor.password && EditDoctor.password.length ? EditDoctor.password.length : 0) < 8"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Is Weak</span>
                     <span class="text-success" v-else><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Is Strong</span>
                   </div>
                 </div>
@@ -212,8 +212,8 @@
                   <label class="col-md-2 control-label text-left">Confirm Password:</label>
                   <div class="col-md-10">
                     <input type="password" v-model="confirm_password" class="form-control" placeholder="Enter Password" >
-                    <span class="text-danger" v-if="confirm_password.length !=0 &&  AddDoctor.password && AddDoctor.password.length !=0 && AddDoctor.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
-                     <span class="text-success" v-else-if="AddDoctor.password && AddDoctor.password.length !=0 && AddDoctor.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
+                    <span class="text-danger" v-if="confirm_password.length !=0 &&  EditDoctor.password && EditDoctor.password.length !=0 && EditDoctor.password != confirm_password"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Password Not Mactched</span>
+                     <span class="text-success" v-else-if="EditDoctor.password && EditDoctor.password.length !=0 && EditDoctor.password == confirm_password"><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp;Password Matched</span>
 
                       <span class="text-danger" v-if="Errors.password" v-text="Errors.password[0]"></span>
                   </div>
@@ -252,7 +252,8 @@
        name:"Doctor",
        data(){
           return {
-            AddDoctor:{
+            EditDoctor:{
+              users_id:'',
               users_name:'',
               address:'',
               phone:'',
@@ -280,20 +281,20 @@
             let reader=new FileReader();
             this.LoadingStatus();
             reader.onload=event =>{
-              this.AddDoctor.image = event.target.result;
+              this.EditDoctor.image = event.target.result;
               this.image_source=event.target.result;
             }
               reader.readAsDataURL(file)
           },
-          AddNewDoctor:function(){
+          EditDoctorData:function(){
               const _this=this;
-              axios.post(this.baseUrl+'doctor',_this.AddDoctor)
+              axios.put(this.baseUrl+'doctor/'+_this.EditDoctor.users_id,_this.EditDoctor)
               .then((response)=>{
                   console.log(response.data);
                   if(response.data.status===201){
-                     this.$toastr.success('Users Added Successfully', 'Success');
+                     this.$toastr.success('Doctor Edit Added Successfully', 'Success');
                      this.LoadingStatus();
-                     _this.resetForm();
+                     _this.GetData();
                   }
                   else{
                      _this.Errors=response.data.errors
@@ -303,27 +304,21 @@
                   console.log(error)
               })
           },
+
           GetData:function(){
               const _this=this;
-              axios.get(this.baseUrl+'doctor/create',_this.AddDoctor)
+              axios.get(this.baseUrl+'doctor/'+this.$route.params.doctor_id+'/edit',_this.EditDoctor)
               .then((response)=>{
                 _this.DeptDegtn = response.data;
+                _this.EditDoctor = response.data.user;
+                if (response.data.user.image) {
+                  _this.image_source = response.data.user.image;
+                }
                   console.log(response.data);
               })
               .catch((error)=>{
                   console.log(error)
               })
-          },
-
-          resetForm() {
-              var _this = this;
-              var FORM = _this.AddDoctor;
-              Object.keys(FORM).forEach(function (key, index) {
-                  FORM[key] = '';
-              });
-              _this.AddDoctor.type = '3';
-              _this.Errors=[];
-              image_source:"https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
           },
 
         },
