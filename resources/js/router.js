@@ -23,9 +23,8 @@ import TestTypeComponent from './components/Test/TestType'
 import TestComponent from './components/Test/Test'
 
 import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
-
+import AmbulanceCallComponent from './components/Ambulance/ambulance_call/ambulance_call'
 import OperationComponent from './components/Operation/operation'
-
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 import DoctorListComponent from './components/Doctor/DoctorListComponent'
 import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
@@ -134,6 +133,11 @@ export const routes = [
       component:TestComponent,
       name:'/test'
     },
+    {
+      path:'/ambulance_call',
+      component:AmbulanceCallComponent,
+      name:'/ambulance_call'
+    },
   	{
   		path:'/ambulance_details',
   		component:AmbulanceComponent,
@@ -159,6 +163,5 @@ export const routes = [
       component:DoctorEditComponent,
       name:'edit-doctor'
     },
-
 
 ]

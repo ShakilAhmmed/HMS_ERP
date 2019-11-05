@@ -55,7 +55,7 @@
         <a href="#"><i class="icon-stack2"></i> <span>Ambulance</span></a>
           <ul>
             <li><router-link to="/ambulance_details">Ambulance</router-link></li>
-
+            <li><router-link to="/ambulance_call">Ambulance Call</router-link></li>
           </ul>
       </li>
 

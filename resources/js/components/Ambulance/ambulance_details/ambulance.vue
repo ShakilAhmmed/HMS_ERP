@@ -106,7 +106,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Edit {{ EditAmbulanceform.vehicle_number }} Ambulance</h5>
-                      <button type="button" class="close" @click="ClearForm" data-dismiss="modal" aria-label="Close">
+                      <button type="button" class="close" @click="" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -188,7 +188,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" @click="ClearForm" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" @click="" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit"  class="btn btn-success">Save</button>
                   </div>
 
@@ -351,6 +351,7 @@
              const _this=this;
              this.axios.put(this.baseUrl+'ambulance/'+_this.EditAmbulanceform.ambulance_id,_this.EditAmbulanceform)
                  .then((response)=>{
+                    console.log(response);
                     if(response.data.status==201)
                     {
                         this.$toastr.success('Ambulance Edited Successfully', 'Success');
@@ -360,7 +361,7 @@
                     }
                     else
                     {
-                        _this.AllError=response.data.errors;
+                        _this.Allerror=response.data.errors;
                     }
                     })
                     .catch((error)=>{

@@ -1829,6 +1829,415 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Ambulance",
+  data: function data() {
+    return {
+      getallotmentdata: [],
+      ambulancelist: {},
+      ambulancecallform: {
+        ambulance_id: '',
+        patient_id: '',
+        from: '',
+        to: '',
+        amount: '',
+        contact_no: ''
+      },
+      Editambulanceform: {
+        ambulance_id: '',
+        patient_id: '',
+        from: '',
+        to: '',
+        amount: '',
+        contact_no: ''
+      },
+      Allerror: []
+    };
+  },
+  methods: {
+    AddAmbulance: function AddAmbulance() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(this.baseUrl + 'ambulancecall', _this.ambulancecallform).then(function (response) {
+        if (response.data.status == 200) {
+          _this2.$toastr.success('Ambulance Call Added Successfully', 'Success');
+
+          _this.ambulancelist.data.push(response.data.data);
+
+          $(".close").click();
+
+          _this2.Clearfrom();
+
+          _this2.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Deleteambulancelist: function Deleteambulancelist(id, index) {
+      var _this3 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.axios["delete"](_this3.baseUrl + 'ambulancecall/' + id).then(function (response) {
+            if (response.data.status == 200) {
+              _this.ambulancelist.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Ambulance Call Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    Editambulancelist: function Editambulancelist(id, data) {
+      var _this = this;
+
+      _this.Editambulanceform.ambulancecall_id = id;
+      _this.Editambulanceform = data;
+    },
+    Updateambulance: function Updateambulance(event) {
+      var _this4 = this;
+
+      var _this = this;
+
+      this.axios.put(this.baseUrl + 'ambulancecall/' + _this.Editambulanceform.ambulancecall_id, _this.Editambulanceform).then(function (response) {
+        if (response.data.status == 201) {
+          _this4.$toastr.success('Ambulance Updated Successfully', 'Success');
+
+          $(".close").click();
+
+          _this4.Clearfrom();
+
+          _this4.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getambulancedata: function getambulancedata() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'ambulancecall?page' + page).then(function (response) {
+        _this.ambulancelist = response.data;
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    getambulance: function getambulance() {
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'get_ambulance_data').then(function (response) {
+        _this.getallotmentdata = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    Clearform: function Clearform() {
+      var _this = this;
+
+      _this.Allerror = [];
+      _this.ambulancecallform.ambulance_id = '';
+      _this.ambulancecallform.patient_id = '';
+      _this.ambulancecallform.from = '';
+      _this.ambulancecallform.to = '';
+      _this.ambulancecallform.amount = '';
+      _this.ambulancecallform.contact_no = '';
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.getambulance();
+    this.getambulancedata();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_details/ambulance.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Ambulance/ambulance_details/ambulance.vue?vue&type=script&lang=js& ***!
@@ -2192,6 +2601,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.put(this.baseUrl + 'ambulance/' + _this.EditAmbulanceform.ambulance_id, _this.EditAmbulanceform).then(function (response) {
+        console.log(response);
+
         if (response.data.status == 201) {
           _this4.$toastr.success('Ambulance Edited Successfully', 'Success');
 
@@ -2201,7 +2612,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this4.LoadingStatus();
         } else {
-          _this.AllError = response.data.errors;
+          _this.Allerror = response.data.errors;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -3043,363 +3454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Config/Shift.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Shift",
-  data: function data() {
-    return {
-      ShiftList: {},
-      ShiftForm: {
-        shift_name: '',
-        description: '',
-        status: ''
-      },
-      EditShiftForm: {
-        shift_id: '',
-        shift_name: '',
-        description: '',
-        status: ''
-      },
-      AllError: []
-    };
-  },
-  methods: {
-    AddShift: function AddShift() {
-      var _this2 = this;
-
-      var _this = this;
-
-      this.axios.post(base_path + "shift", _this.ShiftForm).then(function (response) {
-        if (response.data.status == 201) {
-          _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
-
-
-          _this.GetShiftList();
-
-          $(".close").click();
-
-          _this.ClearForm();
-
-          _this2.LoadingStatus();
-        } else {
-          _this.AllError = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    GetShiftList: function GetShiftList() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      var _this = this;
-
-      this.axios.get(base_path + 'shift?page=' + page).then(function (response) {
-        _this.ShiftList = response.data; //console.log(response.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    StatusChange: function StatusChange(id) {
-      var _this3 = this;
-
-      var _this = this;
-
-      this.axios.get(base_path + 'shift/' + id).then(function (response) {
-        if (response.data.status === 200) {
-          _this3.$toastr.success('Shift Status Changed Into Active', 'Success');
-        }
-
-        if (response.data.status === 202) {
-          _this3.$toastr.warning('Shift Status Changed Into Inactive', 'Success');
-        }
-
-        _this.LoadingStatus();
-
-        _this.GetShiftList();
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    EditShift: function EditShift(id, data) {
-      var _this = this;
-
-      _this.EditShiftForm.id = id;
-      _this.EditShiftForm = data;
-    },
-    UpdateShift: function UpdateShift() {
-      var _this4 = this;
-
-      var _this = this;
-
-      this.axios.put(base_path + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
-        if (response.data.status == 201) {
-          _this4.$toastr.success('Shift Edited Successfully', 'Success');
-
-          _this.GetShiftList();
-
-          $(".close").click();
-
-          _this.ClearForm();
-
-          _this4.LoadingStatus();
-        } else {
-          _this.AllError = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    DeleteShift: function DeleteShift(id, index) {
-      var _this5 = this;
-
-      var _this = this;
-
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this.GetShiftList();
-
-          _this5.LoadingStatus();
-
-          _this5.axios["delete"](base_path + 'shift/' + id).then(function (response) {
-            console.log(response);
-
-            if (response.data.status == 200) {
-              _this.ShiftList.data.splice(index, 1);
-
-              swal.fire('Deleted!', 'Shift Hasbeen Deleted', 'success');
-            }
-
-            if (response.data.status === 400) {
-              swal.fire("Opps", "Something Went Wrong", "warning");
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    },
-    ClearForm: function ClearForm() {
-      var _this = this;
-
-      _this.AllError = [];
-      _this.ShiftForm.shift_name = '';
-      _this.ShiftForm.description = '';
-      _this.ShiftForm.status = '';
-    }
-  },
-  mounted: function mounted() {
-    this.LoadingStatus();
-    this.GetShiftList();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3702,16 +3757,60 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(this.baseUrl + 'doctor', _this.AddDoctor).then(function (response) {
         console.log(response.data);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Shift",
+  data: function data() {
+    return {
+      ShiftList: {},
+      ShiftForm: {
+        shift_name: '',
+        description: '',
+        status: ''
+      },
+      EditShiftForm: {
+        shift_id: '',
+        shift_name: '',
+        description: '',
+        status: ''
+      },
+      AllError: []
+    };
+  },
+  methods: {
+    AddShift: function AddShift() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(base_path + "shift", _this.ShiftForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
+
+
+          _this.GetShiftList();
 
         if (response.data.status === 201) {
           _this3.$toastr.success('Users Added Successfully', 'Success');
 
           _this3.LoadingStatus();
+          _this.ClearForm();
 
           _this.resetForm();
         } else {
           _this.Errors = response.data.errors;
+          _this.AllError = response.data.errors;
         }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    GetShiftList: function GetShiftList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'shift?page=' + page).then(function (response) {
+        _this.ShiftList = response.data; //console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3722,8 +3821,25 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.baseUrl + 'doctor/create', _this.AddDoctor).then(function (response) {
         _this.DeptDegtn = response.data;
         console.log(response.data);
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'shift/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Shift Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('Shift Status Changed Into Inactive', 'Success');
+        }
+
+        _this.LoadingStatus();
+
+        _this.GetShiftList();
       })["catch"](function (error) {
-        console.log(error);
+        console.error();
       });
     },
     resetForm: function resetForm() {
@@ -3737,20 +3853,96 @@ __webpack_require__.r(__webpack_exports__);
       _this.Errors = [];
 
       image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
+
+    EditShift: function EditShift(id, data) {
+      var _this = this;
+
+      _this.EditShiftForm.id = id;
+      _this.EditShiftForm = data;
+    },
+    UpdateShift: function UpdateShift() {
+      var _this4 = this;
+
+      var _this = this;
+
+      this.axios.put(base_path + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this4.$toastr.success('Shift Edited Successfully', 'Success');
+
+          _this.GetShiftList();
+
+          $(".close").click();
+
+          _this.ClearForm();
+
+          _this4.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    DeleteShift: function DeleteShift(id, index) {
+      var _this5 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this.GetShiftList();
+
+          _this5.LoadingStatus();
+
+          _this5.axios["delete"](base_path + 'shift/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status == 200) {
+              _this.ShiftList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Shift Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    ClearForm: function ClearForm() {
+      var _this = this;
+
+      _this.AllError = [];
+      _this.ShiftForm.shift_name = '';
+      _this.ShiftForm.description = '';
+      _this.ShiftForm.status = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetData();
+    this.GetShiftList();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorEditComponent.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorEditComponent.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4025,6 +4217,20 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         email: '',
         type: '3'
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Bed",
+  data: function data() {
+    return {
+      Bedlist: {},
+      Bedform: {
+        bed_number: '',
+        description: '',
+        status: ''
+      },
+      EditBedform: {
+        bed_number: '',
+        description: '',
+        status: ''
       },
       confirm_password: '',
       image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
@@ -4039,6 +4245,9 @@ __webpack_require__.r(__webpack_exports__);
       var file = event.target.files[0];
       var reader = new FileReader();
       this.LoadingStatus();
+    GetBedList: function GetBedList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
 
       reader.onload = function (event) {
         _this2.EditDoctor.image = event.target.result;
@@ -4055,10 +4264,33 @@ __webpack_require__.r(__webpack_exports__);
       axios.put(this.baseUrl + 'doctor/' + _this.EditDoctor.users_id, _this.EditDoctor).then(function (response) {
         console.log(response.data);
 
+      this.axios.get(this.baseUrl + 'bed?page=' + page).then(function (response) {
+        console.log(response);
+        _this.Bedlist = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Addbed: function Addbed() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(this.baseUrl + 'bed', _this.Bedform).then(function (response) {
+        console.log(response.data.status);
+
+        if (response.data.status == 200) {
+          _this2.$toastr.success('Bed Added Successfully', 'Success');
+
+          _this.Bedlist.data.push(response.data.data);
+
         if (response.data.status === 201) {
           _this3.$toastr.success('Doctor Edit Added Successfully', 'Success');
 
+
           _this3.LoadingStatus();
+
+          _this2.Clearform();
 
           _this.GetData();
         } else {
@@ -4083,20 +4315,107 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    BedStatusChange: function BedStatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'bed/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Bed Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.success('Bed Status Changed Into InActive', 'Success');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.LoadingStatus();
+      this.GetBedList();
+    },
+    DeleteBed: function DeleteBed(id, index) {
+      var _this4 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this4.axios["delete"](_this4.baseUrl + 'bed/' + id).then(function (response) {
+            if (response.data.status === 200) {
+              _this.Bedlist.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Bed Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    EditBed: function EditBed(id, data) {
+      var _this = this;
+
+      _this.EditBedform.bed_id = id;
+      _this.EditBedform = data;
+    },
+    UpdateSubmit: function UpdateSubmit(event) {
+      var _this5 = this;
+
+      var _this = this;
+
+      this.axios.put(this.baseUrl + 'bed/' + _this.EditBedform.bed_id, _this.EditBedform).then(function (response) {
+        if (response.data.status == 201) {
+          _this5.$toastr.success('Bed Edited Successfully', 'Success');
+
+          $(".close").click();
+
+          _this.Clearform();
+
+          _this5.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Clearform: function Clearform() {
+      var _this = this;
+
+      _this.Allerror = [];
+      _this.Bedform.bed_number = '';
+      _this.Bedform.description = '';
+      _this.Bedform.status = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetData();
+    this.GetBedList();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
+
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4288,6 +4607,563 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "BedAllotment",
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.getallotment();
+    this.getbedallotment();
+  },
+  data: function data() {
+    return {
+      getallotmentdata: [],
+      allotmentlist: {},
+      bedallotmentform: {
+        patient_id: '',
+        bed_id: '',
+        allotment_time: '',
+        discharge_time: ''
+      },
+      Editbedallotmentform: {
+        bedallotment_id: '',
+        patient_id: '',
+        bed_id: '',
+        allotment_time: '',
+        discharge_time: ''
+      },
+      Allerror: []
+    };
+  },
+  methods: {
+    getallotment: function getallotment() {
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'get_data').then(function (response) {
+        _this.getallotmentdata = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    getbedallotment: function getbedallotment() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'bedallotment?page' + page).then(function (response) {
+        _this.allotmentlist = response.data;
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    AddBedAllotment: function AddBedAllotment() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(this.baseUrl + 'bedallotment', _this.bedallotmentform).then(function (response) {
+        if (response.data.status == 200) {
+          _this2.$toastr.success('Bed Allotment Added Successfully', 'Success');
+
+          _this.allotmentlist.data.push(response.data.data);
+
+          $(".close").click();
+
+          _this2.Clearfrom();
+
+          _this2.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Deletebedallotment: function Deletebedallotment(id, index) {
+      var _this3 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.axios["delete"](_this3.baseUrl + 'bedallotment/' + id).then(function (response) {
+            if (response.data.status == 200) {
+              _this.allotmentlist.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'BedAllotment Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    Editbedallotment: function Editbedallotment(id, data) {
+      var _this = this;
+
+      _this.Editbedallotmentform.bedallotment_id = id;
+      _this.Editbedallotmentform = data;
+    },
+    UpdateBedAllotment: function UpdateBedAllotment(event) {
+      var _this4 = this;
+
+      var _this = this;
+
+      this.axios.put(this.baseUrl + 'bedallotment/' + _this.Editbedallotmentform.bedallotment_id, _this.Editbedallotmentform).then(function (response) {
+        if (response.data.status == 201) {
+          _this4.$toastr.success('Bed Edited Successfully', 'Success');
+
+          $(".close").click();
+
+          _this4.Clearfrom();
+
+          _this4.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Clearfrom: function Clearfrom() {
+      var _this = this;
+
+      _this.Allerror = [];
+      _this.bedallotmentform.patient_id = '';
+      _this.bedallotmentform.bed_id = '';
+      _this.bedallotmentform.allotment_time = '';
+      _this.bedallotmentform.discharge_time = '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+<<<<<<< HEAD
+  name: "Bed",
+  data: function data() {
+    return {
+      Bedlist: {},
+      Bedform: {
+        bed_number: '',
+        description: '',
+        status: ''
+      },
+      EditBedform: {
+        bed_number: '',
+        description: '',
+        status: ''
+      },
+      Allerror: []
+    };
+  },
+  methods: {
+    GetBedList: function GetBedList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'bed?page=' + page).then(function (response) {
+        console.log(response);
+        _this.Bedlist = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Addbed: function Addbed() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(this.baseUrl + 'bed', _this.Bedform).then(function (response) {
+        console.log(response.data.status);
+
+        if (response.data.status == 200) {
+          _this2.$toastr.success('Bed Added Successfully', 'Success');
+
+          _this.Bedlist.data.push(response.data.data);
+
+          $(".close").click();
+
+          _this2.Clearform();
+
+          _this2.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    BedStatusChange: function BedStatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(this.baseUrl + 'bed/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Bed Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.success('Bed Status Changed Into InActive', 'Success');
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.LoadingStatus();
+      this.GetBedList();
+    },
+    DeleteBed: function DeleteBed(id, index) {
+      var _this4 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this4.axios["delete"](_this4.baseUrl + 'bed/' + id).then(function (response) {
+            if (response.data.status === 200) {
+              _this.Bedlist.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Bed Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    EditBed: function EditBed(id, data) {
+      var _this = this;
+
+      _this.EditBedform.bed_id = id;
+      _this.EditBedform = data;
+    },
+    UpdateSubmit: function UpdateSubmit(event) {
+      var _this5 = this;
+
+      var _this = this;
+
+      this.axios.put(this.baseUrl + 'bed/' + _this.EditBedform.bed_id, _this.EditBedform).then(function (response) {
+        if (response.data.status == 201) {
+          _this5.$toastr.success('Bed Edited Successfully', 'Success');
+
+          $(".close").click();
+
+          _this.Clearform();
+
+          _this5.LoadingStatus();
+        } else {
+          _this.Allerror = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    Clearform: function Clearform() {
+      var _this = this;
+
+      _this.Allerror = [];
+      _this.Bedform.bed_number = '';
+      _this.Bedform.description = '';
+      _this.Bedform.status = '';
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetBedList();
+=======
+  name: "PatientAppointment",
+  mounted: function mounted() {
+    console.log("PatientAppointment");
+>>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
+  }
+});
+
+/***/ }),
+
+<<<<<<< HEAD
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
+=======
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4492,159 +5368,98 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Bed",
+  name: "Patient",
   data: function data() {
     return {
-      Bedlist: {},
-      Bedform: {
-        bed_number: '',
-        description: '',
-        status: ''
+      AddPatient: {
+        users_name: '',
+        guardian_name: '',
+        address: '',
+        phone: '',
+        sex: '',
+        birth_date: '',
+        age: '',
+        blood_group: '',
+        status: '',
+        password: '',
+        image: '',
+        email: '',
+        type: '9'
       },
-      EditBedform: {
-        bed_number: '',
-        description: '',
-        status: ''
-      },
-      Allerror: []
+      confirm_password: '',
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
+      Errors: []
     };
   },
   methods: {
-    GetBedList: function GetBedList() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      var _this = this;
-
-      this.axios.get(this.baseUrl + 'bed?page=' + page).then(function (response) {
-        console.log(response);
-        _this.Bedlist = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    Addbed: function Addbed() {
+    ImageGet: function ImageGet(event) {
       var _this2 = this;
 
-      var _this = this;
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      this.LoadingStatus();
 
-      this.axios.post(this.baseUrl + 'bed', _this.Bedform).then(function (response) {
-        console.log(response.data.status);
+      reader.onload = function (event) {
+        _this2.AddPatient.image = event.target.result;
+        _this2.image_source = event.target.result;
+      };
 
-        if (response.data.status == 200) {
-          _this2.$toastr.success('Bed Added Successfully', 'Success');
-
-          _this.Bedlist.data.push(response.data.data);
-
-          $(".close").click();
-
-          _this2.Clearform();
-
-          _this2.LoadingStatus();
-        } else {
-          _this.Allerror = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      reader.readAsDataURL(file);
     },
-    BedStatusChange: function BedStatusChange(id) {
+    AddNewPatient: function AddNewPatient() {
       var _this3 = this;
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'bed/' + id).then(function (response) {
-        if (response.data.status === 200) {
-          _this3.$toastr.success('Bed Status Changed Into Active', 'Success');
-        }
+      axios.post(this.baseUrl + 'patient', _this.AddPatient).then(function (response) {
+        console.log(response.data);
 
-        if (response.data.status === 202) {
-          _this3.$toastr.success('Bed Status Changed Into InActive', 'Success');
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-      this.LoadingStatus();
-      this.GetBedList();
-    },
-    DeleteBed: function DeleteBed(id, index) {
-      var _this4 = this;
+        if (response.data.status === 201) {
+          _this3.$toastr.success('Users Added Successfully', 'Success');
 
-      var _this = this;
+          _this3.LoadingStatus();
 
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this4.axios["delete"](_this4.baseUrl + 'bed/' + id).then(function (response) {
-            if (response.data.status === 200) {
-              _this.Bedlist.data.splice(index, 1);
-
-              swal.fire('Deleted!', 'Bed Hasbeen Deleted', 'success');
-            }
-
-            if (response.data.status === 400) {
-              swal.fire("Opps", "Something Went Wrong", "warning");
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    },
-    EditBed: function EditBed(id, data) {
-      var _this = this;
-
-      _this.EditBedform.bed_id = id;
-      _this.EditBedform = data;
-    },
-    UpdateSubmit: function UpdateSubmit(event) {
-      var _this5 = this;
-
-      var _this = this;
-
-      this.axios.put(this.baseUrl + 'bed/' + _this.EditBedform.bed_id, _this.EditBedform).then(function (response) {
-        if (response.data.status == 201) {
-          _this5.$toastr.success('Bed Edited Successfully', 'Success');
-
-          $(".close").click();
-
-          _this.Clearform();
-
-          _this5.LoadingStatus();
+          _this.ClearForm();
         } else {
-          _this.Allerror = response.data.errors;
+          _this.Errors = response.data.errors;
         }
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    Clearform: function Clearform() {
+    ClearForm: function ClearForm() {
       var _this = this;
 
-      _this.Allerror = [];
-      _this.Bedform.bed_number = '';
-      _this.Bedform.description = '';
-      _this.Bedform.status = '';
+      _this.Errors = [];
+      _this.AddPatient.users_name = '';
+      _this.AddPatient.guardian_name = '';
+      _this.AddPatient.address = '';
+      _this.AddPatient.phone = '';
+      _this.AddPatient.sex = '';
+      _this.AddPatient.birth_date = '';
+      _this.AddPatient.age = '';
+      _this.AddPatient.blood_group = '';
+      _this.AddPatient.status = '';
+      _this.AddPatient.status = '';
+      _this.AddPatient.image = '';
+      _this.image_source = 'https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png';
+      _this.confirm_password = '';
+      _this.AddPatient.email = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
-    this.GetBedList();
+    console.log("Patient");
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************/
+>>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -60132,6 +60947,1138 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "Ambulance" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary pull-right",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#exampleModal"
+        }
+      },
+      [_vm._v("\n            Add New Ambulance Call\n      ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form-horizontal",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.AddAmbulance($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "exampleModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "exampleModalLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [_vm._v("Add New Ambulance Call")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close"
+                        },
+                        on: { click: _vm.Clearform }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "panel panel-flat" }, [
+                          _c("div", { staticClass: "panel-heading" }, [
+                            _c("div", { staticClass: "heading-elements" }, [
+                              _c("ul", { staticClass: "icons-list" }, [
+                                _c("li", [
+                                  _c("a", {
+                                    attrs: { "data-action": "reload" },
+                                    on: { click: _vm.Clearform }
+                                  })
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Ambulance Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.ambulancecallform.ambulance_id,
+                                        expression:
+                                          "ambulancecallform.ambulance_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.ambulancecallform,
+                                          "ambulance_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--Select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(
+                                      _vm.getallotmentdata.ambulance,
+                                      function(getambulnce) {
+                                        return _c("option", {
+                                          domProps: {
+                                            value: getambulnce.ambulance_id,
+                                            textContent: _vm._s(
+                                              getambulnce.vehicle_number
+                                            )
+                                          }
+                                        })
+                                      }
+                                    )
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.Allerror.ambulance_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.ambulance_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Patient Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.ambulancecallform.patient_id,
+                                        expression:
+                                          "ambulancecallform.patient_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.ambulancecallform,
+                                          "patient_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--Select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.getallotmentdata.user, function(
+                                      getpatient
+                                    ) {
+                                      return _c("option", {
+                                        domProps: {
+                                          value: getpatient.users_id,
+                                          textContent: _vm._s(
+                                            getpatient.users_name
+                                          )
+                                        }
+                                      })
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.Allerror.patient_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.patient_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("From")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.ambulancecallform.from,
+                                      expression: "ambulancecallform.from"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { placeholder: "From" },
+                                  domProps: {
+                                    value: _vm.ambulancecallform.from
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.ambulancecallform,
+                                        "from",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.from
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.from[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("To")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.ambulancecallform.to,
+                                      expression: "ambulancecallform.to"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { placeholder: "To" },
+                                  domProps: { value: _vm.ambulancecallform.to },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.ambulancecallform,
+                                        "to",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.to
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(_vm.Allerror.to[0])
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Amount")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.ambulancecallform.amount,
+                                      expression: "ambulancecallform.amount"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Amount"
+                                  },
+                                  domProps: {
+                                    value: _vm.ambulancecallform.amount
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.ambulancecallform,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.amount
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.amount[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Contact")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.ambulancecallform.contact_no,
+                                      expression: "ambulancecallform.contact_no"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Contact"
+                                  },
+                                  domProps: {
+                                    value: _vm.ambulancecallform.contact_no
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.ambulancecallform,
+                                        "contact_no",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.contact_no
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.contact_no[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: { click: _vm.Clearform }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Save")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form-horizontal",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.Updateambulance($event)
+          }
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "editModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "exampleModalLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [
+                        _vm._v(
+                          "Update  " +
+                            _vm._s(_vm.Editambulanceform.vehicle_number) +
+                            " Ambulance Call"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "aria-label": "Close"
+                        },
+                        on: { click: _vm.Clearform }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "panel panel-flat" }, [
+                          _c("div", { staticClass: "panel-heading" }, [
+                            _c("div", { staticClass: "heading-elements" }, [
+                              _c("ul", { staticClass: "icons-list" }, [
+                                _c("li", [
+                                  _c("a", {
+                                    attrs: { "data-action": "reload" },
+                                    on: { click: _vm.Clearform }
+                                  })
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "panel-body" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Ambulance Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.Editambulanceform.ambulance_id,
+                                        expression:
+                                          "Editambulanceform.ambulance_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.Editambulanceform,
+                                          "ambulance_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--Select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(
+                                      _vm.getallotmentdata.ambulance,
+                                      function(getambulnce) {
+                                        return _c("option", {
+                                          domProps: {
+                                            value: getambulnce.ambulance_id,
+                                            textContent: _vm._s(
+                                              getambulnce.vehicle_number
+                                            )
+                                          }
+                                        })
+                                      }
+                                    )
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.Allerror.ambulance_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.ambulance_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Patient Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.Editambulanceform.patient_id,
+                                        expression:
+                                          "Editambulanceform.patient_id"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.Editambulanceform,
+                                          "patient_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("--Select--")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.getallotmentdata.user, function(
+                                      getpatient
+                                    ) {
+                                      return _c("option", {
+                                        domProps: {
+                                          value: getpatient.users_id,
+                                          textContent: _vm._s(
+                                            getpatient.users_name
+                                          )
+                                        }
+                                      })
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.Allerror.patient_id
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.patient_id[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("From")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.Editambulanceform.from,
+                                      expression: "Editambulanceform.from"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { placeholder: "From" },
+                                  domProps: {
+                                    value: _vm.Editambulanceform.from
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.Editambulanceform,
+                                        "from",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.from
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.from[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("To")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("textarea", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.Editambulanceform.to,
+                                      expression: "Editambulanceform.to"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { placeholder: "To" },
+                                  domProps: { value: _vm.Editambulanceform.to },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.Editambulanceform,
+                                        "to",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.to
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(_vm.Allerror.to[0])
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Amount")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.Editambulanceform.amount,
+                                      expression: "Editambulanceform.amount"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Amount"
+                                  },
+                                  domProps: {
+                                    value: _vm.Editambulanceform.amount
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.Editambulanceform,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.amount
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.amount[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "label",
+                                { staticClass: "col-lg-3 control-label" },
+                                [_vm._v("Contact")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-lg-9" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.Editambulanceform.contact_no,
+                                      expression: "Editambulanceform.contact_no"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    placeholder: "Contact"
+                                  },
+                                  domProps: {
+                                    value: _vm.Editambulanceform.contact_no
+                                  },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.Editambulanceform,
+                                        "contact_no",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.Allerror.contact_no
+                                  ? _c("span", {
+                                      staticClass: "text-danger",
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          _vm.Allerror.contact_no[0]
+                                        )
+                                      }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: { click: _vm.Clearform }
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Save")]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "panel panel-flat" },
+      [
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("h5", { staticClass: "panel-title" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", {
+                  attrs: { "data-action": "reload" },
+                  on: { click: _vm.Clearform }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table datatable-pagination" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.ambulancelist.data, function(ambulance, index) {
+              return _c("tr", { key: index }, [
+                _c("td", { domProps: { textContent: _vm._s(index + 1) } }),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.vehicle_number))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.users_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.from))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.to))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.amount))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(ambulance.contact_no))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.Deleteambulancelist(
+                            ambulance.ambulancecall_id,
+                            index
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#editModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.Editambulancelist(
+                            ambulance.ambulancecall_id,
+                            ambulance
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-pencil-square-o",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "pagination",
+          {
+            attrs: { data: _vm.ambulancelist, limit: 3 },
+            on: { "pagination-change-page": _vm.getambulancedata }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Sl No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Ambulance Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Patient Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("From")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("To")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Contact Number")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_details/ambulance.vue?vue&type=template&id=6d16705e&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Ambulance/ambulance_details/ambulance.vue?vue&type=template&id=6d16705e& ***!
@@ -60693,7 +62640,7 @@ var render = function() {
                           "data-dismiss": "modal",
                           "aria-label": "Close"
                         },
-                        on: { click: _vm.ClearForm }
+                        on: { click: function($event) {} }
                       },
                       [
                         _c("span", { attrs: { "aria-hidden": "true" } }, [
@@ -61105,7 +63052,7 @@ var render = function() {
                       {
                         staticClass: "btn btn-secondary",
                         attrs: { type: "button", "data-dismiss": "modal" },
-                        on: { click: _vm.ClearForm }
+                        on: { click: function($event) {} }
                       },
                       [_vm._v("Close")]
                     ),
@@ -96465,6 +98412,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ambulance_call.vue?vue&type=template&id=26dc9201& */ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201&");
+/* harmony import */ var _ambulance_call_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ambulance_call.vue?vue&type=script&lang=js& */ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ambulance_call_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Ambulance/ambulance_call/ambulance_call.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ambulance_call_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ambulance_call.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ambulance_call_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ambulance_call.vue?vue&type=template&id=26dc9201& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue?vue&type=template&id=26dc9201&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ambulance_call_vue_vue_type_template_id_26dc9201___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/Ambulance/ambulance_details/ambulance.vue ***!
@@ -98274,6 +100290,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Prescription_prescription__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Prescription/prescription */ "./resources/js/components/Prescription/prescription.vue");
 /* harmony import */ var _components_System_system__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/System/system */ "./resources/js/components/System/system.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue");
+<<<<<<< HEAD
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientEditComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientEditComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientListComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientListComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientListComponent.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientAppointmentComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientAppointmentComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue");
@@ -98295,6 +100312,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+=======
+/* harmony import */ var _components_Monitor_hospital_Patient_PatientAppointmentComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientAppointmentComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue");
+/* harmony import */ var _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Ambulance/ambulance_details/ambulance */ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue");
+/* harmony import */ var _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Ambulance/ambulance_call/ambulance_call */ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue");
+>>>>>>> d99fccd4c9cdb3f6d4bf76ce9a3dc49d6f30b186
 
 
 
@@ -98412,6 +100434,11 @@ var routes = [{
   path: '/edit-doctor/:doctor_id',
   component: _components_Doctor_DoctorEditComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
   name: 'edit-doctor'
+  path: '/ambulance_call',
+  component: _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_15__["default"],
+  name: '/ambulance_call'
+>>>>>>> d99fccd4c9cdb3f6d4bf76ce9a3dc49d6f30b186
+>>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
 }];
 
 /***/ }),
