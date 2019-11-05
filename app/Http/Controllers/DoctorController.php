@@ -40,8 +40,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        $data['department']=DepartmentModel::all();
-        $data['designation']=DesignationModel::all();
+        $data['department']=DepartmentModel::whereStatus('1')->get();
+        $data['designation']=DesignationModel::whereStatus('1')->get();
 
         return response()->json($data);
     }
@@ -136,8 +136,8 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        $data['department']=DepartmentModel::all();
-        $data['designation']=DesignationModel::all();
+        $data['department']=DepartmentModel::whereStatus('1')->get();
+        $data['designation']=DesignationModel::whereStatus('1')->get();
         $data['user']=User::findOrFail($id);
 
         return response()->json($data);
