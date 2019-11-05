@@ -3454,7 +3454,363 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Config/Shift.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Shift",
+  data: function data() {
+    return {
+      ShiftList: {},
+      ShiftForm: {
+        shift_name: '',
+        description: '',
+        status: ''
+      },
+      EditShiftForm: {
+        shift_id: '',
+        shift_name: '',
+        description: '',
+        status: ''
+      },
+      AllError: []
+    };
+  },
+  methods: {
+    AddShift: function AddShift() {
+      var _this2 = this;
+
+      var _this = this;
+
+      this.axios.post(base_path + "shift", _this.ShiftForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
+
+
+          _this.GetShiftList();
+
+          $(".close").click();
+
+          _this.ClearForm();
+
+          _this2.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    GetShiftList: function GetShiftList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'shift?page=' + page).then(function (response) {
+        _this.ShiftList = response.data; //console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'shift/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Shift Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('Shift Status Changed Into Inactive', 'Success');
+        }
+
+        _this.LoadingStatus();
+
+        _this.GetShiftList();
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    EditShift: function EditShift(id, data) {
+      var _this = this;
+
+      _this.EditShiftForm.id = id;
+      _this.EditShiftForm = data;
+    },
+    UpdateShift: function UpdateShift() {
+      var _this4 = this;
+
+      var _this = this;
+
+      this.axios.put(base_path + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
+        if (response.data.status == 201) {
+          _this4.$toastr.success('Shift Edited Successfully', 'Success');
+
+          _this.GetShiftList();
+
+          $(".close").click();
+
+          _this.ClearForm();
+
+          _this4.LoadingStatus();
+        } else {
+          _this.AllError = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.error();
+      });
+    },
+    DeleteShift: function DeleteShift(id, index) {
+      var _this5 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this.GetShiftList();
+
+          _this5.LoadingStatus();
+
+          _this5.axios["delete"](base_path + 'shift/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status == 200) {
+              _this.ShiftList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Shift Hasbeen Deleted', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    ClearForm: function ClearForm() {
+      var _this = this;
+
+      _this.AllError = [];
+      _this.ShiftForm.shift_name = '';
+      _this.ShiftForm.description = '';
+      _this.ShiftForm.status = '';
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetShiftList();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorAddComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3757,60 +4113,16 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post(this.baseUrl + 'doctor', _this.AddDoctor).then(function (response) {
         console.log(response.data);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Shift",
-  data: function data() {
-    return {
-      ShiftList: {},
-      ShiftForm: {
-        shift_name: '',
-        description: '',
-        status: ''
-      },
-      EditShiftForm: {
-        shift_id: '',
-        shift_name: '',
-        description: '',
-        status: ''
-      },
-      AllError: []
-    };
-  },
-  methods: {
-    AddShift: function AddShift() {
-      var _this2 = this;
-
-      var _this = this;
-
-      this.axios.post(base_path + "shift", _this.ShiftForm).then(function (response) {
-        if (response.data.status == 201) {
-          _this2.$toastr.success('Shift Added Successfully', 'Success'); //_this.ShiftList.data.push(response.data.data);
-
-
-          _this.GetShiftList();
 
         if (response.data.status === 201) {
           _this3.$toastr.success('Users Added Successfully', 'Success');
 
           _this3.LoadingStatus();
-          _this.ClearForm();
 
           _this.resetForm();
         } else {
           _this.Errors = response.data.errors;
-          _this.AllError = response.data.errors;
         }
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    GetShiftList: function GetShiftList() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      var _this = this;
-
-      this.axios.get(base_path + 'shift?page=' + page).then(function (response) {
-        _this.ShiftList = response.data; //console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3821,25 +4133,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.baseUrl + 'doctor/create', _this.AddDoctor).then(function (response) {
         _this.DeptDegtn = response.data;
         console.log(response.data);
-    StatusChange: function StatusChange(id) {
-      var _this3 = this;
-
-      var _this = this;
-
-      this.axios.get(base_path + 'shift/' + id).then(function (response) {
-        if (response.data.status === 200) {
-          _this3.$toastr.success('Shift Status Changed Into Active', 'Success');
-        }
-
-        if (response.data.status === 202) {
-          _this3.$toastr.warning('Shift Status Changed Into Inactive', 'Success');
-        }
-
-        _this.LoadingStatus();
-
-        _this.GetShiftList();
       })["catch"](function (error) {
-        console.error();
+        console.log(error);
       });
     },
     resetForm: function resetForm() {
@@ -3853,96 +4148,20 @@ __webpack_require__.r(__webpack_exports__);
       _this.Errors = [];
 
       image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png";
-
-    EditShift: function EditShift(id, data) {
-      var _this = this;
-
-      _this.EditShiftForm.id = id;
-      _this.EditShiftForm = data;
-    },
-    UpdateShift: function UpdateShift() {
-      var _this4 = this;
-
-      var _this = this;
-
-      this.axios.put(base_path + 'shift/' + _this.EditShiftForm.shift_id, this.EditShiftForm).then(function (response) {
-        if (response.data.status == 201) {
-          _this4.$toastr.success('Shift Edited Successfully', 'Success');
-
-          _this.GetShiftList();
-
-          $(".close").click();
-
-          _this.ClearForm();
-
-          _this4.LoadingStatus();
-        } else {
-          _this.AllError = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    DeleteShift: function DeleteShift(id, index) {
-      var _this5 = this;
-
-      var _this = this;
-
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this.GetShiftList();
-
-          _this5.LoadingStatus();
-
-          _this5.axios["delete"](base_path + 'shift/' + id).then(function (response) {
-            console.log(response);
-
-            if (response.data.status == 200) {
-              _this.ShiftList.data.splice(index, 1);
-
-              swal.fire('Deleted!', 'Shift Hasbeen Deleted', 'success');
-            }
-
-            if (response.data.status === 400) {
-              swal.fire("Opps", "Something Went Wrong", "warning");
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    },
-    ClearForm: function ClearForm() {
-      var _this = this;
-
-      _this.AllError = [];
-      _this.ShiftForm.shift_name = '';
-      _this.ShiftForm.description = '';
-      _this.ShiftForm.status = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetData();
-    this.GetShiftList();
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed/bed.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
-
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorEditComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorEditComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4217,20 +4436,6 @@ __webpack_require__.r(__webpack_exports__);
         image: '',
         email: '',
         type: '3'
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Bed",
-  data: function data() {
-    return {
-      Bedlist: {},
-      Bedform: {
-        bed_number: '',
-        description: '',
-        status: ''
-      },
-      EditBedform: {
-        bed_number: '',
-        description: '',
-        status: ''
       },
       confirm_password: '',
       image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
@@ -4245,9 +4450,6 @@ __webpack_require__.r(__webpack_exports__);
       var file = event.target.files[0];
       var reader = new FileReader();
       this.LoadingStatus();
-    GetBedList: function GetBedList() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
 
       reader.onload = function (event) {
         _this2.EditDoctor.image = event.target.result;
@@ -4264,33 +4466,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.put(this.baseUrl + 'doctor/' + _this.EditDoctor.users_id, _this.EditDoctor).then(function (response) {
         console.log(response.data);
 
-      this.axios.get(this.baseUrl + 'bed?page=' + page).then(function (response) {
-        console.log(response);
-        _this.Bedlist = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    Addbed: function Addbed() {
-      var _this2 = this;
-
-      var _this = this;
-
-      this.axios.post(this.baseUrl + 'bed', _this.Bedform).then(function (response) {
-        console.log(response.data.status);
-
-        if (response.data.status == 200) {
-          _this2.$toastr.success('Bed Added Successfully', 'Success');
-
-          _this.Bedlist.data.push(response.data.data);
-
         if (response.data.status === 201) {
           _this3.$toastr.success('Doctor Edit Added Successfully', 'Success');
 
-
           _this3.LoadingStatus();
-
-          _this2.Clearform();
 
           _this.GetData();
         } else {
@@ -4315,107 +4494,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    BedStatusChange: function BedStatusChange(id) {
-      var _this3 = this;
-
-      var _this = this;
-
-      this.axios.get(this.baseUrl + 'bed/' + id).then(function (response) {
-        if (response.data.status === 200) {
-          _this3.$toastr.success('Bed Status Changed Into Active', 'Success');
-        }
-
-        if (response.data.status === 202) {
-          _this3.$toastr.success('Bed Status Changed Into InActive', 'Success');
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-      this.LoadingStatus();
-      this.GetBedList();
-    },
-    DeleteBed: function DeleteBed(id, index) {
-      var _this4 = this;
-
-      var _this = this;
-
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this4.axios["delete"](_this4.baseUrl + 'bed/' + id).then(function (response) {
-            if (response.data.status === 200) {
-              _this.Bedlist.data.splice(index, 1);
-
-              swal.fire('Deleted!', 'Bed Hasbeen Deleted', 'success');
-            }
-
-            if (response.data.status === 400) {
-              swal.fire("Opps", "Something Went Wrong", "warning");
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    },
-    EditBed: function EditBed(id, data) {
-      var _this = this;
-
-      _this.EditBedform.bed_id = id;
-      _this.EditBedform = data;
-    },
-    UpdateSubmit: function UpdateSubmit(event) {
-      var _this5 = this;
-
-      var _this = this;
-
-      this.axios.put(this.baseUrl + 'bed/' + _this.EditBedform.bed_id, _this.EditBedform).then(function (response) {
-        if (response.data.status == 201) {
-          _this5.$toastr.success('Bed Edited Successfully', 'Success');
-
-          $(".close").click();
-
-          _this.Clearform();
-
-          _this5.LoadingStatus();
-        } else {
-          _this.Allerror = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    Clearform: function Clearform() {
-      var _this = this;
-
-      _this.Allerror = [];
-      _this.Bedform.bed_number = '';
-      _this.Bedform.description = '';
-      _this.Bedform.status = '';
     }
   },
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetData();
-    this.GetBedList();
   }
 });
 
 /***/ }),
 
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************/
-
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorListComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4607,7 +4699,80 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4738,245 +4903,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "BedAllotment",
-  mounted: function mounted() {
-    this.LoadingStatus();
-    this.getallotment();
-    this.getbedallotment();
-  },
-  data: function data() {
-    return {
-      getallotmentdata: [],
-      allotmentlist: {},
-      bedallotmentform: {
-        patient_id: '',
-        bed_id: '',
-        allotment_time: '',
-        discharge_time: ''
-      },
-      Editbedallotmentform: {
-        bedallotment_id: '',
-        patient_id: '',
-        bed_id: '',
-        allotment_time: '',
-        discharge_time: ''
-      },
-      Allerror: []
-    };
-  },
-  methods: {
-    getallotment: function getallotment() {
-      var _this = this;
-
-      this.axios.get(this.baseUrl + 'get_data').then(function (response) {
-        _this.getallotmentdata = response.data;
-        console.log(response.data);
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    getbedallotment: function getbedallotment() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
-      var _this = this;
-
-      this.axios.get(this.baseUrl + 'bedallotment?page' + page).then(function (response) {
-        _this.allotmentlist = response.data;
-      })["catch"](function (error) {
-        console.error();
-      });
-    },
-    AddBedAllotment: function AddBedAllotment() {
-      var _this2 = this;
-
-      var _this = this;
-
-      this.axios.post(this.baseUrl + 'bedallotment', _this.bedallotmentform).then(function (response) {
-        if (response.data.status == 200) {
-          _this2.$toastr.success('Bed Allotment Added Successfully', 'Success');
-
-          _this.allotmentlist.data.push(response.data.data);
-
-          $(".close").click();
-
-          _this2.Clearfrom();
-
-          _this2.LoadingStatus();
-        } else {
-          _this.Allerror = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    Deletebedallotment: function Deletebedallotment(id, index) {
-      var _this3 = this;
-
-      var _this = this;
-
-      swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this3.axios["delete"](_this3.baseUrl + 'bedallotment/' + id).then(function (response) {
-            if (response.data.status == 200) {
-              _this.allotmentlist.data.splice(index, 1);
-
-              swal.fire('Deleted!', 'BedAllotment Hasbeen Deleted', 'success');
-            }
-
-            if (response.data.status === 400) {
-              swal.fire("Opps", "Something Went Wrong", "warning");
-            }
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    },
-    Editbedallotment: function Editbedallotment(id, data) {
-      var _this = this;
-
-      _this.Editbedallotmentform.bedallotment_id = id;
-      _this.Editbedallotmentform = data;
-    },
-    UpdateBedAllotment: function UpdateBedAllotment(event) {
-      var _this4 = this;
-
-      var _this = this;
-
-      this.axios.put(this.baseUrl + 'bedallotment/' + _this.Editbedallotmentform.bedallotment_id, _this.Editbedallotmentform).then(function (response) {
-        if (response.data.status == 201) {
-          _this4.$toastr.success('Bed Edited Successfully', 'Success');
-
-          $(".close").click();
-
-          _this4.Clearfrom();
-
-          _this4.LoadingStatus();
-        } else {
-          _this.Allerror = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    Clearfrom: function Clearfrom() {
-      var _this = this;
-
-      _this.Allerror = [];
-      _this.bedallotmentform.patient_id = '';
-      _this.bedallotmentform.bed_id = '';
-      _this.bedallotmentform.allotment_time = '';
-      _this.bedallotmentform.discharge_time = '';
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-<<<<<<< HEAD
   name: "Bed",
   data: function data() {
     return {
@@ -5121,345 +5047,15 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetBedList();
-=======
-  name: "PatientAppointment",
-  mounted: function mounted() {
-    console.log("PatientAppointment");
->>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
   }
 });
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Bed_Allotment/bed_allotment.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************/
-=======
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Patient",
-  data: function data() {
-    return {
-      AddPatient: {
-        users_name: '',
-        guardian_name: '',
-        address: '',
-        phone: '',
-        sex: '',
-        birth_date: '',
-        age: '',
-        blood_group: '',
-        status: '',
-        password: '',
-        image: '',
-        email: '',
-        type: '9'
-      },
-      confirm_password: '',
-      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
-      Errors: []
-    };
-  },
-  methods: {
-    ImageGet: function ImageGet(event) {
-      var _this2 = this;
-
-      var file = event.target.files[0];
-      var reader = new FileReader();
-      this.LoadingStatus();
-
-      reader.onload = function (event) {
-        _this2.AddPatient.image = event.target.result;
-        _this2.image_source = event.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    },
-    AddNewPatient: function AddNewPatient() {
-      var _this3 = this;
-
-      var _this = this;
-
-      axios.post(this.baseUrl + 'patient', _this.AddPatient).then(function (response) {
-        console.log(response.data);
-
-        if (response.data.status === 201) {
-          _this3.$toastr.success('Users Added Successfully', 'Success');
-
-          _this3.LoadingStatus();
-
-          _this.ClearForm();
-        } else {
-          _this.Errors = response.data.errors;
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    ClearForm: function ClearForm() {
-      var _this = this;
-
-      _this.Errors = [];
-      _this.AddPatient.users_name = '';
-      _this.AddPatient.guardian_name = '';
-      _this.AddPatient.address = '';
-      _this.AddPatient.phone = '';
-      _this.AddPatient.sex = '';
-      _this.AddPatient.birth_date = '';
-      _this.AddPatient.age = '';
-      _this.AddPatient.blood_group = '';
-      _this.AddPatient.status = '';
-      _this.AddPatient.status = '';
-      _this.AddPatient.image = '';
-      _this.image_source = 'https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png';
-      _this.confirm_password = '';
-      _this.AddPatient.email = '';
-    }
-  },
-  mounted: function mounted() {
-    this.LoadingStatus();
-    console.log("Patient");
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************/
->>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -99553,6 +99149,102 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Nurse/NurseAddComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Nurse/NurseAddComponent.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Nurse/NurseAddComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nurse/NurseEditComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Nurse/NurseEditComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Nurse/NurseEditComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Nurse/NurseListComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Nurse/NurseListComponent.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Nurse/NurseListComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Operation/operation.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Operation/operation.vue ***!
@@ -100290,7 +99982,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Prescription_prescription__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Prescription/prescription */ "./resources/js/components/Prescription/prescription.vue");
 /* harmony import */ var _components_System_system__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/System/system */ "./resources/js/components/System/system.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientComponent.vue");
-<<<<<<< HEAD
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientEditComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientEditComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientEditComponent.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientListComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientListComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientListComponent.vue");
 /* harmony import */ var _components_Monitor_hospital_Patient_PatientAppointmentComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientAppointmentComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue");
@@ -100299,10 +99990,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Test_TestType__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Test/TestType */ "./resources/js/components/Test/TestType.vue");
 /* harmony import */ var _components_Test_Test__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Test/Test */ "./resources/js/components/Test/Test.vue");
 /* harmony import */ var _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Ambulance/ambulance_details/ambulance */ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue");
-/* harmony import */ var _components_Operation_operation__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Operation/operation */ "./resources/js/components/Operation/operation.vue");
-/* harmony import */ var _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Doctor/DoctorAddComponent */ "./resources/js/components/Doctor/DoctorAddComponent.vue");
-/* harmony import */ var _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Doctor/DoctorListComponent */ "./resources/js/components/Doctor/DoctorListComponent.vue");
-/* harmony import */ var _components_Doctor_DoctorEditComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Doctor/DoctorEditComponent */ "./resources/js/components/Doctor/DoctorEditComponent.vue");
+/* harmony import */ var _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Ambulance/ambulance_call/ambulance_call */ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue");
+/* harmony import */ var _components_Operation_operation__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Operation/operation */ "./resources/js/components/Operation/operation.vue");
+/* harmony import */ var _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Doctor/DoctorAddComponent */ "./resources/js/components/Doctor/DoctorAddComponent.vue");
+/* harmony import */ var _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Doctor/DoctorListComponent */ "./resources/js/components/Doctor/DoctorListComponent.vue");
+/* harmony import */ var _components_Doctor_DoctorEditComponent__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Doctor/DoctorEditComponent */ "./resources/js/components/Doctor/DoctorEditComponent.vue");
+/* harmony import */ var _components_Nurse_NurseAddComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Nurse/NurseAddComponent */ "./resources/js/components/Nurse/NurseAddComponent.vue");
+/* harmony import */ var _components_Nurse_NurseListComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Nurse/NurseListComponent */ "./resources/js/components/Nurse/NurseListComponent.vue");
+/* harmony import */ var _components_Nurse_NurseEditComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Nurse/NurseEditComponent */ "./resources/js/components/Nurse/NurseEditComponent.vue");
 
 
 
@@ -100312,11 +100007,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-=======
-/* harmony import */ var _components_Monitor_hospital_Patient_PatientAppointmentComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Monitor_hospital/Patient/PatientAppointmentComponent */ "./resources/js/components/Monitor_hospital/Patient/PatientAppointmentComponent.vue");
-/* harmony import */ var _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Ambulance/ambulance_details/ambulance */ "./resources/js/components/Ambulance/ambulance_details/ambulance.vue");
-/* harmony import */ var _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Ambulance/ambulance_call/ambulance_call */ "./resources/js/components/Ambulance/ambulance_call/ambulance_call.vue");
->>>>>>> d99fccd4c9cdb3f6d4bf76ce9a3dc49d6f30b186
+
+
+
+
 
 
 
@@ -100415,30 +100109,41 @@ var routes = [{
   component: _components_Test_Test__WEBPACK_IMPORTED_MODULE_19__["default"],
   name: '/test'
 }, {
+  path: '/ambulance_call',
+  component: _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_21__["default"],
+  name: '/ambulance_call'
+}, {
   path: '/ambulance_details',
   component: _components_Ambulance_ambulance_details_ambulance__WEBPACK_IMPORTED_MODULE_20__["default"],
   name: '/ambulance_details'
 }, {
   path: '/operation',
-  component: _components_Operation_operation__WEBPACK_IMPORTED_MODULE_21__["default"],
+  component: _components_Operation_operation__WEBPACK_IMPORTED_MODULE_22__["default"],
   name: '/operation'
 }, {
   path: '/doctor_add',
-  component: _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_22__["default"],
+  component: _components_Doctor_DoctorAddComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
   name: '/doctor_add'
 }, {
   path: '/doctor_list',
-  component: _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_23__["default"],
+  component: _components_Doctor_DoctorListComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
   name: '/doctor_list'
 }, {
   path: '/edit-doctor/:doctor_id',
-  component: _components_Doctor_DoctorEditComponent__WEBPACK_IMPORTED_MODULE_24__["default"],
+  component: _components_Doctor_DoctorEditComponent__WEBPACK_IMPORTED_MODULE_25__["default"],
   name: 'edit-doctor'
-  path: '/ambulance_call',
-  component: _components_Ambulance_ambulance_call_ambulance_call__WEBPACK_IMPORTED_MODULE_15__["default"],
-  name: '/ambulance_call'
->>>>>>> d99fccd4c9cdb3f6d4bf76ce9a3dc49d6f30b186
->>>>>>> ce5c7eb40a947ea015278e6ee5d1991828f15f33
+}, {
+  path: '/nurse_add',
+  component: _components_Nurse_NurseAddComponent__WEBPACK_IMPORTED_MODULE_26__["default"],
+  name: '/nurse_add'
+}, {
+  path: '/nurse_list',
+  component: _components_Nurse_NurseListComponent__WEBPACK_IMPORTED_MODULE_27__["default"],
+  name: '/nurse_list'
+}, {
+  path: '/edit-nurse/:nurse_id',
+  component: _components_Nurse_NurseEditComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
+  name: 'edit-nurse'
 }];
 
 /***/ }),
