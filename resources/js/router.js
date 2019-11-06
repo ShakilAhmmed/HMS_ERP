@@ -26,6 +26,9 @@ import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulan
 import AmbulanceCallComponent from './components/Ambulance/ambulance_call/ambulance_call'
 import OperationComponent from './components/Operation/operation'
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
+import AccountComponent from './components/Account/Account'
+import Accountlistcomponent from './components/Account/account_list'
+import AccountEditComponent from './components/Account/account_edit'
 
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
@@ -150,6 +153,21 @@ export const routes = [
       path:'/ambulance_call',
       component:AmbulanceCallComponent,
       name:'/ambulance_call'
+    },
+    {
+      path:'/account',
+      component:AccountComponent,
+      name:'/account'
+    },
+    {
+      path:'/account_list',
+      component:Accountlistcomponent,
+      name:'/account_list'
+    },
+    {
+      path:'/edit_account/:account_id',
+      component:AccountEditComponent,
+      name:'edit_account'
     },
 
 ]

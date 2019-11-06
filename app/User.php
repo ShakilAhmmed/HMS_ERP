@@ -79,4 +79,19 @@ class User extends Authenticatable
         'password'=>'required',
       ];
     }
+
+    public function accountvalid($id=0)
+    {
+        return [
+        'users_name'=>'required|max:50',
+        'shift_id'=>'required',
+        'address'=>'required|max:255',
+        'phone'=>'required|digits_between:11,14',
+        'sex'=>'required|max:20',
+        'status'=>'required',
+        'blood_group'=>'required',
+        'email'=>'required|unique:users,email,'.$id.',users_id',
+        'password'=>'required',
+      ];
+    }
 }
