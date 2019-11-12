@@ -70,6 +70,7 @@
         <a href="#"><i class="icon-stack2"></i> <span>Doctor</span></a>
           <ul>
             <li><router-link to="/doctor_add">Add Doctor</router-link></li>
+            <li><router-link to="/doctor_list">Doctors List</router-link></li>
           </ul>
       </li>
 

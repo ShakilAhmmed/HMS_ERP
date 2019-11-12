@@ -94,4 +94,21 @@ class User extends Authenticatable
         'password'=>'required',
       ];
     }
+
+    public function doctor_validate($id=0)
+    {
+        return [
+        'users_name'=>'required|max:50',
+        'address'=>'required|max:255',
+        'phone'=>'required|digits_between:11,14',
+        'sex'=>'required|max:20',
+        'status'=>'required',
+        'blood_group'=>'required',
+        'department_id'=>'required',
+        'designation_id'=>'required',
+        'type'=>'required',
+        'email'=>'required|unique:users,email,'.$id.',users_id',
+        'password'=>'required',
+      ];
+    }
 }

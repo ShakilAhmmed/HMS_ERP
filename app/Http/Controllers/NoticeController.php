@@ -14,9 +14,14 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notice=NoticeModel::paginate(10);
+        $notice=NoticeModel::where(function($notice) use ($request){
+            if ($request->q) {
+                $notice->where('title',$request->q)
+                        ->orWhere('description','LIKE','%'.$request->q.'%');
+            }
+        })->paginate($request->row);
         return $notice;
     }
 
