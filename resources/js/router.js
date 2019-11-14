@@ -29,6 +29,10 @@ import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 import DoctorListComponent from './components/Doctor/DoctorListComponent'
 import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
 
+import NurseAddComponent from './components/Nurse/NurseAddComponent'
+import NurseListComponent from './components/Nurse/NurseListComponent'
+import NurseEditComponent from './components/Nurse/NurseEditComponent'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -162,6 +166,22 @@ export const routes = [
       path:'/edit-doctor/:doctor_id',
       component:DoctorEditComponent,
       name:'edit-doctor'
+    },
+
+  	{
+  		path:'/nurse_add',
+  		component:NurseAddComponent,
+  		name:'/nurse_add'
+  	},
+  	{
+  		path:'/nurse_list',
+  		component:NurseListComponent,
+  		name:'/nurse_list'
+  	},
+    {
+      path:'/edit-nurse/:nurse_id',
+      component:NurseEditComponent,
+      name:'edit-nurse'
     },
 
 ]
