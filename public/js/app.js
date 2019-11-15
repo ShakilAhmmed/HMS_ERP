@@ -3678,7 +3678,8 @@ __webpack_require__.r(__webpack_exports__);
         description: '',
         status: ''
       },
-      AllError: []
+      AllError: [],
+      update_index: ''
     };
   },
   methods: {
@@ -3738,11 +3739,12 @@ __webpack_require__.r(__webpack_exports__);
         console.error();
       });
     },
-    EditShift: function EditShift(id, data) {
+    EditShift: function EditShift(id, data, index) {
       var _this = this;
 
-      _this.EditShiftForm.id = id;
-      _this.EditShiftForm = data;
+      _this.update_index = index;
+      _this.EditShiftForm.shift_id = id;
+      _this.EditShiftForm = JSON.parse(JSON.stringify(data));
     },
     UpdateShift: function UpdateShift() {
       var _this4 = this;
@@ -10407,7 +10409,8 @@ __webpack_require__.r(__webpack_exports__);
       AllError: [],
       search: '',
       custom_row: 10,
-      select_row: [10, 20, 30, 40, 50]
+      select_row: [10, 20, 30, 40, 50],
+      update_index: ''
     };
   },
   methods: {
@@ -10475,11 +10478,12 @@ exports.push([module.i, "\n.loading-screen[data-v-7ab65994] {\r\n  display: -web
         console.error();
       });
     },
-    EditTest: function EditTest(id, data) {
+    EditTest: function EditTest(id, data, index) {
       var _this = this;
 
-      _this.EditTestForm.id = id;
-      _this.EditTestForm = data;
+      _this.update_index = index;
+      _this.EditTestForm.test_id = id;
+      _this.EditTestForm = JSON.parse(JSON.stringify(data));
     },
     UpdateTest: function UpdateTest() {
       var _this4 = this;
@@ -10785,7 +10789,8 @@ __webpack_require__.r(__webpack_exports__);
       AllError: [],
       search: '',
       custom_row: 10,
-      select_row: [10, 20, 30, 40, 50]
+      select_row: [10, 20, 30, 40, 50],
+      update_index: ''
     };
   },
   methods: {
@@ -10847,11 +10852,12 @@ __webpack_require__.r(__webpack_exports__);
         console.error();
       });
     },
-    EditTestCategory: function EditTestCategory(id, data) {
+    EditTestCategory: function EditTestCategory(id, data, index) {
       var _this = this;
 
-      _this.EditTestCategoryForm.id = id;
-      _this.EditTestCategoryForm = data;
+      _this.update_index = index;
+      _this.EditTestCategoryForm.test_category_id = id;
+      _this.EditTestCategoryForm = JSON.parse(JSON.stringify(data));
     },
     UpdateTestCategory: function UpdateTestCategory() {
       var _this4 = this;
@@ -11183,7 +11189,8 @@ __webpack_require__.r(__webpack_exports__);
       AllError: [],
       search: '',
       custom_row: 10,
-      select_row: [10, 20, 30, 40, 50]
+      select_row: [10, 20, 30, 40, 50],
+      update_index: ''
     };
   },
   methods: {
@@ -11246,12 +11253,12 @@ __webpack_require__.r(__webpack_exports__);
         console.error();
       });
     },
-    EditTestSubCategory: function EditTestSubCategory(id, data) {
+    EditTestCategory: function EditTestCategory(id, data, index) {
       var _this = this;
 
-      _this.EditTestSubCategoryForm.id = id;
-      _this.EditTestSubCategoryForm = data;
-      _this.EditTestSubCategoryForm.status = data.sub_category_status;
+      _this.update_index = index;
+      _this.EditTestSubCategoryForm.test_sub_category_id = id;
+      _this.EditTestSubCategoryForm = JSON.parse(JSON.stringify(data));
     },
     UpdateTestSubCategory: function UpdateTestSubCategory() {
       var _this4 = this;
@@ -11583,7 +11590,8 @@ __webpack_require__.r(__webpack_exports__);
       AllError: [],
       search: '',
       custom_row: 10,
-      select_row: [10, 20, 30, 40, 50]
+      select_row: [10, 20, 30, 40, 50],
+      update_index: ''
     };
   },
   methods: {
@@ -11646,12 +11654,12 @@ __webpack_require__.r(__webpack_exports__);
         console.error();
       });
     },
-    EditTestType: function EditTestType(id, data) {
+    EditTestType: function EditTestType(id, data, index) {
       var _this = this;
 
-      _this.EditTestTypeForm.id = id;
-      _this.EditTestTypeForm = data;
-      _this.EditTestTypeForm.status = data.test_type_status;
+      _this.update_index = index;
+      _this.EditTestTypeForm.test_type_id = id;
+      _this.EditTestTypeForm = JSON.parse(JSON.stringify(data));
     },
     UpdateTestType: function UpdateTestType() {
       var _this4 = this;
@@ -70024,7 +70032,11 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          return _vm.EditShift(shift_list.shift_id, shift_list)
+                          return _vm.EditShift(
+                            shift_list.shift_id,
+                            shift_list,
+                            index
+                          )
                         }
                       }
                     },
@@ -88432,7 +88444,11 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          return _vm.EditTest(test_list.test_id, test_list)
+                          return _vm.EditTest(
+                            test_list.test_id,
+                            _vm.data,
+                            index
+                          )
                         }
                       }
                     },
@@ -89342,7 +89358,8 @@ var render = function() {
                         click: function($event) {
                           return _vm.EditTestCategory(
                             test_category_list.test_category_id,
-                            test_category_list
+                            test_category_list,
+                            index
                           )
                         }
                       }
@@ -90413,7 +90430,8 @@ var render = function() {
                         click: function($event) {
                           return _vm.EditTestSubCategory(
                             test_sub_category_list.test_sub_category_id,
-                            test_sub_category_list
+                            test_sub_category_list,
+                            index
                           )
                         }
                       }
@@ -91460,7 +91478,8 @@ var render = function() {
                         click: function($event) {
                           return _vm.EditTestType(
                             test_type_list.test_type_id,
-                            test_type_list
+                            test_type_list,
+                            index
                           )
                         }
                       }

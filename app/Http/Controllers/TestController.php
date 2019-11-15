@@ -28,7 +28,7 @@ class TestController extends Controller
 
         $data['test']=$test->join('test_type','test.test_type_id','=','test_type.test_type_id')
                                       ->select('test.status AS test_status',
-                                      'test.*','test_type.*')
+                                      'test.*','test_type.test_type_name')
                                       ->paginate($request->row);
 
         $data['test_type']=TestTypeModel::where('status',1)->get();
@@ -105,7 +105,7 @@ class TestController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

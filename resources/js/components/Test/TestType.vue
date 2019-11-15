@@ -204,7 +204,7 @@
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTestType(test_type_list.test_type_id,test_type_list)">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTestType(test_type_list.test_type_id,test_type_list,index)">
                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
               </td>
@@ -243,7 +243,8 @@
             AllError:[],
             search:'',
             custom_row:10,
-            select_row:[10,20,30,40,50]
+            select_row:[10,20,30,40,50],
+            update_index:''
           }
       },
       methods:{
@@ -303,13 +304,15 @@
               console.error();
             })
         },
-        EditTestType:function(id,data)
+
+        EditTestType:function(id,data,index)
         {
-          const _this=this;
-          _this.EditTestTypeForm.id=id;
-          _this.EditTestTypeForm=data;
-          _this.EditTestTypeForm.status=data.test_type_status;
+            const _this=this;
+            _this.update_index=index;
+            _this.EditTestTypeForm.test_type_id=id;
+            _this.EditTestTypeForm=JSON.parse(JSON.stringify(data));
         },
+
         UpdateTestType:function()
         {
           const _this=this;

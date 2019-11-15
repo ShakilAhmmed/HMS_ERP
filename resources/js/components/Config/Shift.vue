@@ -171,7 +171,7 @@
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditShift(shift_list.shift_id,shift_list)">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditShift(shift_list.shift_id,shift_list,index)">
                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
               </td>
@@ -205,6 +205,7 @@
                 status:'',
             },
             AllError:[],
+            update_index:''
           }
       },
       methods:{
@@ -263,12 +264,15 @@
               console.error();
             })
         },
-        EditShift:function(id,data)
+
+        EditShift:function(id,data,index)
         {
-          const _this=this;
-          _this.EditShiftForm.id=id;
-          _this.EditShiftForm=data;
+            const _this=this;
+            _this.update_index=index;
+            _this.EditShiftForm.shift_id=id;
+            _this.EditShiftForm=JSON.parse(JSON.stringify(data));
         },
+
         UpdateShift:function()
         {
           const _this=this;

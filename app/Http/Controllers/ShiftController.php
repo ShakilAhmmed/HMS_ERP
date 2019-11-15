@@ -90,7 +90,7 @@ class ShiftController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

@@ -31,7 +31,7 @@ class TestSubCategoryController extends Controller
         $data['test_sub_category']=$test_sub_category->join('test_category','test_sub_category.test_category_id','=','test_category.test_category_id')
                                       ->select('test_category.test_category_name AS test_category_name',
                                       'test_sub_category.status AS sub_category_status',
-                                      'test_sub_category.*','test_category.*')
+                                      'test_sub_category.*')
                                       ->paginate($request->row);
 
         $data['test_category']=TestCategoryModel::where('status',1)->get();
@@ -108,7 +108,7 @@ class TestSubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
