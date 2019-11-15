@@ -204,7 +204,7 @@
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTestSubCategory(test_sub_category_list.test_sub_category_id,test_sub_category_list)">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTestSubCategory(test_sub_category_list.test_sub_category_id,test_sub_category_list,index)">
                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
               </td>
@@ -243,7 +243,8 @@
             AllError:[],
             search:'',
             custom_row:10,
-            select_row:[10,20,30,40,50]
+            select_row:[10,20,30,40,50],
+            update_index:''
           }
       },
       methods:{
@@ -303,13 +304,15 @@
               console.error();
             })
         },
-        EditTestSubCategory:function(id,data)
+
+        EditTestCategory:function(id,data,index)
         {
-          const _this=this;
-          _this.EditTestSubCategoryForm.id=id;
-          _this.EditTestSubCategoryForm=data;
-          _this.EditTestSubCategoryForm.status=data.sub_category_status;
+            const _this=this;
+            _this.update_index=index;
+            _this.EditTestSubCategoryForm.test_sub_category_id=id;
+            _this.EditTestSubCategoryForm=JSON.parse(JSON.stringify(data));
         },
+
         UpdateTestSubCategory:function()
         {
           const _this=this;

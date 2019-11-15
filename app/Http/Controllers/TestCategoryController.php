@@ -100,7 +100,7 @@ class TestCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
