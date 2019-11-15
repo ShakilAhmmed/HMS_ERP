@@ -67,9 +67,15 @@ class AmbulanceCallController extends Controller
             $requestdata=$request->all();
             $requestdata=Arr::add($requestdata,'ambulancecall_id',time());
             $ambulancecall->fill($requestdata)->save();
+            $get_current_data=AmbulanceCallModel::join('users','ambulance_call.patient_id','users.users_id')
+            ->join('ambulance','ambulance_call.ambulance_id','ambulance.ambulance_id')
+            ->select('users.users_name','ambulance.vehicle_number','ambulance_call.*')
+            ->where('ambulance_call.ambulancecall_id',$ambulancecall->ambulancecall_id)
+            ->first();
+
             $response=[
                 'status'=>200,
-                'data'=>$ambulancecall
+                'data'=>$get_current_data
             ];
         }
         return response()->json($response);

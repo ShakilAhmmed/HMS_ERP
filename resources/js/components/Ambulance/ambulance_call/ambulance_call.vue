@@ -282,6 +282,7 @@
                 const _this=this;
                 this.axios.post(this.baseUrl+'ambulancecall',_this.ambulancecallform)
                 .then((response)=>{
+									console.log(response.data);
                     if(response.data.status==200)
                     {
                         this.$toastr.success('Ambulance Call Added Successfully', 'Success');
@@ -308,7 +309,7 @@
                       showCancelButton: true,
                       confirmButtonColor: '#3085d6',
                       cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, delete it!' 
+                      confirmButtonText: 'Yes, delete it!'
                     })
                     .then((result)=>{
                         if(result.value){
@@ -392,7 +393,7 @@
 
         	}
         },
-		 
+
         mounted(){
             this.LoadingStatus();
             this.getambulance();

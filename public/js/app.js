@@ -2121,6 +2121,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.post(this.baseUrl + 'ambulancecall', _this.ambulancecallform).then(function (response) {
+        console.log(response.data);
+
         if (response.data.status == 200) {
           _this2.$toastr.success('Ambulance Call Added Successfully', 'Success');
 
@@ -3006,7 +3008,6 @@ __webpack_require__.r(__webpack_exports__);
       _this.update_index = index;
       _this.EditDepartmentForm.departments_id = id;
       _this.EditDepartmentForm = JSON.parse(JSON.stringify(data));
-      ;
     },
     UpdateDepartment: function UpdateDepartment(event) {
       var _this5 = this;

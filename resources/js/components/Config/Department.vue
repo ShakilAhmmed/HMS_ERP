@@ -362,7 +362,7 @@
                 const _this=this;
                 _this.update_index=index;
                 _this.EditDepartmentForm.departments_id=id;
-                _this.EditDepartmentForm=JSON.parse(JSON.stringify(data));;
+                _this.EditDepartmentForm=JSON.parse(JSON.stringify(data));
             },
             UpdateDepartment:function(event){
                 const _this=this;
