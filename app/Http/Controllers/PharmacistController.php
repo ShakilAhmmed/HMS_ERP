@@ -12,25 +12,25 @@ use Arr;
 use Helper;
 use File;
 
-class NurseController extends Controller
+class PharmacistController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function index(Request $request)
-     {
-         $nurse=User::where(function($nurse) use ($request){
-             if($request->q)
-             {
-                $nurse->where('users_name','LIKE','%'.$request->q.'%')
-                             ->orWhere('email','LIKE','%'.$request->q.'%')
-                             ->orWhere('phone','LIKE','%'.$request->q.'%');
-             }
-         })->whereType('4')->paginate($request->row);
-         return $nurse;
-     }
+    public function index(Request $request)
+    {
+      $pharmacist=User::where(function($pharmacist) use ($request){
+          if($request->q)
+          {
+             $pharmacist->where('users_name','LIKE','%'.$request->q.'%')
+                          ->orWhere('email','LIKE','%'.$request->q.'%')
+                          ->orWhere('phone','LIKE','%'.$request->q.'%');
+          }
+      })->whereType('5')->paginate($request->row);
+      return $pharmacist;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -39,9 +39,9 @@ class NurseController extends Controller
      */
     public function create()
     {
-        $data['shift']=ShiftModel::whereStatus('1')->get();
+      $data['shift']=ShiftModel::whereStatus('1')->get();
 
-        return response()->json($data);
+      return response()->json($data);
     }
 
     /**
@@ -52,8 +52,8 @@ class NurseController extends Controller
      */
     public function store(Request $request)
     {
-        $nurse=new User;
-        $validation=Validator::make($request->all(),$nurse->nurse_validate());
+        $pharmacist=new User;
+        $validation=Validator::make($request->all(),$pharmacist->nurse_validate());
         if($validation->fails())
         {
               $response=[
@@ -80,10 +80,10 @@ class NurseController extends Controller
                      $requested_data=Arr::add($requested_data,'users_id',time());
                      $password = Hash::make($request->password);
                      $requested_data=Arr::set($requested_data,'password',$password);
-                     $nurse->fill($requested_data)->save();
+                     $pharmacist->fill($requested_data)->save();
                      $response=[
                            'status'=>201,
-                           'data'=>$nurse
+                           'data'=>$pharmacist
                        ];
                  }
                  else
@@ -95,10 +95,10 @@ class NurseController extends Controller
                  }
              }
              $requested_data=Arr::set($requested_data,'status',1);
-             $nurse->fill($requested_data)->save();
+             $pharmacist->fill($requested_data)->save();
              $response=[
                    'status'=>201,
-                   'data'=>$nurse
+                   'data'=>$pharmacist
                ];
         }
         return response()->json($response);
@@ -112,15 +112,15 @@ class NurseController extends Controller
      */
     public function show($id)
     {
-        $nurse = User::findOrFail($id);
-        if ($nurse->status == 1)
+        $pharmacist = User::findOrFail($id);
+        if ($pharmacist->status == 1)
         {
-          $nurse->update(['status'=>2]);
+          $pharmacist->update(['status'=>2]);
           $response=['status'=>202];
         }
         else
         {
-          $nurse->update(['status'=>1]);
+          $pharmacist->update(['status'=>1]);
           $response=['status'=>200];
         }
         return response()->json($response);
@@ -149,8 +149,8 @@ class NurseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nurse=User::findOrFail($id);
-        $validation=Validator::make($request->all(),$nurse->nurse_validate($id));
+        $pharmacist=User::findOrFail($id);
+        $validation=Validator::make($request->all(),$pharmacist->nurse_validate($id));
         if($validation->fails())
         {
               $response=[
@@ -162,7 +162,7 @@ class NurseController extends Controller
         {
              $requested_data=$request->all();
 
-             if($request->image != $nurse->image)
+             if($request->image != $pharmacist->image)
              {
                  $position=strpos($request->image,";");
                  $sub_str=substr($request->image, 0,$position);
@@ -170,9 +170,9 @@ class NurseController extends Controller
                  $allowed=Helper::ImageExtension($extenstion[1]);
                  if($allowed=="Allowed")
                  {
-                     if(File::exists($nurse->image))
+                     if(File::exists($pharmacist->image))
                      {
-                       File::delete( $nurse->image );
+                       File::delete( $pharmacist->image );
                      }
                      $upload_path="backend_assets/assets/images/users/".time().".".$extenstion[1];
                      $image_upload=Image::make($request->image)->resize(300, 300);
@@ -181,10 +181,10 @@ class NurseController extends Controller
                      $requested_data=Arr::add($requested_data,'users_id',time());
                      $password = Hash::make($request->password);
                      $requested_data=Arr::set($requested_data,'password',$password);
-                     $nurse->fill($requested_data)->save();
+                     $pharmacist->fill($requested_data)->save();
                      $response=[
                            'status'=>201,
-                           'data'=>$nurse
+                           'data'=>$pharmacist
                        ];
                  }
                  else
@@ -196,10 +196,10 @@ class NurseController extends Controller
                  }
              }
              $requested_data=Arr::set($requested_data,'status',1);
-             $nurse->fill($requested_data)->save();
+             $pharmacist->fill($requested_data)->save();
              $response=[
                    'status'=>201,
-                   'data'=>$nurse
+                   'data'=>$pharmacist
                ];
         }
         return response()->json($response);

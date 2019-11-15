@@ -33,6 +33,10 @@ import NurseAddComponent from './components/Nurse/NurseAddComponent'
 import NurseListComponent from './components/Nurse/NurseListComponent'
 import NurseEditComponent from './components/Nurse/NurseEditComponent'
 
+import PharmacistAddComponent from './components/Pharmacist/PharmacistAddComponent'
+import PharmacistListComponent from './components/Pharmacist/PharmacistListComponent'
+import PharmacistEditComponent from './components/Pharmacist/PharmacistEditComponent'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -182,6 +186,22 @@ export const routes = [
       path:'/edit-nurse/:nurse_id',
       component:NurseEditComponent,
       name:'edit-nurse'
+    },
+
+  	{
+  		path:'/pharmacist_add',
+  		component:PharmacistAddComponent,
+  		name:'/pharmacist_add'
+  	},
+  	{
+  		path:'/pharmacist_list',
+  		component:PharmacistListComponent,
+  		name:'/pharmacist_list'
+  	},
+    {
+      path:'/edit-pharmacist/:nurse_id',
+      component:PharmacistEditComponent,
+      name:'edit-pharmacist'
     },
 
 ]
