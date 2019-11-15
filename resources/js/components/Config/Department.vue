@@ -213,7 +213,7 @@
                                                 <i class="fa fa-refresh" aria-hidden="true"></i>
                                         </button>
 
-                                        <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditDepartment(department_list.departments_id,department_list)">
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditDepartment(department_list.departments_id,department_list,index)">
                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
 									</td>
@@ -250,7 +250,8 @@
                 AllError:[],
                 search:'',
                 custom_row:10,
-                select_row:[10,20,30,40,50]
+                select_row:[10,20,30,40,50],
+                update_index:''
             }
         },
         methods:{
@@ -357,10 +358,11 @@
                      console.log(error);
                 })
             },
-            EditDepartment:function(id,data){
+            EditDepartment:function(id,data,index){
                 const _this=this;
+                _this.update_index=index;
                 _this.EditDepartmentForm.departments_id=id;
-                _this.EditDepartmentForm=data;
+                _this.EditDepartmentForm=JSON.parse(JSON.stringify(data));;
             },
             UpdateDepartment:function(event){
                 const _this=this;
@@ -370,7 +372,7 @@
                         if(response.data.status==201)
                         {
                             this.$toastr.success('Department Edited Successfully', 'Success');
-                            //_this.DepartmentList.data.push(response.data.data);
+                            _this.DepartmentList.data[_this.update_index]=response.data.data;
                             $(".close").click();
                             _this.ClearForm();
                             this.LoadingStatus();
