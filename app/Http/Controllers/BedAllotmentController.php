@@ -26,12 +26,10 @@ class BedAllotmentController extends Controller
      */
     public function index()
     {
-        $bed=BedAllotmentModel::join('users','bedallotment.patient_id','users.users_id')
+        return BedAllotmentModel::join('users','bedallotment.patient_id','users.users_id')
                                 ->join('bed','bedallotment.bed_id','bed.bed_id')
                                 ->select('users.users_name','bed.bed_number','bedallotment.*')
                                 ->paginate(10);
-
-        return $bed;
     }
 
     /**
