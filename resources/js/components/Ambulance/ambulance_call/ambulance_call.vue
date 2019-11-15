@@ -233,7 +233,7 @@
 						<td class="text-center">
                         <button class="btn btn-danger" @click="Deleteambulancelist(ambulance.ambulancecall_id,index)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
-                        <button class="btn btn-info" @click="Editambulancelist(ambulance.ambulancecall_id,ambulance)" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <button class="btn btn-info" @click="Editambulancelist(ambulance.ambulancecall_id)" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </button>
 						</td>
 					</tr>
@@ -255,7 +255,7 @@
         data(){
         	return {
         		getallotmentdata:[],
-                ambulancelist:{},
+            ambulancelist:{},
         		ambulancecallform:{
         			ambulance_id:'',
         			patient_id:'',
@@ -264,14 +264,14 @@
         			amount:'',
         			contact_no:''
         		},
-                Editambulanceform:{
-                    ambulance_id:'',
-                    patient_id:'',
-                    from:'',
-                    to:'',
-                    amount:'',
-                    contact_no:''
-                },
+            Editambulanceform:{
+                ambulance_id:'',
+                patient_id:'',
+                from:'',
+                to:'',
+                amount:'',
+                contact_no:''
+            },
         		Allerror:[],
         	}
         },
@@ -308,7 +308,7 @@
                       showCancelButton: true,
                       confirmButtonColor: '#3085d6',
                       cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, delete it!' 
+                      confirmButtonText: 'Yes, delete it!'
                     })
                     .then((result)=>{
                         if(result.value){
@@ -334,11 +334,29 @@
                             }
                     })
             },
-            Editambulancelist:function(id,data){
-                const _this=this;
-                _this.Editambulanceform.ambulancecall_id=id;
-                _this.Editambulanceform=data;
-            },
+
+
+            // Editambulancelist:function(id,data){
+            //     const _this=this;
+            //     _this.Editambulanceform.ambulancecall_id=id;
+            //     _this.Editambulanceform=data;
+            // },
+						//
+
+
+	          Editambulancelist:function(id){
+	              const _this=this;
+	              axios.get(this.baseUrl+'ambulancecall/'+id+'/edit')
+	              .then((response)=>{
+	                _this.Editambulanceform = response.data;
+
+	                  console.log(response.data);
+	              })
+	              .catch((error)=>{
+	                  console.log(error)
+	              })
+	          },
+
             Updateambulance:function(event){
                 const _this=this;
                 this.axios.put(this.baseUrl+'ambulancecall/'+_this.Editambulanceform.ambulancecall_id,_this.Editambulanceform)
@@ -392,7 +410,7 @@
 
         	}
         },
-		 
+
         mounted(){
             this.LoadingStatus();
             this.getambulance();

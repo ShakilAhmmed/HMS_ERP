@@ -36,6 +36,7 @@ Route::prefix('api/v1')->group(function () {
 
     Route::resource('doctor','DoctorController');
     Route::resource('nurse','NurseController');
+    Route::resource('pharmacist','PharmacistController');
 
     Route::resource('ambulancecall','AmbulanceCallController');
     Route::get('get_ambulance_data','AmbulanceCallController@get_ambulance_data');

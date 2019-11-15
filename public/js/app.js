@@ -2169,11 +2169,21 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    Editambulancelist: function Editambulancelist(id, data) {
+    // Editambulancelist:function(id,data){
+    //     const _this=this;
+    //     _this.Editambulanceform.ambulancecall_id=id;
+    //     _this.Editambulanceform=data;
+    // },
+    //
+    Editambulancelist: function Editambulancelist(id) {
       var _this = this;
 
-      _this.Editambulanceform.ambulancecall_id = id;
-      _this.Editambulanceform = data;
+      axios.get(this.baseUrl + 'ambulancecall/' + id + '/edit').then(function (response) {
+        _this.Editambulanceform = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     Updateambulance: function Updateambulance(event) {
       var _this4 = this;
@@ -8037,6 +8047,881 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.LoadingStatus();
     this.GetOperationList();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Pharmacist",
+  data: function data() {
+    return {
+      AddPharmacist: {
+        users_name: '',
+        address: '',
+        phone: '',
+        sex: '',
+        birth_date: '',
+        age: '',
+        blood_group: '',
+        shift_id: '',
+        working_hours: '',
+        status: '',
+        password: '',
+        image: '',
+        email: '',
+        type: '5'
+      },
+      confirm_password: '',
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
+      Errors: [],
+      ShiftData: []
+    };
+  },
+  methods: {
+    ImageGet: function ImageGet(event) {
+      var _this2 = this;
+
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      this.LoadingStatus();
+
+      reader.onload = function (event) {
+        _this2.AddPharmacist.image = event.target.result;
+        _this2.image_source = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    AddNewPharmacist: function AddNewPharmacist() {
+      var _this3 = this;
+
+      var _this = this;
+
+      axios.post(this.baseUrl + 'pharmacist', _this.AddPharmacist).then(function (response) {
+        console.log(response.data);
+
+        if (response.data.status === 201) {
+          _this3.$toastr.success('Users Added Successfully', 'Success');
+
+          _this3.LoadingStatus();
+
+          _this.resetForm();
+        } else {
+          _this.Errors = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    GetData: function GetData() {
+      var _this = this;
+
+      axios.get(this.baseUrl + 'pharmacist/create', _this.AddPharmacist).then(function (response) {
+        _this.ShiftData = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    resetForm: function resetForm() {
+      var _this = this;
+
+      var FORM = _this.AddPharmacist;
+      Object.keys(FORM).forEach(function (key, index) {
+        FORM[key] = '';
+      });
+      _this.AddPharmacist.type = '5';
+      _this.Errors = [];
+
+      image_source: '';
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetData();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Pharmacist",
+  data: function data() {
+    return {
+      EditPharmacist: {
+        users_id: '',
+        users_name: '',
+        address: '',
+        phone: '',
+        sex: '',
+        birth_date: '',
+        age: '',
+        blood_group: '',
+        shift_id: '',
+        working_hours: '',
+        status: '',
+        password: '',
+        image: '',
+        email: '',
+        type: '4'
+      },
+      confirm_password: '',
+      image_source: "https://images.onlinelabels.com/images/clip-art/GDJ/Male%20Avatar-277081.png",
+      Errors: [],
+      Shift: []
+    };
+  },
+  methods: {
+    ImageGet: function ImageGet(event) {
+      var _this2 = this;
+
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      this.LoadingStatus();
+
+      reader.onload = function (event) {
+        _this2.EditPharmacist.image = event.target.result;
+        _this2.image_source = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    EditPharmacistData: function EditPharmacistData() {
+      var _this3 = this;
+
+      var _this = this;
+
+      axios.put(this.baseUrl + 'pharmacist/' + _this.EditPharmacist.users_id, _this.EditPharmacist).then(function (response) {
+        console.log(response.data);
+
+        if (response.data.status === 201) {
+          _this3.$toastr.success('Pharmacist Edit Added Successfully', 'Success');
+
+          _this3.LoadingStatus();
+
+          _this.GetData();
+        } else {
+          _this.Errors = response.data.errors;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    GetData: function GetData() {
+      var _this = this;
+
+      axios.get(this.baseUrl + 'pharmacist/' + this.$route.params.pharmacist_id + '/edit', _this.EditPharmacist).then(function (response) {
+        _this.Shift = response.data.shift;
+        _this.EditPharmacist = response.data.user;
+
+        if (response.data.user.image) {
+          _this.image_source = response.data.user.image;
+        }
+
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetData();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Users",
+  data: function data() {
+    return {
+      PharmacistList: {},
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
+    };
+  },
+  methods: {
+    GetPharmacistList: function GetPharmacistList() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+
+      var _this = this;
+
+      var main_url = base_path + 'pharmacist?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+
+      if (_this.search == '') {
+        this.LoadingStatus();
+      }
+
+      this.axios.get(main_url).then(function (response) {
+        _this.PharmacistList = response.data;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    DeletePharmacist: function DeletePharmacist(id, index) {
+      var _this2 = this;
+
+      var _this = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this2.axios["delete"](base_path + 'pharmacist/' + id).then(function (response) {
+            console.log(response);
+
+            if (response.data.status === 200) {
+              _this.PharmacistList.data.splice(index, 1);
+
+              swal.fire('Deleted!', 'Pharmacist Deleted Successfully', 'success');
+            }
+
+            if (response.data.status === 400) {
+              swal.fire("Opps", "Something Went Wrong", "warning");
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    StatusChange: function StatusChange(id) {
+      var _this3 = this;
+
+      var _this = this;
+
+      this.axios.get(base_path + 'pharmacist/' + id).then(function (response) {
+        if (response.data.status === 200) {
+          _this3.$toastr.success('Pharmacist Status Changed Into Active', 'Success');
+        }
+
+        if (response.data.status === 202) {
+          _this3.$toastr.warning('Pharmacist Status Changed Into Inactive', 'Success');
+        }
+
+        _this3.LoadingStatus();
+
+        _this.GetPharmacistList();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.LoadingStatus();
+    this.GetPharmacistList();
   }
 });
 
@@ -62465,8 +63350,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           return _vm.Editambulancelist(
-                            ambulance.ambulancecall_id,
-                            ambulance
+                            ambulance.ambulancecall_id
                           )
                         }
                       }
@@ -75559,7 +76443,11 @@ var render = function() {
             _c("li", [
               _c("a", {
                 attrs: { "data-action": "reload" },
-                on: { click: _vm.resetForm }
+                on: {
+                  click: function($event) {
+                    return _vm.resetForm()
+                  }
+                }
               })
             ]),
             _vm._v(" "),
@@ -78779,6 +79667,2175 @@ var staticRenderFns = [
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "add_users" }, [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", {
+                attrs: { "data-action": "reload" },
+                on: {
+                  click: function($event) {
+                    return _vm.resetForm()
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.AddNewPharmacist($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("form", { staticClass: "form-horizontal" }, [
+                _c("legend", { staticClass: "text-bold" }, [
+                  _vm._v("Add New Pharmacist")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-1 control-label" }, [
+                        _vm._v("Name:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.users_name,
+                              expression: "AddPharmacist.users_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Name" },
+                          domProps: { value: _vm.AddPharmacist.users_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "users_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.users_name
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.users_name[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-1 control-label text-left" },
+                        [_vm._v("Address: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.address,
+                              expression: "AddPharmacist.address"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { placeholder: "Enter Address" },
+                          domProps: { value: _vm.AddPharmacist.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.address
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.address[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Phone:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.phone,
+                              expression: "AddPharmacist.phone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Phone Number"
+                          },
+                          domProps: { value: _vm.AddPharmacist.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "phone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.phone
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.phone[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Sex: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPharmacist.sex,
+                                expression: "AddPharmacist.sex"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPharmacist,
+                                  "sex",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Male")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Female")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("Common")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.sex
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.sex[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Shift:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPharmacist.shift_id,
+                                expression: "AddPharmacist.shift_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPharmacist,
+                                  "shift_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.ShiftData.shift, function(data_value) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.shift_id,
+                                    textContent: _vm._s(data_value.shift_name)
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.shift_id
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.shift_id[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Working Hours:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.working_hours,
+                              expression: "AddPharmacist.working_hours"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number" },
+                          domProps: { value: _vm.AddPharmacist.working_hours },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "working_hours",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.working_hours
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.working_hours[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Birth Date:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.birth_date,
+                              expression: "AddPharmacist.birth_date"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            placeholder: "Enter Birth Date"
+                          },
+                          domProps: { value: _vm.AddPharmacist.birth_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "birth_date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.birth_date
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.birth_date[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Age: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.age,
+                              expression: "AddPharmacist.age"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", placeholder: "Enter Age" },
+                          domProps: { value: _vm.AddPharmacist.age },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "age",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.age
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.age[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Blood Group:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPharmacist.blood_group,
+                                expression: "AddPharmacist.blood_group"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPharmacist,
+                                  "blood_group",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB+")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.blood_group
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.blood_group[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Image:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file" },
+                          on: { change: _vm.ImageGet }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.project_logo_ext
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.project_logo_ext)
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Status:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.AddPharmacist.status,
+                                expression: "AddPharmacist.status"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.AddPharmacist,
+                                  "status",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Active")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Inactive")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.status
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.status[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Email:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.email,
+                              expression: "AddPharmacist.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Email" },
+                          domProps: { value: _vm.AddPharmacist.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.email
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.email[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.AddPharmacist.password,
+                              expression: "AddPharmacist.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.AddPharmacist.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.AddPharmacist,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        (_vm.AddPharmacist.password &&
+                        _vm.AddPharmacist.password.length
+                          ? _vm.AddPharmacist.password.length
+                          : 0) == 0
+                          ? _c("span", { staticClass: "text-warning" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Empty")
+                            ])
+                          : (_vm.AddPharmacist.password &&
+                            _vm.AddPharmacist.password.length
+                              ? _vm.AddPharmacist.password.length
+                              : 0) < 8
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Weak")
+                            ])
+                          : _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Strong")
+                            ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Confirm Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.confirm_password,
+                              expression: "confirm_password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.confirm_password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.confirm_password = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.confirm_password.length != 0 &&
+                        _vm.AddPharmacist.password &&
+                        _vm.AddPharmacist.password.length != 0 &&
+                        _vm.AddPharmacist.password != _vm.confirm_password
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Not Mactched")
+                            ])
+                          : _vm.AddPharmacist.password &&
+                            _vm.AddPharmacist.password.length != 0 &&
+                            _vm.AddPharmacist.password == _vm.confirm_password
+                          ? _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Matched")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.Errors.password
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.password[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("img", {
+                          staticClass: "custom-image",
+                          attrs: { src: _vm.image_source }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _vm._v("Submit "),
+          _c("i", { staticClass: "icon-arrow-right14 position-right" })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "add_users" }, [
+    _c("div", { staticClass: "panel panel-flat" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("div", { staticClass: "heading-elements" }, [
+          _c("ul", { staticClass: "icons-list" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", {
+                attrs: { "data-action": "reload" },
+                on: { click: _vm.GetData }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.EditPharmacistData($event)
+              }
+            }
+          },
+          [
+            _c("fieldset", { staticClass: "content-group" }, [
+              _c("form", { staticClass: "form-horizontal" }, [
+                _c("legend", { staticClass: "text-bold" }, [
+                  _vm._v("Add New Pharmacist")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-1 control-label" }, [
+                        _vm._v("Name:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.users_name,
+                              expression: "EditPharmacist.users_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Name" },
+                          domProps: { value: _vm.EditPharmacist.users_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "users_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.users_name
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.users_name[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-1 control-label text-left" },
+                        [_vm._v("Address: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-11" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.address,
+                              expression: "EditPharmacist.address"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { placeholder: "Enter Address" },
+                          domProps: { value: _vm.EditPharmacist.address },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "address",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.address
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.address[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Phone:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.phone,
+                              expression: "EditPharmacist.phone"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Phone Number"
+                          },
+                          domProps: { value: _vm.EditPharmacist.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "phone",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.phone
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.phone[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Sex: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditPharmacist.sex,
+                                expression: "EditPharmacist.sex"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.EditPharmacist,
+                                  "sex",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Male")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Female")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "3" } }, [
+                              _vm._v("Common")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.sex
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.sex[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Shift:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditPharmacist.shift_id,
+                                expression: "EditPharmacist.shift_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.EditPharmacist,
+                                  "shift_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.Shift, function(data_value) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    value: data_value.shift_id,
+                                    textContent: _vm._s(data_value.shift_name)
+                                  }
+                                },
+                                [_vm._v("Select")]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.shift_id
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.shift_id[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Working Hours:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.working_hours,
+                              expression: "EditPharmacist.working_hours"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number" },
+                          domProps: { value: _vm.EditPharmacist.working_hours },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "working_hours",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.working_hours
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.working_hours[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Birth Date:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.birth_date,
+                              expression: "EditPharmacist.birth_date"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "date",
+                            placeholder: "Enter Birth Date"
+                          },
+                          domProps: { value: _vm.EditPharmacist.birth_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "birth_date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.birth_date
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.birth_date[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Age: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.age,
+                              expression: "EditPharmacist.age"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Age" },
+                          domProps: { value: _vm.EditPharmacist.age },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "age",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.age
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.age[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Blood Group:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditPharmacist.blood_group,
+                                expression: "EditPharmacist.blood_group"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.EditPharmacist,
+                                  "blood_group",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("O+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("A+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("B+")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB−")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("AB+")])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.blood_group
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.blood_group[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Image:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file" },
+                          on: { change: _vm.ImageGet }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.project_logo_ext
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.project_logo_ext)
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Status:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.EditPharmacist.status,
+                                expression: "EditPharmacist.status"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.EditPharmacist,
+                                  "status",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "1" } }, [
+                              _vm._v("Active")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "2" } }, [
+                              _vm._v("Inactive")
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.Errors.status
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.status[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }, [
+                        _vm._v("Email:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.email,
+                              expression: "EditPharmacist.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "Enter Email" },
+                          domProps: { value: _vm.EditPharmacist.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.Errors.email
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.email[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.EditPharmacist.password,
+                              expression: "EditPharmacist.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.EditPharmacist.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.EditPharmacist,
+                                "password",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        (_vm.EditPharmacist.password &&
+                        _vm.EditPharmacist.password.length
+                          ? _vm.EditPharmacist.password.length
+                          : 0) == 0
+                          ? _c("span", { staticClass: "text-warning" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Empty")
+                            ])
+                          : (_vm.EditPharmacist.password &&
+                            _vm.EditPharmacist.password.length
+                              ? _vm.EditPharmacist.password.length
+                              : 0) < 8
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Weak")
+                            ])
+                          : _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Is Strong")
+                            ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "label",
+                        { staticClass: "col-md-2 control-label text-left" },
+                        [_vm._v("Confirm Password:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.confirm_password,
+                              expression: "confirm_password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Enter Password"
+                          },
+                          domProps: { value: _vm.confirm_password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.confirm_password = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.confirm_password.length != 0 &&
+                        _vm.EditPharmacist.password &&
+                        _vm.EditPharmacist.password.length != 0 &&
+                        _vm.EditPharmacist.password != _vm.confirm_password
+                          ? _c("span", { staticClass: "text-danger" }, [
+                              _c("i", {
+                                staticClass: "fa fa-exclamation-triangle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Not Mactched")
+                            ])
+                          : _vm.EditPharmacist.password &&
+                            _vm.EditPharmacist.password.length != 0 &&
+                            _vm.EditPharmacist.password == _vm.confirm_password
+                          ? _c("span", { staticClass: "text-success" }, [
+                              _c("i", {
+                                staticClass: "fa fa-check-circle",
+                                attrs: { "aria-hidden": "true" }
+                              }),
+                              _vm._v(" Password Matched")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.Errors.password
+                          ? _c("span", {
+                              staticClass: "text-danger",
+                              domProps: {
+                                textContent: _vm._s(_vm.Errors.password[0])
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("div", { staticClass: "col-md-6" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("label", { staticClass: "col-lg-2 control-label" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-10" }, [
+                        _c("img", {
+                          staticClass: "custom-image",
+                          attrs: { src: _vm.image_source }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [
+          _vm._v("Submit "),
+          _c("i", { staticClass: "icon-arrow-right14 position-right" })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "pharmacist" }, [
+    _c(
+      "button",
+      { staticClass: "btn btn-info pull-right", attrs: { type: "button" } },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "router_link_button",
+            attrs: { to: "/pharmacist_add" }
+          },
+          [_vm._v("Add New Pharmacist")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "panel panel-flat" },
+      [
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("h5", { staticClass: "panel-title" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", {
+                  attrs: { "data-action": "reload" },
+                  on: { click: _vm.GetPharmacistList }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.custom_row,
+                      expression: "custom_row"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.custom_row = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.GetPharmacistList
+                    ]
+                  }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.GetPharmacistList,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table datatable-pagination" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.PharmacistList.data, function(pharmacist_data, index) {
+              return _c("tr", [
+                _c("td", { domProps: { textContent: _vm._s(index + 1) } }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(pharmacist_data.users_name) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(pharmacist_data.email) }
+                }),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(pharmacist_data.phone) }
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  pharmacist_data.sex == 1
+                    ? _c("span", [_vm._v("Male")])
+                    : pharmacist_data.sex == 2
+                    ? _c("span", [_vm._v("Female")])
+                    : pharmacist_data.sex == 3
+                    ? _c("span", [_vm._v("Common")])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", {
+                  domProps: { textContent: _vm._s(pharmacist_data.blood_group) }
+                }),
+                _vm._v(" "),
+                _c("td", [
+                  pharmacist_data.status == 1
+                    ? _c("span", { staticClass: "text-success" }, [
+                        _c("i", { staticClass: "fa fa-check text-success" })
+                      ])
+                    : pharmacist_data.status == 2
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _c("i", { staticClass: "fa fa-close text-danger" })
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.DeletePharmacist(
+                            pharmacist_data.users_id,
+                            index
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-trash",
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  pharmacist_data.status == 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(pharmacist_data.users_id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    : _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              return _vm.StatusChange(pharmacist_data.users_id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-refresh",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-info" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "edit-pharmacist",
+                              params: {
+                                pharmacist_id: pharmacist_data.users_id
+                              }
+                            }
+                          }
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fa fa-pencil-square-o router_link_color",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "pagination",
+          {
+            attrs: { data: _vm.PharmacistList, limit: 3 },
+            on: { "pagination-change-page": _vm.GetPharmacistList }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Sl No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sex")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Blood Group")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
@@ -102451,6 +105508,213 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistAddComponent.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PharmacistAddComponent.vue?vue&type=template&id=3c460fb0& */ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0&");
+/* harmony import */ var _PharmacistAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PharmacistAddComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PharmacistAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pharmacist/PharmacistAddComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistAddComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistAddComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistAddComponent.vue?vue&type=template&id=3c460fb0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistAddComponent.vue?vue&type=template&id=3c460fb0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistAddComponent_vue_vue_type_template_id_3c460fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistEditComponent.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PharmacistEditComponent.vue?vue&type=template&id=2aed20ef& */ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef&");
+/* harmony import */ var _PharmacistEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PharmacistEditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PharmacistEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pharmacist/PharmacistEditComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistEditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistEditComponent.vue?vue&type=template&id=2aed20ef& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistEditComponent.vue?vue&type=template&id=2aed20ef&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistEditComponent_vue_vue_type_template_id_2aed20ef___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistListComponent.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistListComponent.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PharmacistListComponent.vue?vue&type=template&id=49fdaedb& */ "./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb&");
+/* harmony import */ var _PharmacistListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PharmacistListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PharmacistListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pharmacist/PharmacistListComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PharmacistListComponent.vue?vue&type=template&id=49fdaedb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pharmacist/PharmacistListComponent.vue?vue&type=template&id=49fdaedb&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PharmacistListComponent_vue_vue_type_template_id_49fdaedb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Prescription/prescription.vue":
 /*!***************************************************************!*\
   !*** ./resources/js/components/Prescription/prescription.vue ***!
@@ -103135,6 +106399,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Nurse_NurseAddComponent__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Nurse/NurseAddComponent */ "./resources/js/components/Nurse/NurseAddComponent.vue");
 /* harmony import */ var _components_Nurse_NurseListComponent__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Nurse/NurseListComponent */ "./resources/js/components/Nurse/NurseListComponent.vue");
 /* harmony import */ var _components_Nurse_NurseEditComponent__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Nurse/NurseEditComponent */ "./resources/js/components/Nurse/NurseEditComponent.vue");
+/* harmony import */ var _components_Pharmacist_PharmacistAddComponent__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Pharmacist/PharmacistAddComponent */ "./resources/js/components/Pharmacist/PharmacistAddComponent.vue");
+/* harmony import */ var _components_Pharmacist_PharmacistListComponent__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Pharmacist/PharmacistListComponent */ "./resources/js/components/Pharmacist/PharmacistListComponent.vue");
+/* harmony import */ var _components_Pharmacist_PharmacistEditComponent__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Pharmacist/PharmacistEditComponent */ "./resources/js/components/Pharmacist/PharmacistEditComponent.vue");
+
+
+
 
 
 
@@ -103281,6 +106551,18 @@ var routes = [{
   path: '/edit-nurse/:nurse_id',
   component: _components_Nurse_NurseEditComponent__WEBPACK_IMPORTED_MODULE_28__["default"],
   name: 'edit-nurse'
+}, {
+  path: '/pharmacist_add',
+  component: _components_Pharmacist_PharmacistAddComponent__WEBPACK_IMPORTED_MODULE_29__["default"],
+  name: '/pharmacist_add'
+}, {
+  path: '/pharmacist_list',
+  component: _components_Pharmacist_PharmacistListComponent__WEBPACK_IMPORTED_MODULE_30__["default"],
+  name: '/pharmacist_list'
+}, {
+  path: '/edit-pharmacist/:nurse_id',
+  component: _components_Pharmacist_PharmacistEditComponent__WEBPACK_IMPORTED_MODULE_31__["default"],
+  name: 'edit-pharmacist'
 }];
 
 /***/ }),

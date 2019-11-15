@@ -94,7 +94,7 @@ class AmbulanceCallController extends Controller
      */
     public function edit($id)
     {
-        //
+        return AmbulanceCallModel::findOrfail($id);
     }
 
     /**
