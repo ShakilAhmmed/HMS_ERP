@@ -282,6 +282,7 @@
                 const _this=this;
                 this.axios.post(this.baseUrl+'ambulancecall',_this.ambulancecallform)
                 .then((response)=>{
+									console.log(response.data);
                     if(response.data.status==200)
                     {
                         this.$toastr.success('Ambulance Call Added Successfully', 'Success');
