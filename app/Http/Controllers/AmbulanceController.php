@@ -14,9 +14,16 @@ class AmbulanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ambulance=AmbulanceModel::paginate(10);
+        $ambulance=AmbulanceModel::where(function($patient_data) use ($request){
+            if($request->q)
+            {
+               $patient_data->where('vehicle_number','LIKE','%'.$request->q.'%')
+                            ->orWhere('vehicle_mode','LIKE','%'.$request->q.'%')
+                            ->orWhere('year_made','LIKE','%'.$request->q.'%');
+            }
+        })->paginate($request->row);
         return $ambulance;
     }
 

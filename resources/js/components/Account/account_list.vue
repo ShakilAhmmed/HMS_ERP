@@ -10,15 +10,19 @@
           <div class="heading-elements">
             <ul class="icons-list">
               <li><a data-action="collapse"></a></li>
-              <li><a data-action="reload" ></a></li>
+              <li><a data-action="reload" @click="getaccount"></a></li>
               <li><a data-action="close"></a></li>
             </ul>
           </div>
           <div id="DataTables_Table_2_filter" class="dataTables_filter  margin-0">
-            
+            <select class="form-control" @change="getaccount" v-model="custom_row">
+                <option v-for="row in select_row" v-text="row"></option>
+            </select>
           </div>
           <div id="DataTables_Table_2_filter" class="dataTables_filter">
-              
+              <label>
+                <input type="search" v-model="search" @keyup="getaccount" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
+              </label>
           </div>
         </div>
         <table class="table datatable-pagination">
@@ -85,13 +89,16 @@
       data(){
         return {
             AccountList:{},
-            
+            search:'',
+            custom_row:10,
+            select_row:[10,20,30,40,50]
         }
       },
       methods:{
-          getaccount:function(page=1){
+          getaccount:function(page=1,custom_row=10){
                 const _this=this;
-                this.axios.get(this.baseUrl+'account?page'+page)
+                const main_url = base_path+'account?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+                this.axios.get(main_url)
                 .then((response)=>{
                     _this.AccountList = response.data
                 })

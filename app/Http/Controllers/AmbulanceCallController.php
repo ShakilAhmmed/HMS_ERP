@@ -25,12 +25,19 @@ class AmbulanceCallController extends Controller
         return response()->json($getambulancedata);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $ambulncecall=AmbulanceCallModel::join('users','ambulance_call.patient_id','users.users_id')
                                           ->join('ambulance','ambulance_call.ambulance_id','ambulance.ambulance_id')
                                           ->select('users.users_name','ambulance.vehicle_number','ambulance_call.*')
-                                          ->paginate(10);
+                                          ->where(function($patient_data) use ($request){
+            if($request->q)
+            {
+               $patient_data->where('users_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('vehicle_number','LIKE','%'.$request->q.'%')
+                            ->orWhere('ambulance_call','LIKE','%'.$request->q.'%');
+            }
+        })->paginate($request->row);
         return $ambulncecall;
     }
 

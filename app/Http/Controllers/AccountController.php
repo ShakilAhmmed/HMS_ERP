@@ -27,9 +27,16 @@ class AccountController extends Controller
         return response()->json($getdata);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $account=User::whereType('6')->paginate(10);
+        $account=User::where(function($patient_data) use ($request){
+            if($request->q)
+            {
+               $patient_data->where('users_name','LIKE','%'.$request->q.'%')
+                            ->orWhere('email','LIKE','%'.$request->q.'%')
+                            ->orWhere('phone','LIKE','%'.$request->q.'%');
+            }
+        })->whereType('6')->paginate($request->row);
         return $account;
     }
 

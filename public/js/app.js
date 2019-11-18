@@ -2596,19 +2596,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      AccountList: {}
+      AccountList: {},
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
     };
   },
   methods: {
     getaccount: function getaccount() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'account?page' + page).then(function (response) {
+      var main_url = base_path + 'account?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+      this.axios.get(main_url).then(function (response) {
         _this.AccountList = response.data;
       })["catch"](function (error) {
         console.error();
@@ -2937,6 +2946,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Ambulance",
   data: function data() {
@@ -2959,7 +2978,10 @@ __webpack_require__.r(__webpack_exports__);
         amount: '',
         contact_no: ''
       },
-      Allerror: []
+      Allerror: [],
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
     };
   },
   methods: {
@@ -3046,10 +3068,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     getambulancedata: function getambulancedata() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'ambulancecall?page' + page).then(function (response) {
+      var main_url = base_path + 'ambulancecall?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+      this.axios.get(main_url).then(function (response) {
         _this.ambulancelist = response.data;
       })["catch"](function (error) {
         console.error();
@@ -3341,6 +3365,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.LoadingStatus();
@@ -3367,16 +3401,21 @@ __webpack_require__.r(__webpack_exports__);
         driver_license: '',
         vehicle_type: ''
       },
-      Allerror: []
+      Allerror: [],
+      search: '',
+      custom_row: 10,
+      select_row: [10, 20, 30, 40, 50]
     };
   },
   methods: {
     Getambulancelist: function Getambulancelist() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var custom_row = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
       var _this = this;
 
-      this.axios.get(this.baseUrl + 'ambulance?page=' + page).then(function (response) {
+      var main_url = base_path + 'ambulance?q=' + _this.search + '&page=' + page + '&row=' + _this.custom_row;
+      this.axios.get(main_url).then(function (response) {
         _this.ambulancelist = response.data;
         console.log(response.data);
       })["catch"](function (error) {
@@ -64041,10 +64080,112 @@ var render = function() {
       "div",
       { staticClass: "panel panel-flat" },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "panel-heading" }, [
+          _c("h5", { staticClass: "panel-title" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "heading-elements" }, [
+            _c("ul", { staticClass: "icons-list" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", {
+                  attrs: { "data-action": "reload" },
+                  on: { click: _vm.getaccount }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.custom_row,
+                      expression: "custom_row"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.custom_row = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.getaccount
+                    ]
+                  }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.getaccount,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "tbody",
@@ -64197,29 +64338,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel-heading" }, [
-      _c("h5", { staticClass: "panel-title" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "heading-elements" }, [
-        _c("ul", { staticClass: "icons-list" }, [
-          _c("li", [_c("a", { attrs: { "data-action": "collapse" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "reload" } })]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { "data-action": "close" } })])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "dataTables_filter  margin-0",
-        attrs: { id: "DataTables_Table_2_filter" }
-      }),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "dataTables_filter",
-        attrs: { id: "DataTables_Table_2_filter" }
-      })
-    ])
+    return _c("li", [_c("a", { attrs: { "data-action": "collapse" } })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { "data-action": "close" } })])
   },
   function() {
     var _vm = this
@@ -65242,7 +65367,67 @@ var render = function() {
               _vm._v(" "),
               _vm._m(1)
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  on: { change: _vm.getambulancedata }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.getambulancedata,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
@@ -66399,7 +66584,67 @@ var render = function() {
               _vm._v(" "),
               _vm._m(1)
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter  margin-0",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c(
+                "select",
+                {
+                  staticClass: "form-control",
+                  on: { change: _vm.Getambulancelist }
+                },
+                _vm._l(_vm.select_row, function(row) {
+                  return _c("option", {
+                    domProps: { textContent: _vm._s(row) }
+                  })
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_filter",
+              attrs: { id: "DataTables_Table_2_filter" }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  attrs: {
+                    type: "search",
+                    placeholder: "Type to filter...",
+                    "aria-controls": "DataTables_Table_2"
+                  },
+                  domProps: { value: _vm.search },
+                  on: {
+                    keyup: _vm.Getambulancelist,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("table", { staticClass: "table datatable-pagination" }, [
