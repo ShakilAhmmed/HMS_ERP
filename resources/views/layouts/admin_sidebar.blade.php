@@ -90,6 +90,14 @@
           </ul>
       </li>
 
+      <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Laboratorist</span></a>
+          <ul>
+            <li><router-link to="/laboratorist_add">Add Laboratorist</router-link></li>
+            <li><router-link to="/laboratorist_list">Laboratorist List</router-link></li>
+          </ul>
+      </li>
+
        <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->
 

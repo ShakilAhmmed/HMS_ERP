@@ -37,6 +37,10 @@ import PharmacistAddComponent from './components/Pharmacist/PharmacistAddCompone
 import PharmacistListComponent from './components/Pharmacist/PharmacistListComponent'
 import PharmacistEditComponent from './components/Pharmacist/PharmacistEditComponent'
 
+import LaboratoristAddComponent from './components/Laboratorist/LaboratoristAddComponent'
+import LaboratoristListComponent from './components/Laboratorist/LaboratoristListComponent'
+import LaboratoristEditComponent from './components/Laboratorist/LaboratoristEditComponent'
+
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
@@ -202,6 +206,22 @@ export const routes = [
       path:'/edit-pharmacist/:nurse_id',
       component:PharmacistEditComponent,
       name:'edit-pharmacist'
+    },
+
+  	{
+  		path:'/laboratorist_add',
+  		component:LaboratoristAddComponent,
+  		name:'/laboratorist_add'
+  	},
+  	{
+  		path:'/laboratorist_list',
+  		component:LaboratoristListComponent,
+  		name:'/laboratorist_list'
+  	},
+    {
+      path:'/edit-laboratorist/:nurse_id',
+      component:LaboratoristEditComponent,
+      name:'edit-laboratorist'
     },
 
 ]
