@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DepartmentModel;
+use App\Events\DepartmentEvent;
 use Illuminate\Support\Arr;
 use Validator;
 class DepartmentController extends Controller
@@ -62,6 +63,7 @@ class DepartmentController extends Controller
                 'status'=>201,
                 'data'=>$departments
             ];
+            event(new DepartmentEvent($departments));
         }
         return response()->json($response);
 
