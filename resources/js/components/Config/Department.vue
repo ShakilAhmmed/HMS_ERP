@@ -306,7 +306,7 @@
                         Notification.requestPermission( permission => {
                         let notification = new Notification('New Department alert!', {
                             body: department.department_name,
-                            icon: "https://pusher.com/static_logos/320x320.png"
+                            icon: "https://img.icons8.com/cotton/2x/appointment-reminders.png"
                         });
 
                         notification.onclick = () => {
