@@ -254,6 +254,9 @@
                 update_index:''
             }
         },
+        created() {
+         this.listenEvent();
+       },
         methods:{
             GetDepartmentList(page = 1,custom_row=10)
             {
@@ -292,15 +295,35 @@
                     console.log(error)
                 })
             },
+            listenEvent() {
+                    Echo.channel('department')
+                    .listen('DepartmentEvent', department => {
+                        if (! ('Notification' in window)) {
+                        alert('Web Notification is not supported');
+                        return;
+                        }
+
+                        Notification.requestPermission( permission => {
+                        let notification = new Notification('New Department alert!', {
+                            body: department.department_name,
+                            icon: "https://img.icons8.com/cotton/2x/appointment-reminders.png"
+                        });
+
+                        notification.onclick = () => {
+                            window.open(window.location.href);
+                        };
+                    });
+                });
+            },
             ClearForm:function()
-    		{
-    			const _this=this;
-    			_this.AllError=[];
-    			_this.DepartmentForm.department_name='';
-    			_this.DepartmentForm.description='';
-    			_this.DepartmentForm.status='';
-    		},
-            DeleteDepartment:function(id,index){
+        		{
+        			const _this=this;
+        			_this.AllError=[];
+        			_this.DepartmentForm.department_name='';
+        			_this.DepartmentForm.description='';
+        			_this.DepartmentForm.status='';
+        		},
+              DeleteDepartment:function(id,index){
 
                     const _this=this;
 
@@ -390,6 +413,7 @@
         mounted(){
             this.LoadingStatus();
             this.GetDepartmentList();
-        }
+        },
+
     }
 </script>
