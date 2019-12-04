@@ -98,6 +98,15 @@
           </ul>
       </li>
 
+      <li>
+        <a href="#"><i class="icon-stack2"></i> <span>Account</span></a>
+          <ul>
+            <li><router-link to="/account">Add Accountant</router-link></li>
+            <li><router-link to="/account_list">Accountant List</router-link></li>
+          </ul>
+      </li>
+
+
        <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->
 

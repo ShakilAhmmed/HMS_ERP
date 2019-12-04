@@ -41,6 +41,8 @@ Route::prefix('api/v1')->group(function () {
 
     Route::resource('ambulancecall','AmbulanceCallController');
     Route::get('get_ambulance_data','AmbulanceCallController@get_ambulance_data');
+    Route::resource('account','AccountController');
+    Route::get('get_shift_data','AccountController@get_shift_data');
 });
 
 
