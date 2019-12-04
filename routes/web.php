@@ -30,6 +30,7 @@ Route::prefix('api/v1')->group(function () {
     Route::resource('test_sub_category','TestSubCategoryController');
     Route::resource('test_type','TestTypeController');
     Route::resource('test','TestController');
+    Route::resource('diagnosis_report','DiagnosisReportController');
     Route::resource('system','SystemController');
     Route::resource('ambulance','AmbulanceController');
     Route::resource('operation','OperationController');

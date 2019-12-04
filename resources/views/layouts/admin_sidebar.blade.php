@@ -107,6 +107,7 @@
       </li>
 
 
+       <li><router-link to="/diagnosis_report"><i class="icon-list-unordered"></i> <span>Diagnosis Report</span></router-link></li>
        <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->
 
