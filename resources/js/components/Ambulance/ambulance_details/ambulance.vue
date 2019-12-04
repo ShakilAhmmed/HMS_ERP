@@ -206,6 +206,16 @@
                 		<li><a data-action="close"></a></li>
                 	</ul>
             	</div>
+                <div id="DataTables_Table_2_filter" class="dataTables_filter  margin-0">
+                  <select class="form-control" @change="Getambulancelist" >
+                      <option v-for="row in select_row" v-text="row"></option>
+                  </select>
+               </div>
+               <div id="DataTables_Table_2_filter" class="dataTables_filter">
+                  <label>
+                      <input type="search" v-model="search" @keyup="Getambulancelist" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_2">
+                  </label>
+              </div>
 			</div>
 
 
@@ -272,12 +282,16 @@
                     vehicle_type:''
                 },
                 Allerror:[],
+                search:'',
+                custom_row:10,
+                select_row:[10,20,30,40,50]
             }
         },
         methods:{
-            Getambulancelist:function(page = 1){
+            Getambulancelist:function(page = 1,custom_row=10){
                 const _this=this;
-                this.axios.get(this.baseUrl+'ambulance?page='+page)
+                const main_url=base_path+'ambulance?q='+_this.search+'&page='+page+'&row='+_this.custom_row;
+                this.axios.get(main_url)
                 .then((response)=>{
                     _this.ambulancelist=response.data;
                     console.log(response.data)

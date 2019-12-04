@@ -14,9 +14,14 @@ class BedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bed=BedModel::paginate(10);
+        $bed=BedModel::where(function($notice) use ($request){
+            if ($request->q) {
+                $notice->where('bed_number',$request->q)
+                        ->orWhere('description','LIKE','%'.$request->q.'%');
+            }
+        })->paginate($request->row);
         return $bed;
     }
 
