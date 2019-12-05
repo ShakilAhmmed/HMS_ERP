@@ -14,50 +14,47 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                    <div class="row">
-                            <div class="col-md-12">
-                              <div class="panel panel-flat">
-                                  <div class="panel-heading">
-                                      <div class="heading-elements">
-                                          <ul class="icons-list">
-                                              <li><a data-action="reload" @click="ClearForm"></a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
+                      <div class="row">
+                          <div class="col-md-12">
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <div class="heading-elements">
+                                        <ul class="icons-list">
+                                            <li><a data-action="reload" @click="ClearForm"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Doctor Name:</label>
+                                        <div class="col-lg-9">
+                                            <select v-model="DiagnosisReportForm.diagnosis_report_type_id" class="form-control">
+                                              <option value="">--select--</option>
+                                              <option v-for="data_value in DiagnosisReportType" :value="data_value.diagnosis_report_type_id" v-text="data_value.diagnosis_report_type_name"></option>
+                                            </select>
+                                            <span class="text-danger" v-if="AllError.diagnosis_report_type_id" v-text="AllError.diagnosis_report_type_id[0]"></span>
+                                        </div>
+                                    </div>
 
-                                  <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Description:</label>
+                                        <div class="col-lg-9">
+                                            <textarea v-model="DiagnosisReportForm.description" class="form-control"></textarea>
+                                            <span class="text-danger" v-if="AllError.description" v-text="AllError.description[0]"></span>
+                                        </div>
+                                    </div>
 
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">DiagnosisReport Type Name:</label>
-                                          <div class="col-lg-9">
-                                              <select v-model="DiagnosisReportForm.diagnosis_report_type_id" class="form-control">
-                                                <option value="">--select--</option>
-                                                <option v-for="data_value in DiagnosisReportType" :value="data_value.diagnosis_report_type_id" v-text="data_value.diagnosis_report_type_name"></option>
-                                              </select>
-                                              <span class="text-danger" v-if="AllError.diagnosis_report_type_id" v-text="AllError.diagnosis_report_type_id[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Description:</label>
-                                          <div class="col-lg-9">
-                                              <textarea v-model="DiagnosisReportForm.description" class="form-control"></textarea>
-                                              <span class="text-danger" v-if="AllError.description" v-text="AllError.description[0]"></span>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Amount:</label>
-                                          <div class="col-lg-9">
-                                              <input type="text" v-model="DiagnosisReportForm.amount" class="form-control" placeholder="Enter Amount" >
-                                              <span class="text-danger" v-if="AllError.amount" v-text="AllError.amount[0]"></span>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Amount:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" v-model="DiagnosisReportForm.amount" class="form-control" placeholder="Enter Amount" >
+                                            <span class="text-danger" v-if="AllError.amount" v-text="AllError.amount[0]"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                          </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" @click="ClearForm" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -225,6 +222,7 @@
                 status:'',
             },
             DiagnosisReportType:[],
+            DoctorPatientData:[],
             AllError:[],
             search:'',
             custom_row:10,
@@ -263,6 +261,18 @@
             .then((response)=>{
                 _this.DiagnosisReportList=response.data.diagnosis_report;
                 _this.DiagnosisReportType=response.data.diagnosis_report_type;
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        },
+        GetDoctorPatientData()
+        {
+            const _this=this;
+            const main_url=base_path+'diagnosis_report/create';
+            this.axios.get(main_url)
+            .then((response)=>{
+                _this.DoctorPatientData = response.data;
             })
             .catch((error)=>{
                 console.log(error)
@@ -373,6 +383,7 @@
       {
         this.LoadingStatus();
         this.GetDiagnosisReportList();
+        this.GetDoctorPatientData();
       }
     }
 </script>

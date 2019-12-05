@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Validator;
+use Image;
+use Hash;
+use Arr;
+use Helper;
+use File;
 
 class DiagnosisReportController extends Controller
 {
@@ -23,7 +30,11 @@ class DiagnosisReportController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::all()->toArray();
+        $data['patient'] = collect($user)->where('type',9);
+        $data['doctor'] = collect($user)->where('type',3);
+
+        return $data;
     }
 
     /**
