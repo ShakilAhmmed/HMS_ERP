@@ -18,6 +18,7 @@ class CreateTest extends Migration
             $table->string('test_name',50);
             $table->integer('test_type_id');
             $table->text('description')->nullable();
+            $table->decimal('amount', 9,2);
             $table->integer('status')->index()->comment('1=Active,2=Inactive');
             $table->timestamps();
         });

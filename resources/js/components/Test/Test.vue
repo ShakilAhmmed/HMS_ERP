@@ -57,6 +57,15 @@
                                       </div>
 
                                       <div class="form-group">
+                                          <label class="col-lg-3 control-label">Amount:</label>
+                                          <div class="col-lg-9">
+                                              <input type="text" v-model="TestForm.amount" class="form-control" placeholder="Enter Amount" >
+                                              <span class="text-danger" v-if="AllError.amount" v-text="AllError.amount[0]"></span>
+
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group">
                                           <label class="col-lg-3 control-label">Status:</label>
                                           <div class="col-lg-9">
                                               <select class="form-control" v-model="TestForm.status">
@@ -127,6 +136,16 @@
                                                 <span class="text-danger" v-if="AllError.description" v-text="AllError.description[0]"></span>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">Amount:</label>
+                                            <div class="col-lg-9">
+                                                <input type="text" v-model="EditTestForm.amount" class="form-control" placeholder="Enter Amount" >
+                                                <span class="text-danger" v-if="AllError.amount" v-text="AllError.amount[0]"></span>
+
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Status:</label>
                                             <div class="col-lg-9">
@@ -179,6 +198,7 @@
               <th>Test Name</th>
               <th>TestType Name</th>
               <th>Description</th>
+              <th>Amount</th>
               <th>Status</th>
               <th class="text-center">Actions</th>
             </tr>
@@ -189,6 +209,7 @@
               <td>{{test_list.test_name}}</td>
               <td>{{test_list.test_type_name}}</td>
               <td>{{test_list.description | readMore(10,'...')}}</td>
+              <td>{{test_list.amount}}</td>
               <td>
                   <span  v-if="test_list.test_status==1" class='text-success'>Active</span>
                   <span  v-else class='text-danger'>Inactive</span>
@@ -204,7 +225,7 @@
                           <i class="fa fa-refresh" aria-hidden="true"></i>
                   </button>
 
-                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTest(test_list.test_id,data,index)">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#editModal"  @click="EditTest(test_list.test_id,test_list,index)">
                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
               </td>
@@ -230,6 +251,7 @@
                 test_name:'',
                 test_type_id:'',
                 description:'',
+                amount:'',
                 status:'',
             },
             EditTestForm:{
@@ -237,6 +259,7 @@
                 test_name:'',
                 test_type_id:'',
                 description:'',
+                amount:'',
                 status:'',
             },
             TestType:[],

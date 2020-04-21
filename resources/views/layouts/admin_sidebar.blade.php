@@ -71,6 +71,7 @@
           <ul>
             <li><router-link to="/doctor_add">Add Doctor</router-link></li>
             <li><router-link to="/doctor_list">Doctors List</router-link></li>
+            <li><router-link to="/doctors_visit">Doctors Visit</router-link></li>
           </ul>
       </li>
 
@@ -107,6 +108,7 @@
       </li>
 
 
+       <li><router-link to="/diagnosis_report"><i class="icon-list-unordered"></i> <span>Diagnosis Report</span></router-link></li>
        <li><router-link to="/system"><i class="icon-list-unordered"></i> <span>System</span></router-link></li>
       <!-- /main -->
 

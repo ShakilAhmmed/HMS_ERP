@@ -23,6 +23,7 @@ import TestCategoryComponent from './components/Test/TestCategory'
 import TestSubCategoryComponent from './components/Test/TestSubCategory'
 import TestTypeComponent from './components/Test/TestType'
 import TestComponent from './components/Test/Test'
+import DiagnosisReportComponent from './components/Test/DiagnosisReport'
 
 // Ambulance
 import AmbulanceComponent from './components/Ambulance/ambulance_details/ambulance'
@@ -39,6 +40,7 @@ import AccountEditComponent from './components/Account/account_edit'
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 import DoctorListComponent from './components/Doctor/DoctorListComponent'
 import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
+import DoctorsVisitComponent from './components/Doctor/DoctorsVisit'
 
 // Nurse
 import NurseAddComponent from './components/Nurse/NurseAddComponent'
@@ -54,6 +56,7 @@ import PharmacistEditComponent from './components/Pharmacist/PharmacistEditCompo
 import LaboratoristAddComponent from './components/Laboratorist/LaboratoristAddComponent'
 import LaboratoristListComponent from './components/Laboratorist/LaboratoristListComponent'
 import LaboratoristEditComponent from './components/Laboratorist/LaboratoristEditComponent'
+
 
 
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
@@ -161,6 +164,11 @@ export const routes = [
       name:'/test'
     },
     {
+      path:'/diagnosis_report',
+      component:DiagnosisReportComponent,
+      name:'/diagnosis_report'
+    },
+    {
       path:'/ambulance_call',
       component:AmbulanceCallComponent,
       name:'/ambulance_call'
@@ -189,6 +197,11 @@ export const routes = [
       path:'/edit-doctor/:doctor_id',
       component:DoctorEditComponent,
       name:'edit-doctor'
+    },
+    {
+      path:'/doctors_visit',
+      component:DoctorsVisitComponent,
+      name:'doctors_visit'
     },
     {
       path:'/account',
