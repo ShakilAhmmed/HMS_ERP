@@ -40,6 +40,7 @@ import AccountEditComponent from './components/Account/account_edit'
 import DoctorAddComponent from './components/Doctor/DoctorAddComponent'
 import DoctorListComponent from './components/Doctor/DoctorListComponent'
 import DoctorEditComponent from './components/Doctor/DoctorEditComponent'
+import DoctorsVisitComponent from './components/Doctor/DoctorsVisit'
 
 // Nurse
 import NurseAddComponent from './components/Nurse/NurseAddComponent'
@@ -196,6 +197,11 @@ export const routes = [
       path:'/edit-doctor/:doctor_id',
       component:DoctorEditComponent,
       name:'edit-doctor'
+    },
+    {
+      path:'/doctors_visit',
+      component:DoctorsVisitComponent,
+      name:'doctors_visit'
     },
     {
       path:'/account',

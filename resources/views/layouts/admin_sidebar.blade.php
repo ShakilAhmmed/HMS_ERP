@@ -71,6 +71,7 @@
           <ul>
             <li><router-link to="/doctor_add">Add Doctor</router-link></li>
             <li><router-link to="/doctor_list">Doctors List</router-link></li>
+            <li><router-link to="/doctors_visit">Doctors Visit</router-link></li>
           </ul>
       </li>
 
