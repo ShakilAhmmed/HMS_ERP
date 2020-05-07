@@ -16,6 +16,10 @@ import VueToastr2 from 'vue-toastr-2';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'vue-toastr-2/dist/vue-toastr-2.min.css';
 import Loading from './components/Loading';
+import Sidebar from './components/Layouts/SidebarComponent';
+import Navbar from './components/Layouts/NavbarComponent';
+import PageHeader from './components/Layouts/PageHeaderComponent';
+
 window.Vue = require('vue');
 window.toastr = require('toastr');
 
@@ -24,6 +28,10 @@ Vue.use(VueRouter);
 Vue.use(VueLoading);
 Vue.use(VueAxios, axios);
 
+
+Vue.component('nav-bar', Navbar);
+Vue.component('side-bar', Sidebar);
+Vue.component('page-header', PageHeader);
 Vue.component('pagination', require('laravel-vue-pagination'));
 //Preloader
 Vue.use(VueLoading, {
@@ -37,6 +45,11 @@ Vue.use(VueLoading, {
 
 window.base_path ="api/v1/";
 
+// const  accessToken  =  localStorage.getItem('access_token')
+
+// if (accessToken) {
+//     window.axios.header['Authorization'].default = accessToken;
+// }
 
 
 // All Global

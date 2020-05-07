@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 Route::prefix('api/v1')->group(function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
     Route::resource('department','DepartmentController');
     Route::resource('designation','DesignationController');
     Route::resource('shift','ShiftController');

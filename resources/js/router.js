@@ -1,4 +1,5 @@
 import DashBoardComponent from './components/DashBoardComponent'
+import LoginComponent from './components/LoginComponent.vue'
 import DepartmentComponent from './components/Config/Department'
 import DesignationComponent from './components/Config/Designation'
 import ShiftComponent from './components/Config/Shift'
@@ -62,11 +63,16 @@ import LaboratoristEditComponent from './components/Laboratorist/LaboratoristEdi
 //let HomeComponent=require('./components/Admin/HomeComponent').default;
 
 export const routes = [
-  	{
-	  	path: '/',
-	  	component: DashBoardComponent,
-	  	name:"/"
-  	},
+    {
+      path: '/',
+      component: LoginComponent,
+      name:"/"
+    },
+    {
+      path: '/home',
+      component: DashBoardComponent,
+      name:"/home"
+    },
     {
 	  	path: '/department',
 	  	component: DepartmentComponent,
